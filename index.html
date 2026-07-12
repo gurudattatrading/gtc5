@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>Spring Rate Calculator | Gurudatta Trading Co. Mumbai</title> 
+    <link rel="icon" type="image/png" href="logo.jpg">
+<link rel="shortcut icon" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg"> 
+  
+<meta name="description" content="Free online spring rate calculator by Gurudatta Trading Co. Compute spring rate, solid height, max load, stress and full spec report instantly.">
+<meta name="author" content="Gurudatta Trading Co.">
+<meta name="robots" content="index, follow">
+<meta name="geo.placename" content="Mumbai, Maharashtra">
+<meta name="geo.region" content="IN-MH">
+<meta name="keywords" content="spring rate calculator online free, compression spring calculator India, spring constant calculator, spring stress calculator, spring design tool Mumbai">
+<meta property="og:title" content="Spring Rate Calculator | Gurudatta Trading Co.">
+<meta property="og:description" content="Free online spring rate calculator by Gurudatta Trading Co. Compute spring rate, solid height, max load, stress and full spec report instantly.">
+<meta property="og:image" content="https://2.wlimg.com/company_logo/13516914.jpg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gurudatta Trading Co.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0f2c;color:#fff;min-height:100vh;line-height:1.6;overflow-x:hidden}
+
+/* ── VARIABLES ── */
+:root{
+  --P:#ff6b00;--Pd:#e55a00;
+  --navy:#0a0f2c;--navy2:#0d1535;--navy3:#111a3e;
+  --card:#0f1940;--cb:rgba(255,255,255,0.07);
+  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.32);
+  --bdr:rgba(255,255,255,0.1);--bdr2:rgba(255,255,255,0.16);
+  --ibg:rgba(255,255,255,0.06);
+  --ok:#22c55e;--okbg:rgba(34,197,94,0.12);--okb:rgba(34,197,94,0.3);
+  --wn:#f59e0b;--wnbg:rgba(245,158,11,0.12);--wnb:rgba(245,158,11,0.3);
+  --er:#ef4444;--erbg:rgba(239,68,68,0.12);--erb:rgba(239,68,68,0.3);
+  --r:12px;--rs:8px;
+}
+
+/* ── WA STRIP ── */
+.wa-strip{background:var(--P);padding:7px 16px;font-size:12px;font-weight:600;color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;text-align:center}
+.wa-strip a{color:#fff;text-decoration:none}
+
+/* ── NAV ── */
+nav{background:var(--navy2);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.nav-icon{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px rgba(107,99,255,0.5)}
+.nav-icon img{width:100%;height:100%;object-fit:cover;display:block}
+.nav-txt{color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-sub{font-size:10px;color:var(--tm);font-weight:400;display:block}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{color:var(--tm);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;transition:.14s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-links a.act{color:var(--P);background:rgba(255,107,0,.1)}
+.nav-wa{background:var(--P)!important;color:#fff!important;border-radius:20px!important;padding:6px 14px!important;font-weight:600!important}
+.nav-wa:hover{background:var(--Pd)!important}
+.burger{display:none;background:none;border:none;cursor:pointer;color:#fff;font-size:22px;padding:4px}
+.mob-nav{display:none;background:var(--navy2);border-top:1px solid var(--bdr);padding:10px 16px;flex-direction:column;gap:2px}
+.mob-nav a{color:var(--tm);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;border-radius:6px;display:block;transition:.13s}
+.mob-nav a.act{color:var(--P)}
+.mob-nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.mob-nav.open{display:flex}
+@media(max-width:768px){.nav-links{display:none!important}.burger{display:block}}
+@media(max-width:420px){.nav-sub{display:none}.nav-txt{font-size:12px}}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);border-bottom:1px solid var(--bdr);padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(255,107,0,.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-40px;width:220px;height:220px;background:radial-gradient(circle,rgba(99,102,241,.06) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3);color:var(--P);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:12px;letter-spacing:.05em}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(20px,5vw,34px);font-weight:800;color:#fff;margin-bottom:6px;position:relative}
+.hero h1 span{color:var(--P)}
+.hero p{color:var(--tm);font-size:13px;max-width:500px;margin:0 auto 14px;position:relative}
+.hero-feats{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+.hf{font-size:11px;color:var(--tm);display:flex;align-items:center;gap:5px}
+.hf::before{content:'✓';color:var(--ok);font-weight:700}
+@media(max-width:480px){.hero{padding:22px 14px 18px}.hero-feats{gap:8px}}
+
+/* ── MAIN LAYOUT ── */
+.page{max-width:1300px;margin:0 auto;padding:20px 16px 60px;display:grid;grid-template-columns:440px 1fr;gap:20px;align-items:start}
+@media(max-width:980px){.page{grid-template-columns:1fr;padding:14px 12px 48px}}
+@media(max-width:480px){.page{padding:10px 10px 40px}}
+
+/* ── LEFT PANEL ── */
+.left{display:flex;flex-direction:column;gap:14px}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--cb);border-radius:var(--r);overflow:hidden}
+.card-hd{padding:11px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px}
+.card-ico{width:24px;height:24px;background:rgba(255,107,0,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.card-title{font-size:13px;font-weight:600;color:#fff}
+.card-sub{font-size:11px;color:var(--tm)}
+.card-body{padding:14px}
+
+/* type tabs */
+.type-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.ttab{border:1.5px solid var(--bdr2);border-radius:var(--rs);background:var(--ibg);padding:10px 6px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--tm);transition:.14s;user-select:none;font-family:'Inter',sans-serif}
+.ttab:hover{border-color:var(--P);color:#fff}
+.ttab.on{background:rgba(255,107,0,.15);color:var(--P);border-color:var(--P)}
+.ttab-ic{font-size:20px;display:block;margin-bottom:4px}
+
+/* unit pills */
+.pill-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pill-lbl{font-size:12px;color:var(--tm);font-weight:500}
+.pills{display:flex;background:var(--ibg);border:1px solid var(--bdr);border-radius:20px;overflow:hidden}
+.pill{padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;color:var(--tm);border-right:1px solid var(--bdr);transition:.13s;user-select:none}
+.pill:last-child{border-right:none}
+.pill.on{background:var(--P);color:#fff}
+
+/* field label */
+.flbl{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:5px}
+
+/* exact/range toggle */
+.mode-row{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+.mode-lbl{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em}
+.mode-pills{display:flex;background:var(--ibg);border:1px solid var(--bdr);border-radius:14px;overflow:hidden}
+.mpill{padding:3px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--tm);border-right:1px solid var(--bdr);transition:.12s;user-select:none}
+.mpill:last-child{border-right:none}
+.mpill.on{background:var(--P);color:#fff}
+
+/* inputs */
+input[type=number],input[type=text],select{background:var(--ibg);border:1.5px solid var(--bdr2);border-radius:var(--rs);padding:10px 12px;font-size:16px;color:#fff;font-family:'Inter',sans-serif;outline:none;width:100%;transition:.14s;-webkit-appearance:none;appearance:none}
+input[type=number]::placeholder,input[type=text]::placeholder{color:var(--tl)}
+input[type=number]:focus,input[type=text]:focus,select:focus{border-color:var(--P);background:rgba(255,107,0,.04)}
+select option{background:#1a1f3c;color:#fff}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+
+/* range row */
+.range-row{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
+.range-dash{color:var(--tl);font-size:14px;font-weight:500;text-align:center}
+.range-sub{display:flex;justify-content:space-between;font-size:10px;color:var(--tl);margin-top:3px;padding:0 2px}
+
+/* form sections */
+.form-section{margin-bottom:12px}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:400px){.form-grid-2{grid-template-columns:1fr}}
+
+/* end types */
+.end-types{display:flex;gap:6px;flex-wrap:wrap}
+.etype{border:1.5px solid var(--bdr2);border-radius:6px;background:var(--ibg);padding:7px 12px;font-size:12px;font-weight:600;color:var(--tm);cursor:pointer;transition:.13s;user-select:none;min-width:42px;text-align:center}
+.etype:hover{border-color:var(--P);color:#fff}
+.etype.on{background:rgba(255,107,0,.15);color:var(--P);border-color:var(--P)}
+
+/* attention note */
+.note-box{background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);border-radius:var(--rs);padding:9px 12px;font-size:11.5px;color:var(--tm);line-height:1.6;margin-bottom:12px}
+.note-box strong{color:var(--P)}
+
+/* name/mobile */
+.req-lbl::after{content:' *';color:var(--er)}
+
+/* calc & reset btns */
+.btn-row{display:flex;gap:10px}
+.calc-btn{flex:1;padding:13px;background:var(--P);color:#fff;border:none;border-radius:var(--rs);font-size:15px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.03em;transition:.14s;display:flex;align-items:center;justify-content:center;gap:8px}
+.calc-btn:hover{background:var(--Pd);transform:translateY(-1px);box-shadow:0 4px 18px rgba(255,107,0,.35)}
+.calc-btn:active{transform:translateY(0)}
+.reset-btn{padding:13px 18px;background:transparent;color:var(--tm);border:1.5px solid var(--bdr2);border-radius:var(--rs);font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:.14s;white-space:nowrap}
+.reset-btn:hover{border-color:var(--P);color:var(--P)}
+
+/* status */
+.status{border-radius:var(--rs);padding:10px 14px;font-size:12.5px;font-weight:500;display:none;line-height:1.5;margin-top:4px}
+.status.show{display:block}
+.s-ok{background:var(--okbg);color:var(--ok);border:1px solid var(--okb)}
+.s-warn{background:var(--wnbg);color:var(--wn);border:1px solid var(--wnb)}
+.s-err{background:var(--erbg);color:var(--er);border:1px solid var(--erb)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px 12px;text-align:center}
+.kpi-l{font-size:10px;color:var(--tm);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.kpi-v{font-size:17px;font-weight:700;color:var(--P);font-family:'Montserrat',sans-serif;word-break:break-word;line-height:1.2}
+.kpi-u{font-size:10px;color:var(--tl)}
+
+/* spec table */
+.spec-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.spec-tbl td{padding:7px 12px;border-bottom:1px solid var(--bdr);color:var(--tm)}
+.spec-tbl td:last-child{text-align:right;font-weight:600;color:#fff;font-family:'Montserrat',sans-serif;font-size:11.5px;white-space:nowrap}
+.spec-tbl tr:last-child td{border-bottom:none}
+.spec-tbl tr:hover td{background:rgba(255,255,255,.02)}
+@media(max-width:400px){.spec-tbl td{padding:6px 10px;font-size:11px}}
+
+/* force tester */
+.force-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.force-row label{font-size:12px;color:var(--tm);white-space:nowrap;font-weight:500}
+.force-row input{flex:1;min-width:80px;font-size:16px}
+.force-res{background:var(--P);color:#fff;border-radius:var(--rs);padding:9px 14px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;min-width:90px;text-align:center;line-height:1.3;white-space:nowrap}
+
+/* WA btn */
+.wa-btn{display:flex;width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:var(--rs);font-size:13px;font-weight:700;cursor:pointer;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:.14s;font-family:'Montserrat',sans-serif;line-height:1.4}
+.wa-btn:hover{background:#1ebe5a;transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,211,102,.3)}
+
+.hidden{display:none!important}
+
+/* ── RIGHT: 3D VIEWER ── */
+.viewer{position:sticky;top:80px;background:var(--card);border:1px solid var(--cb);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;height:calc(100vh - 110px);min-height:480px;max-height:820px}
+@media(max-width:980px){.viewer{position:static;height:320px;min-height:280px;max-height:340px;order:-1}}
+@media(max-width:480px){.viewer{height:260px;min-height:240px}}
+
+.viewer-hd{padding:11px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.vhd-l{display:flex;align-items:center;gap:8px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 6px rgba(34,197,94,.6);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.v-title{font-size:13px;font-weight:700;color:#fff;font-family:'Montserrat',sans-serif}
+.v-sub{font-size:10px;color:var(--tm)}
+.badge-3d{background:rgba(255,107,0,.15);color:var(--P);font-size:10px;font-weight:700;padding:3px 10px;border-radius:12px;border:1px solid rgba(255,107,0,.3);letter-spacing:.05em;white-space:nowrap}
+
+.viewer-body{flex:1;position:relative;overflow:hidden;cursor:grab}
+.viewer-body:active{cursor:grabbing}
+#cv{display:block;width:100%;height:100%}
+
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;transition:opacity .35s}
+.ph.gone{opacity:0}
+.ph-ic{font-size:42px;display:block;margin-bottom:12px;opacity:.22}
+.ph-txt{color:var(--tl);font-size:12px;line-height:1.9;padding:0 16px}
+.ph-txt strong{color:var(--tm);display:block;font-size:13px;margin-bottom:2px}
+@media(max-width:480px){.ph-ic{font-size:30px;margin-bottom:8px}.ph-txt{font-size:11px}}
+
+.viewer-ft{padding:6px 14px;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:rgba(0,0,0,.18);flex-wrap:wrap;gap:4px}
+.v-hint{font-size:10px;color:var(--tl);white-space:nowrap}
+.v-lbls{display:flex;gap:8px;flex-wrap:wrap}
+.vlbl{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--tm);font-family:monospace}
+.vdot{width:7px;height:7px;border-radius:50%;flex-shrink:0} 
+
+  /* Dynamic scroll-reveal animation for this section */
+  .si-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .si-reveal.si-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .si-card:hover, .si-step:hover {
+    border-color: #ff7a1a !important;
+    transform: translateY(-3px);
+  }
+  .si-card, .si-step {
+    transition: transform 0.25s ease, border-color 0.25s ease, opacity 0.6s ease;
+  }
+
+
+/* ── FOOTER ── */
+footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px;text-align:center}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-logo{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:3px}
+.ft-logo span{color:var(--P)}
+.ft-sub{font-size:12px;color:var(--tm);margin-bottom:14px}
+.ft-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.ft-links a{color:var(--tm);text-decoration:none;font-size:12px;transition:.13s}
+.ft-links a:hover{color:var(--P)}
+.ft-copy{font-size:11px;color:var(--tl);line-height:1.6}
+@media(max-width:480px){footer{padding:18px 14px}.ft-links{gap:10px}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a class="nav-logo" href="home.html">
+      <div class="nav-icon"><img src="logo.jpg" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
+      <div class="nav-txt">GURUDATTA TRADING CO.<span class="nav-sub">No.1 Compression · Mumbai, India</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="home.html">🏠 Home</a>
+      <a href="index.html" class="act">⚙️ Calculator</a>
+      <a href="products.html">🔩 Products</a>
+      <a href="reviews.html">⭐ Reviews</a>
+      <a href="contact.html">📞 Contact</a>
+      <a href="https://wa.me/918454995315" class="nav-wa" target="_blank">📱 WhatsApp</a>
+    </div>
+    <button class="burger" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+  <div class="mob-nav" id="mob-nav">
+    <a href="home.html">🏠 Home</a>
+    <a href="index.html" class="act">⚙️ Calculator</a>
+    <a href="products.html">🔩 Products</a>
+    <a href="reviews.html">⭐ Reviews</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="https://wa.me/918454995315" target="_blank" style="color:#25D366;font-weight:700">📱 WhatsApp Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⚙ Smart Tool</div>
+  <h1>Spring Rate <span>Calculator</span></h1>
+  <p>India's first integrated spring calculator get an instant full spec report.</p>
+  <div class="hero-feats">
+    <span class="hf">Compression, Extension & Torsion</span>
+    <span class="hf">English (inch) & Metric (mm)</span>
+    <span class="hf">Exact or Range inputs</span>
+    <span class="hf">Live 3D Preview</span>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- ══ LEFT ══ -->
+  <div class="left">
+
+    <!-- Card 1: Type -->
+    <div class="card">
+      <div class="card-hd"><div class="card-ico">🔩</div><div class="card-title">Select Your Spring Type</div></div>
+      <div class="card-body">
+        <div class="type-tabs">
+          <div class="ttab on" onclick="setType('C')"><span class="ttab-ic">⬇</span>COMPRESSION</div>
+          <div class="ttab" onclick="setType('E')"><span class="ttab-ic">↕</span>EXTENSION</div>
+          <div class="ttab" onclick="setType('T')"><span class="ttab-ic">↻</span>TORSION</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Dimensions -->
+    <div class="card">
+      <div class="card-hd">
+        <div class="card-ico">📐</div>
+        <div><div class="card-title">ENTER YOUR DIMENSIONS</div><div class="card-sub">Results will be ±10% from middle value</div></div>
+      </div>
+      <div class="card-body">
+
+        <!-- Unit -->
+        <div class="pill-row" style="margin-bottom:14px">
+          <span class="pill-lbl">Unit of Measurement</span>
+          <div class="pills">
+            <div class="pill on" id="ut-inch" onclick="setUnit('inch')">ENGLISH</div>
+            <div class="pill" id="ut-mm" onclick="setUnit('mm')">METRIC</div>
+          </div>
+        </div>
+
+        <div class="note-box"><strong>Attention:</strong> Results shown will be ±10% from middle value. &nbsp;|&nbsp; <em>Free Length is optional defaults to OD × 3 if left blank.</em></div>
+
+        <!-- Wire Dia -->
+        <div class="form-section">
+          <div class="mode-row">
+            <span class="mode-lbl">Wire Dia (<span class="usuf">IN</span>)</span>
+            <div class="mode-pills">
+              <div class="mpill on" onclick="setMode('wd','exact',this)">Exact</div>
+              <div class="mpill" onclick="setMode('wd','range',this)">Range</div>
+            </div>
+          </div>
+          <div id="wd-exact"><input type="number" id="wd-e" placeholder="e.g. 0.060" step="0.001" min="0"></div>
+          <div id="wd-range" class="hidden">
+            <div class="range-row">
+              <input type="number" id="wd-mn" placeholder="Min" step="0.001" min="0">
+              <div class="range-dash">–</div>
+              <input type="number" id="wd-mx" placeholder="Max" step="0.001" min="0">
+            </div>
+            <div class="range-sub"><span>Min</span><span>Max</span></div>
+          </div>
+        </div>
+
+        <!-- Outer Dia -->
+        <div class="form-section">
+          <div class="mode-row">
+            <span class="mode-lbl">Outer Dia (<span class="usuf">IN</span>)</span>
+            <div class="mode-pills">
+              <div class="mpill on" onclick="setMode('od','exact',this)">Exact</div>
+              <div class="mpill" onclick="setMode('od','range',this)">Range</div>
+            </div>
+          </div>
+          <div id="od-exact"><input type="number" id="od-e" placeholder="e.g. 0.500" step="0.01" min="0"></div>
+          <div id="od-range" class="hidden">
+            <div class="range-row">
+              <input type="number" id="od-mn" placeholder="Min" step="0.01" min="0">
+              <div class="range-dash">–</div>
+              <input type="number" id="od-mx" placeholder="Max" step="0.01" min="0">
+            </div>
+            <div class="range-sub"><span>Min</span><span>Max</span></div>
+          </div>
+        </div>
+
+        <!-- Free Length -->
+        <div class="form-section">
+          <div class="mode-row">
+            <span class="mode-lbl">Free Length (<span class="usuf">IN</span>)</span>
+            <div class="mode-pills">
+              <div class="mpill on" onclick="setMode('fl','exact',this)">Exact</div>
+              <div class="mpill" onclick="setMode('fl','range',this)">Range</div>
+            </div>
+          </div>
+          <div id="fl-exact"><input type="number" id="fl-e" placeholder="Optional — defaults to OD×3" step="0.1" min="0"></div>
+          <div id="fl-range" class="hidden">
+            <div class="range-row">
+              <input type="number" id="fl-mn" placeholder="Min" step="0.1" min="0">
+              <div class="range-dash">–</div>
+              <input type="number" id="fl-mx" placeholder="Max" step="0.1" min="0">
+            </div>
+            <div class="range-sub"><span>Min</span><span>Max</span></div>
+          </div>
+        </div>
+
+        <!-- Total Coils -->
+        <div class="form-section">
+          <div class="mode-row">
+            <span class="mode-lbl">Total Coils</span>
+            <div class="mode-pills">
+              <div class="mpill on" onclick="setMode('tc','exact',this)">Exact</div>
+              <div class="mpill" onclick="setMode('tc','range',this)">Range</div>
+            </div>
+          </div>
+          <div id="tc-exact"><input type="number" id="tc-e" placeholder="e.g. 10" step="0.5" min="2"></div>
+          <div id="tc-range" class="hidden">
+            <div class="range-row">
+              <input type="number" id="tc-mn" placeholder="Min" step="0.5" min="2">
+              <div class="range-dash">–</div>
+              <input type="number" id="tc-mx" placeholder="Max" step="0.5" min="2">
+            </div>
+            <div class="range-sub"><span>Min</span><span>Max</span></div>
+          </div>
+        </div>
+
+        <!-- Material -->
+        <div class="form-section">
+          <label class="flbl">Material Type</label>
+          <select id="mat">
+            <option value="81500">Music Wire ASTM A228 — G=81,500 N/mm²</option>
+            <option value="79300">Hard Drawn Wire ASTM A227 — G=79,300 N/mm²</option>
+            <option value="80700">Chrome Vanadium ASTM A232 — G=80,700 N/mm²</option>
+            <option value="73000">Stainless Steel ASTM A313 — G=73,000 N/mm²</option>
+            <option value="44000">Phosphor Bronze ASTM B197 — G=44,000 N/mm²</option>
+            <option value="80000" selected>Mild Steel IS 4454 — G=80,000 N/mm²</option>
+          </select>
+        </div>
+
+        <!-- End Types -->
+        <div class="form-section">
+          <label class="flbl">End Types</label>
+          <div class="end-types">
+            <div class="etype on" onclick="toggleEnd(this,'C')">C<br><span style="font-size:9px;opacity:.7">Closed</span></div>
+            <div class="etype" onclick="toggleEnd(this,'CG')">CG<br><span style="font-size:9px;opacity:.7">Closed Gr.</span></div>
+            <div class="etype" onclick="toggleEnd(this,'DC')">DC<br><span style="font-size:9px;opacity:.7">Double Cl.</span></div>
+            <div class="etype" onclick="toggleEnd(this,'O')">O<br><span style="font-size:9px;opacity:.7">Open</span></div>
+          </div>
+        </div>
+
+        <!-- Wind Direction -->
+        <div class="form-section">
+          <label class="flbl">Wind Direction</label>
+          <div class="end-types">
+            <div class="etype on" onclick="toggleWind(this,'RH')">RH<br><span style="font-size:9px;opacity:.7">Right Hand</span></div>
+            <div class="etype" onclick="toggleWind(this,'LH')">LH<br><span style="font-size:9px;opacity:.7">Left Hand</span></div>
+          </div>
+        </div>
+
+        <!-- Name + Mobile -->
+        <div class="form-grid-2" style="margin-bottom:14px">
+          <div>
+            <label class="flbl req-lbl">Full Name</label>
+            <input type="text" id="uname" placeholder="Your name">
+          </div>
+          <div>
+            <label class="flbl req-lbl">Mobile Number</label>
+            <input type="number" id="umobile" placeholder="10-digit number" maxlength="10">
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-row">
+          <button class="calc-btn" onclick="calculate()">⚡ Calculate</button>
+          <button class="reset-btn" onclick="resetForm()">↺ Reset</button>
+        </div>
+        <div class="status" id="status-box"></div>
+
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results-area" class="hidden">
+      <div class="card">
+        <div class="card-hd"><div class="card-ico">📊</div><div class="card-title">Key Results</div></div>
+        <div class="card-body">
+          <div class="kpi-grid" id="kpi-grid"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><div class="card-ico">📋</div><div class="card-title">Full Specification Sheet</div></div>
+        <div style="overflow-x:auto">
+          <table class="spec-tbl"><tbody id="spec-body"></tbody></table>
+        </div>
+      </div>
+
+      <div class="card" id="force-card">
+        <div class="card-hd"><div class="card-ico">⚡</div><div><div class="card-title">Force Tester</div><div class="card-sub">F = k × x</div></div></div>
+        <div class="card-body">
+          <div class="force-row">
+            <label>Deflection</label>
+            <input type="number" id="fc-t" placeholder="mm" step="0.5" min="0" oninput="calcForce()">
+            <div class="force-res" id="fc-r">—</div>
+          </div>
+          <div style="font-size:11px;color:var(--tl);margin-top:6px">Force = Spring Rate × Deflection</div>
+          <div id="fc-warn" class="hidden status s-warn" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+      <a class="wa-btn" id="wa-btn" href="#" target="_blank">📱 WhatsApp वर Quote मागवा Gurudatta Trading Co.</a>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- ══ RIGHT: 3D ══ -->
+  <div class="viewer">
+    <div class="viewer-hd">
+      <div class="vhd-l">
+        <div class="live-dot"></div>
+        <div><div class="v-title">3D Spring Viewer</div><div class="v-sub">Interactive · Real-time</div></div>
+      </div>
+      <span class="badge-3d">3D LIVE</span>
+    </div>
+    <div class="viewer-body" id="vbody">
+      <canvas id="cv"></canvas>
+      <div class="ph" id="ph">
+        <span class="ph-ic">🔩</span>
+        <div class="ph-txt"><strong>3D Spring Preview</strong>Dimensions भरा आणि<br><span style="color:var(--P);font-weight:600">Calculate</span> दाबा</div>
+      </div>
+    </div>
+    <div class="viewer-ft">
+      <div class="v-hint">👆 Drag to rotate · Pinch/Scroll to zoom</div>
+      <div class="v-lbls" id="vlbls"></div>
+    </div>
+  </div> 
+    <!-- ==========================================================
+     Spring Rate Calculator - Info / SEO Section (English)
+     Paste this right after your calculator's closing </section>
+     Dynamic: cards fade/slide in on scroll (matches rest of site)
+     ========================================================== -->
+
+<section class="spring-info-section" style="
+  background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+  color: #e6edf3;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
+">
+  <div style="max-width: 960px; margin: 0 auto;">
+
+    <!-- Section Tag -->
+    <p class="si-reveal" style="
+      text-align:center;
+      color:#ff7a1a;
+      letter-spacing:2px;
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    ">⚙ Free Online Tool</p>
+
+    <h2 class="si-reveal" style="
+      text-align:center;
+      font-size:32px;
+      font-weight:800;
+      margin:0 0 12px;
+      color:#ffffff;
+    ">What Is the Spring Rate Calculator?</h2>
+
+    <p class="si-reveal" style="text-align:center; color:#9da7b3; max-width:680px; margin:0 auto 40px; font-size:15.5px; line-height:1.7;">
+      Gurudatta Trading Co.'s Spring Rate Calculator is a
+      <strong style="color:#ff7a1a;">free online spring design tool</strong> built for Indian
+      manufacturers instantly calculate accurate spring rate, load capacity, deflection and
+      solid height for Compression, Extension and Torsion springs.
+    </p>
+
+    <!-- 3 Feature Cards (icon-based, no stock images needed) -->
+    <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:50px;">
+
+      <div class="si-reveal si-card" style="flex:1; min-width:260px; max-width:300px; background:#161b22; border:1px solid #30363d; border-radius:14px; padding:26px; text-align:center;">
+        <div style="font-size:34px; margin-bottom:10px;">🎯</div>
+        <h3 style="color:#fff; font-size:17px; margin:0 0 8px;">Precise Calculations</h3>
+        <p style="color:#9da7b3; font-size:14px; line-height:1.6; margin:0;">
+          Enter wire diameter, outer diameter, free length and total coils our engineering-grade
+          formulas give you spring rate, max load and stress instantly.
+        </p>
+      </div>
+
+      <div class="si-reveal si-card" style="flex:1; min-width:260px; max-width:300px; background:#161b22; border:1px solid #30363d; border-radius:14px; padding:26px; text-align:center;">
+        <div style="font-size:34px; margin-bottom:10px;">📐</div>
+        <h3 style="color:#fff; font-size:17px; margin:0 0 8px;">Live 3D Preview</h3>
+        <p style="color:#9da7b3; font-size:14px; line-height:1.6; margin:0;">
+          See your spring design rendered in real time 3D rotate, zoom and inspect every coil
+          before you confirm it for manufacturing.
+        </p>
+      </div>
+
+      <div class="si-reveal si-card" style="flex:1; min-width:260px; max-width:300px; background:#161b22; border:1px solid #30363d; border-radius:14px; padding:26px; text-align:center;">
+        <div style="font-size:34px; margin-bottom:10px;">📋</div>
+        <h3 style="color:#fff; font-size:17px; margin:0 0 8px;">Full Spec Report</h3>
+        <p style="color:#9da7b3; font-size:14px; line-height:1.6; margin:0;">
+          A complete specification sheet is generated automatically send it straight to
+          Gurudatta Trading Co. on WhatsApp to request a manufacturing quote.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- How it works -->
+    <h2 class="si-reveal" style="font-size:26px; font-weight:800; color:#fff; margin-bottom:22px;">
+      How to Use This Calculator
+    </h2>
+
+    <div style="display:grid; gap:16px; margin-bottom:44px;">
+      <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
+        <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</span>
+        <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
+          Choose the spring type <strong style="color:#fff;">Compression, Extension or Torsion</strong> and select your unit system: English (inch) or Metric (mm).
+        </p>
+      </div>
+      <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
+        <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</span>
+        <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
+          Enter wire diameter, outer diameter, free length and total coils use an exact value or a Min–Max range, whichever suits your design.
+        </p>
+      </div>
+      <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
+        <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</span>
+        <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
+          Select material type (Music Wire, Stainless Steel, Mild Steel, etc.) and end type, then hit <strong style="color:#fff;">⚡ Calculate</strong>.
+        </p>
+      </div>
+      <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
+        <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">4</span>
+        <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
+          Review key results, the full specification sheet and 3D preview, then <strong style="color:#ff7a1a;">request a quote on WhatsApp</strong> directly.
+        </p>
+      </div>
+    </div>
+
+    <!-- Why choose us -->
+    <div class="si-reveal" style="background:linear-gradient(135deg,#1a1008,#161b22); border:1px solid #30363d; border-radius:16px; padding:32px; margin-bottom:20px;">
+      <h2 style="font-size:24px; font-weight:800; color:#fff; margin:0 0 14px;">
+        Why Choose Gurudatta Trading Co.?
+      </h2>
+      <p style="color:#c9d1d9; font-size:15px; line-height:1.8; margin:0 0 12px;">
+        Based in Mumbai, Gurudatta Trading Co. is a trusted name in compression, extension and
+        torsion spring manufacturing. Use this calculator to design the exact spring you need
+        whether for a new product or to replace an existing part.
+      </p>
+      <p style="color:#c9d1d9; font-size:15px; line-height:1.8; margin:0;">
+        Once your design is ready, our team manufactures a quality-tested spring to that same
+        specification and delivers on time making the journey from design to production simple
+        and fast.
+      </p>
+    </div>
+    <!-- CTA -->
+    <div class="si-reveal" style="text-align:center; margin-top:36px;">
+      <a href="https://wa.me/918454995315" style="
+        display:inline-block;
+        background:#ff7a1a;
+        color:#0d1117;
+        font-weight:800;
+        font-size:15px;
+        padding:14px 32px;
+        border-radius:10px;
+        text-decoration:none;
+      ">📱 Get a Free Quote on WhatsApp</a>
+    </div>
+
+  </div>
+</section>
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-logo">GURUDATTA <span>TRADING CO.</span></div>
+    <div class="ft-sub">No.1 Compression · Mumbai, India</div> 
+     <div class="ft-links"><a href="privacypolicy.html">Privacy Policy</a></div>
+    <div class="ft-copy">© 2026 Gurudatta Trading Co. All rights reserved.<br>Mild Steel Springs Manufacturer & Supplier, Mumbai, India.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ══ STATE ══ */
+var sType='C', unit='inch', lastR=null;
+var endType='C', windDir='RH';
+var modes={wd:'exact',od:'exact',fl:'exact',tc:'exact'};
+var scene,camera,renderer,sGroup;
+var drag=false,prev={x:0,y:0},rotX=0.25,rotY=0.5,zoom=5;
+var ok3=false;
+
+/* ══ NAV ══ */
+function toggleNav(){document.getElementById('mob-nav').classList.toggle('open');}
+
+/* ══ SPRING TYPE ══ */
+function setType(t){
+  sType=t;
+  document.querySelectorAll('.ttab').forEach(function(el,i){el.classList.toggle('on',['C','E','T'][i]===t);});
+  document.getElementById('results-area').classList.add('hidden');
+  document.getElementById('status-box').className='status';
+}
+
+/* ══ UNIT ══ */
+function setUnit(u){
+  unit=u;
+  document.getElementById('ut-inch').classList.toggle('on',u==='inch');
+  document.getElementById('ut-mm').classList.toggle('on',u==='mm');
+  var lbl=u==='inch'?'IN':'MM';
+  document.querySelectorAll('.usuf').forEach(function(el){el.textContent=lbl;});
+}
+
+/* ══ MODE (exact/range) ══ */
+function setMode(fld,mode,btn){
+  modes[fld]=mode;
+  document.getElementById(fld+'-exact').classList.toggle('hidden',mode!=='exact');
+  document.getElementById(fld+'-range').classList.toggle('hidden',mode!=='range');
+  btn.closest('.mode-pills').querySelectorAll('.mpill').forEach(function(p,i){
+    p.classList.toggle('on',['exact','range'][i]===mode);
+  });
+}
+
+/* ══ END TYPES ══ */
+function toggleEnd(el,v){
+  endType=v;
+  document.querySelectorAll('.etype').forEach(function(e){
+    if(['C','CG','DC','O'].includes(e.textContent.trim().split('\n')[0]))e.classList.remove('on');
+  });
+  el.classList.add('on');
+}
+function toggleWind(el,v){
+  windDir=v;
+  el.closest('.end-types').querySelectorAll('.etype').forEach(function(e){e.classList.remove('on');});
+  el.classList.add('on');
+}
+
+/* ══ HELPERS ══ */
+function toMM(v){return unit==='inch'?v*25.4:v;}
+function fromMM(v){return unit==='inch'?v/25.4:v;}
+function fmt(v,d){return parseFloat(v.toFixed(d===undefined?3:d));}
+function fmtU(v){return fmt(fromMM(v),unit==='inch'?4:2);}
+function uSuf(){return unit==='inch'?'in':'mm';}
+
+function getVal(fld){
+  if(modes[fld]==='exact'){
+    var v=parseFloat(document.getElementById(fld+'-e').value);
+    return isNaN(v)?null:v;
+  } else {
+    var mn=parseFloat(document.getElementById(fld+'-mn').value);
+    var mx=parseFloat(document.getElementById(fld+'-mx').value);
+    if(isNaN(mn)||isNaN(mx))return null;
+    return (mn+mx)/2;
+  }
+}
+
+function showSt(t,m){var el=document.getElementById('status-box');el.className='status show s-'+t;el.textContent=m;}
+
+/* ══ CALCULATE ══ */
+function calculate(){
+  var name=document.getElementById('uname').value.trim();
+  var mob=document.getElementById('umobile').value.trim();
+  if(!name){showSt('err','⚠ Please enter your Full Name.');return;}
+  if(!/^\d{10}$/.test(mob)){showSt('err','⚠ Enter valid 10-digit Mobile Number.');return;}
+
+  var wd=getVal('wd'), od=getVal('od'), tc=getVal('tc');
+  var fl=getVal('fl');
+  var G=parseFloat(document.getElementById('mat').value);
+
+  if(!wd||!od||!tc){showSt('err','⚠ Wire Dia, Outer Dia आणि Total Coils आवश्यक आहेत.');return;}
+
+  var d=toMM(wd), OD=toMM(od), n=tc;
+  var D=OD-d;                        // Mean coil dia
+  if(D<=0){showSt('err','⚠ Outer Diameter must be greater than Wire Diameter.');return;}
+  var Ln=fl?toMM(fl):OD*3;
+  var C=D/d;
+  var K=(4*C-1)/(4*C-4)+0.615/C;
+  var k=(Math.pow(d,4)*G)/(8*Math.pow(D,3)*n);
+  var solidL=n*d, OD_val=OD, ID_val=D-d;
+  var pitch=n>1?(Ln-d)/(n-1):Ln;
+  var maxS=G===73000?830:(G===44000?350:(G===42000?310:900));
+  var safeF=(maxS*Math.PI*Math.pow(d,3))/(K*8*D);
+  var dMax=safeF/k;
+  var stress=K*(8*safeF*D)/(Math.PI*Math.pow(d,3));
+  lastR={d:d,D:D,OD:OD,Ln:Ln,n:n,k:k,solidL:solidL,OD_val:OD_val,ID_val:ID_val,safeF:safeF,dMax:dMax,stress:stress,pitch:pitch};
+
+  var w=[],ok=true;
+  if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
+  if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
+  if(solidL>=Ln){w.push('Solid Length ≥ Free Length!');ok=false;}
+  if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+  else if(ok)showSt('warn','⚠ '+w.join(' | '));
+  else showSt('err','✗ '+w.join(' | '));
+
+  buildKPI([
+    ['Spring Rate (k)',fmt(k,3),'N/mm'],
+    ['Safe Load',fmt(safeF,1),'N'],
+    ['Wt. Equiv.',fmt(safeF/9.81,2),'kg'],
+    ['Max Defl.',fmtU(dMax),uSuf()],
+    ['Outer Dia',fmtU(OD_val),uSuf()],
+    ['Solid Len.',fmtU(solidL),uSuf()]
+  ]);
+
+  buildSpec([
+    ['Spring Type',sType==='C'?'Compression':sType==='E'?'Extension':'Torsion'],
+    ['Wire Diameter (d)',fmtU(d)+' '+uSuf()],
+    ['Outer Diameter (OD)',fmtU(OD_val)+' '+uSuf()],
+    ['Mean Coil Dia (D)',fmtU(D)+' '+uSuf()],
+    ['Inner Diameter (ID)',fmtU(ID_val)+' '+uSuf()],
+    ['Free Length (L₀)',fmtU(Ln)+' '+uSuf()],
+    ['Solid Length (Ls)',fmtU(solidL)+' '+uSuf()],
+    ['Total Coils (n)',n],
+    ['Active Coils',n-2],
+    ['Pitch (p)',fmtU(pitch)+' '+uSuf()],
+    ['Spring Index (C)',fmt(C,3)],
+    ['Wahl Factor (K)',fmt(K,4)],
+    ['Shear Modulus (G)',G.toLocaleString()+' N/mm²'],
+    ['Spring Rate (k)',fmt(k,4)+' N/mm'],
+    ['Max Safe Load',fmt(safeF,2)+' N ('+fmt(safeF/9.81,2)+' kg)'],
+    ['Max Deflection',fmtU(dMax)+' '+uSuf()],
+    ['Torsional Stress',fmt(stress,1)+' N/mm²'],
+    ['End Type',endType],
+    ['Wind Direction',windDir],
+    ['Material','G='+G.toLocaleString()+' N/mm²'],
+    ['Customer',name],
+    ['Mobile',mob]
+  ]);
+
+  document.getElementById('force-card').classList.remove('hidden');
+  document.getElementById('fc-t').value='';
+  document.getElementById('fc-r').textContent='—';
+  document.getElementById('fc-warn').classList.add('hidden');
+  document.getElementById('fc-warn').style.display='none';
+  buildWA(name,mob);
+  document.getElementById('results-area').classList.remove('hidden');
+  build3D(d,D,Ln,n,G);
+  sendToSheets(name,mob,d,D,OD_val,Ln,n,k,safeF,endType,windDir,G);
+}
+
+/* ══ GOOGLE SHEETS ══ */
+function sendToSheets(name,mob,d,D,OD,Ln,n,k,safeF,end,wind,G){
+  try{
+    var url='https://script.google.com/macros/s/AKfycbyHiblHcr6RYJvZiKah-GHMKd3b1aCA8xYH0f1QUtZdtBIwg0btkNTyVgQTclhsqi-K/exec';
+    var data={name:name,mobile:mob,type:sType,unit:unit,wireDia:d,meanDia:D,outerDia:OD,freeLen:Ln,coils:n,rate:fmt(k,3),load:fmt(safeF,1),endType:end,wind:wind,material:G,timestamp:new Date().toISOString()};
+    fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(function(){});
+  }catch(e){}
+}
+
+    
+  // Reveal each element as it scrolls into view (staggered)
+  (function () {
+    const items = document.querySelectorAll('.spring-info-section .si-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('si-visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach((el) => observer.observe(el));
+  })();
+
+/* ══ FORCE TESTER ══ */
+function calcForce(){
+  if(!lastR)return;
+  var t=parseFloat(document.getElementById('fc-t').value);
+  var el=document.getElementById('fc-r'),we=document.getElementById('fc-warn');
+  if(!t||t<=0){el.textContent='—';we.style.display='none';return;}
+  var tMM=toMM(t),f=lastR.k*tMM;
+  el.innerHTML=fmt(f,1)+' N<br><small style="opacity:.8">'+fmt(f/9.81,2)+' kg</small>';
+  if(tMM>lastR.dMax){we.textContent='⚠ Safe limit ओलांडते! Spring damage.';we.style.display='block';}
+  else if(tMM>lastR.dMax*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
+  else we.style.display='none';
+}
+
+/* ══ UI BUILDERS ══ */
+function buildKPI(a){
+  document.getElementById('kpi-grid').innerHTML=a.map(function(r){
+    return '<div class="kpi"><div class="kpi-l">'+r[0]+'</div><div class="kpi-v">'+r[1]+'</div><div class="kpi-u">'+r[2]+'</div></div>';
+  }).join('');
+}
+function buildSpec(rows){
+  document.getElementById('spec-body').innerHTML=rows.map(function(r){
+    return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';
+  }).join('');
+}
+function buildWA(name,mob){
+  var r=lastR;
+  var msg='Namaskar Gurudatta Trading Co.,\n\n';
+  msg+='Name: '+name+'\nMobile: '+mob+'\n\n';
+  msg+='Spring Enquiry:\n';
+  msg+='Type: '+(sType==='C'?'Compression':sType==='E'?'Extension':'Torsion')+'\n';
+  msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
+  msg+='Rate: '+fmt(r.k,3)+' N/mm | Load: '+fmt(r.safeF,1)+' N ('+fmt(r.safeF/9.81,2)+' kg)\n';
+  msg+='End: '+endType+' | Wind: '+windDir+'\n\nKrupaya quote dya.';
+  document.getElementById('wa-btn').href='https://wa.me/918454995315?text='+encodeURIComponent(msg);
+}
+
+/* ══ RESET ══ */
+function resetForm(){
+  ['wd-e','od-e','fl-e','tc-e','wd-mn','wd-mx','od-mn','od-mx','fl-mn','fl-mx','tc-mn','tc-mx','uname','umobile'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.value='';
+  });
+  document.getElementById('results-area').classList.add('hidden');
+  document.getElementById('status-box').className='status';
+}
+
+/* ══ THREE.JS ══ */
+function initThree(){
+  var vb=document.getElementById('vbody');
+  var W=vb.offsetWidth||300,H=vb.offsetHeight||260;
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(42,W/H,0.01,300);
+  camera.position.set(0,0,zoom);
+  renderer=new THREE.WebGLRenderer({canvas:document.getElementById('cv'),antialias:true,alpha:false});
+  renderer.setSize(W,H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setClearColor(0x0a0f2c,1);
+
+  scene.add(new THREE.AmbientLight(0xffffff,0.3));
+  var d1=new THREE.DirectionalLight(0xffffff,1.0);d1.position.set(5,10,7);scene.add(d1);
+  var d2=new THREE.DirectionalLight(0x4466ff,0.35);d2.position.set(-5,-4,-5);scene.add(d2);
+  var p1=new THREE.PointLight(0xff6b00,0.8,22);p1.position.set(4,4,4);scene.add(p1);
+  var p2=new THREE.PointLight(0x4488ff,0.4,16);p2.position.set(-4,-2,-3);scene.add(p2);
+  var g=new THREE.GridHelper(12,24,0x1a2a4a,0x0d1a30);g.position.y=-3.2;scene.add(g);
+
+  ok3=true;
+  setupCtrl(vb);
+  renderLoop();
+}
+
+function renderLoop(){
+  requestAnimationFrame(renderLoop);
+  if(!ok3)return;
+  if(!drag&&sGroup)rotY+=0.005;
+  if(sGroup){sGroup.rotation.x=rotX;sGroup.rotation.y=rotY;}
+  camera.position.z=zoom;
+  renderer.render(scene,camera);
+}
+
+function build3D(d,D,Ln,n,G){
+  if(!ok3)return;
+  if(sGroup){scene.remove(sGroup);sGroup.traverse(function(c){if(c.isMesh){c.geometry.dispose();c.material.dispose();}});sGroup=null;}
+
+  var sc=2.8/Math.max(Ln,D*2.5);
+  var sR=(D/2)*sc,sH=Ln*sc,sw=Math.max(0.02,Math.min(0.1,(d/2)*sc));
+  sGroup=new THREE.Group();
+
+  var col=G===73000?0xb0c8e0:G===44000?0xd4813a:G===42000?0xd4b02a:G===81500?0x9ab0c4:0x7a9ab5;
+  var mat=new THREE.MeshPhongMaterial({color:col,specular:0xffffff,shininess:200,emissive:new THREE.Color(col).multiplyScalar(0.07)});
+
+  var segs=Math.round(n*90);
+  var pts=[];
+  for(var i=0;i<=segs;i++){var t=i/segs,a=t*n*Math.PI*2;pts.push(new THREE.Vector3(sR*Math.cos(a),t*sH-sH/2,sR*Math.sin(a)));}
+  var geo=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),segs,sw,14,false);
+  sGroup.add(new THREE.Mesh(geo,mat));
+
+  /* flat end coils */
+  [[ sH/2, 1],[-sH/2,-1]].forEach(function(p){
+    var ep=[],es=44;
+    for(var i=0;i<=es;i++){var t=i/es,a=t*Math.PI*2*0.92;ep.push(new THREE.Vector3(sR*Math.cos(a),p[0]+t*p[1]*sw*.4,sR*Math.sin(a)));}
+    sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ep),es,sw,10,false),mat));
+  });
+
+  /* plates */
+  var pm=new THREE.MeshPhongMaterial({color:0x1a2a4a,specular:0x4466aa,shininess:90,emissive:0x0a1020,emissiveIntensity:.45});
+  var pg=new THREE.CylinderGeometry(sR*.8,sR*.8,0.04,44);
+  var tp=new THREE.Mesh(pg,pm);tp.position.y=sH/2+sw+0.02;sGroup.add(tp);
+  var bp=new THREE.Mesh(pg,pm);bp.position.y=-sH/2-sw-0.02;sGroup.add(bp);
+
+  /* orange rings */
+  var rm=new THREE.MeshPhongMaterial({color:0xff6b00,emissive:0xff4400,emissiveIntensity:.3});
+  var rg=new THREE.TorusGeometry(sR*.65,0.012,7,38);
+  var tr=new THREE.Mesh(rg,rm);tr.position.y=sH/2+sw+0.04;tr.rotation.x=Math.PI/2;sGroup.add(tr);
+  var br=new THREE.Mesh(rg,rm);br.position.y=-sH/2-sw-0.04;br.rotation.x=Math.PI/2;sGroup.add(br);
+
+  scene.add(sGroup);
+  zoom=Math.max(3,Math.max(sH,sR*2)*2.7);
+  rotX=0.25;rotY=0.4;
+
+  document.getElementById('vlbls').innerHTML=
+    '<div class="vlbl"><div class="vdot" style="background:'+hx(col)+'"></div>'+mName(G)+'</div>'+
+    '<div class="vlbl"><div class="vdot" style="background:#4499ff"></div>d='+fmtU(d)+uSuf()+'</div>'+
+    '<div class="vlbl"><div class="vdot" style="background:#ff6b00"></div>OD='+fmtU(d+D)+uSuf()+'</div>'+
+    '<div class="vlbl"><div class="vdot" style="background:#22c55e"></div>n='+n+'</div>';
+
+  document.getElementById('ph').classList.add('gone');
+}
+
+function hx(c){return '#'+('000000'+c.toString(16)).slice(-6);}
+function mName(G){return G===73000?'Stainless':G===44000?'Ph.Bronze':G===42000?'Brass':G===81500?'Music Wire':G===79300?'Hard Drawn':G===80700?'Chrome-V':'Mild Steel';}
+
+/* ══ CONTROLS ══ */
+function setupCtrl(el){
+  el.addEventListener('mousedown',function(e){drag=true;prev={x:e.clientX,y:e.clientY};e.preventDefault();});
+  document.addEventListener('mouseup',function(){drag=false;});
+  document.addEventListener('mousemove',function(e){
+    if(!drag)return;
+    rotY+=(e.clientX-prev.x)*.008;rotX+=(e.clientY-prev.y)*.008;
+    prev={x:e.clientX,y:e.clientY};
+  });
+  el.addEventListener('wheel',function(e){
+    e.preventDefault();zoom=Math.max(1.5,Math.min(20,zoom+e.deltaY*.009));
+  },{passive:false});
+  var ts=null,pz=null;
+  el.addEventListener('touchstart',function(e){
+    if(e.touches.length===1){drag=true;ts={x:e.touches[0].clientX,y:e.touches[0].clientY};}
+    if(e.touches.length===2){pz=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}
+  },{passive:true});
+  el.addEventListener('touchend',function(){drag=false;ts=null;pz=null;});
+  el.addEventListener('touchmove',function(e){
+    if(e.touches.length===1&&drag&&ts){
+      rotY+=(e.touches[0].clientX-ts.x)*.008;rotX+=(e.touches[0].clientY-ts.y)*.008;
+      ts={x:e.touches[0].clientX,y:e.touches[0].clientY};
+    }
+    if(e.touches.length===2&&pz!==null){
+      var nz=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+      zoom=Math.max(1.5,Math.min(20,zoom-(nz-pz)*.03));pz=nz;
+    }
+  },{passive:true});
+}
+
+function onResize(){
+  if(!ok3)return;
+  var vb=document.getElementById('vbody');
+  var W=vb.offsetWidth||300,H=vb.offsetHeight||260;
+  if(W<10||H<10)return;
+  camera.aspect=W/H;camera.updateProjectionMatrix();renderer.setSize(W,H);
+}
+
+window.addEventListener('load',function(){setTimeout(initThree,120);});
+window.addEventListener('resize',function(){setTimeout(onResize,60);});
+</script>
+</body>
+</html>
