@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>Privacy Policy | Gurudatta Trading Co. Mumbai</title>
+<link rel="icon" type="image/png" href="logo.jpg">
+<link rel="shortcut icon" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
+<meta name="description" content="Privacy Policy of Gurudatta Trading Co. - how we collect, use and protect your information.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0f2c;color:#fff;min-height:100vh;line-height:1.6;overflow-x:hidden}
+:root{
+  --P:#ff6b00;--Pd:#e55a00;
+  --navy:#0a0f2c;--navy2:#0d1535;--navy3:#111a3e;
+  --card:#0f1940;--cb:rgba(255,255,255,0.07);
+  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.32);
+  --bdr:rgba(255,255,255,0.1);--bdr2:rgba(255,255,255,0.16);
+  --r:12px;--rs:8px;
+}
+nav{background:var(--navy2);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.4);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
+/* dynamic scroll state — nav gets tighter/darker once the page scrolls (matches home.html) */
+nav.is-scrolled{background:rgba(10,15,30,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 28px rgba(0,0,0,.55);border-bottom-color:rgba(255,107,0,.25)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;transition:height .3s ease}
+nav.is-scrolled .nav-in{height:52px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.nav-icon{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px rgba(107,99,255,0.5);transition:width .3s ease,height .3s ease}
+nav.is-scrolled .nav-icon{width:36px;height:36px}
+.nav-icon img{width:100%;height:100%;object-fit:cover;display:block}
+.nav-txt{color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-sub{font-size:10px;color:var(--tm);font-weight:400;display:block}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{position:relative;color:var(--tm);text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;transition:.14s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-links a.act{color:var(--P);background:rgba(255,107,0,.1)}
+.nav-links a.act::after{content:'';position:absolute;left:12px;right:12px;bottom:2px;height:2px;border-radius:2px;background:var(--P)}
+.nav-wa{background:var(--P)!important;color:#fff!important;border-radius:20px!important;padding:6px 14px!important;font-weight:600!important;transition:transform .18s ease,background .18s ease!important}
+.nav-wa:hover{background:var(--Pd)!important;transform:translateY(-1px)}
+.burger{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:none;border:none;cursor:pointer;color:#fff;font-size:22px;padding:4px;transition:transform .25s ease}
+.burger.open{transform:scale(1.08)}
+/* animated slide-down mobile menu (matches home.html) */
+.mob-nav{max-height:0;overflow:hidden;background:var(--navy2);border-top:0 solid var(--bdr);padding:0 16px;display:flex;flex-direction:column;gap:2px;transition:max-height .32s ease,padding .32s ease,border-color .32s ease}
+.mob-nav a{opacity:0;color:var(--tm);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;border-radius:6px;display:block;transition:.13s,opacity .3s ease}
+.mob-nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.mob-nav.open{max-height:420px;padding:10px 16px;border-top-width:1px}
+.mob-nav.open a{opacity:1}
+@media(max-width:768px){.nav-links{display:none!important}.burger{display:flex}}
+
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);border-bottom:1px solid var(--bdr);padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.3);color:var(--P);font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:12px;letter-spacing:.05em}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(22px,5vw,32px);font-weight:800;color:#fff;margin-bottom:6px}
+.hero h1 span{color:var(--P)}
+.hero p{color:var(--tm);font-size:13px;max-width:520px;margin:0 auto}
+
+.wrap{max-width:850px;margin:0 auto;padding:40px 20px 60px}
+.card{background:var(--card);border:1px solid var(--cb);border-radius:var(--r);padding:30px;margin-bottom:18px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(255,107,0,.25);transform:translateY(-2px)}
+.card h2{font-family:'Montserrat',sans-serif;color:var(--P);font-size:1.15em;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card p{color:var(--tm);font-size:.95em;line-height:1.85;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.card ul{color:var(--tm);font-size:.95em;line-height:1.9;margin:8px 0 8px 22px}
+.card a{color:var(--P);text-decoration:none}
+.card a:hover{text-decoration:underline}
+.updated{color:var(--tl);font-size:12px;text-align:center;margin-bottom:24px}
+.contact-box{background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);border-radius:var(--rs);padding:18px 20px;margin-top:6px}
+.contact-box p{color:var(--tm);margin-bottom:6px}
+.contact-box strong{color:#fff}
+
+footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px;text-align:center}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-logo{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:3px}
+.ft-logo span{color:var(--P)}
+.ft-sub{font-size:12px;color:var(--tm);margin-bottom:14px}
+.ft-copy{font-size:11px;color:var(--tl);line-height:1.6}
+
+/* ═══ SCROLL REVEAL (matches home.html dynamic-on-scroll pattern) ═══ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<nav id="gnav">
+  <div class="nav-in">
+    <a class="nav-logo" href="home.html">
+      <div class="nav-icon"><img src="logo.jpg" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
+      <div class="nav-txt">GURUDATTA TRADING CO.<span class="nav-sub">No.1 Compression · Mumbai, India</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="home.html">🏠 Home</a>
+      <a href="index.html">⚙️ Calculator</a>
+      <a href="products.html">🔩 Products</a>
+      <a href="reviews.html">⭐ Reviews</a>
+      <a href="contact.html">📞 Contact</a>
+      <a href="https://wa.me/918454995315" class="nav-wa" target="_blank">📱 WhatsApp</a>
+    </div>
+    <button class="burger" id="burgerBtn" onclick="toggleNav()" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+  <div class="mob-nav" id="mob-nav" aria-hidden="true">
+    <a href="home.html">🏠 Home</a>
+    <a href="index.html">⚙️ Calculator</a>
+    <a href="products.html">🔩 Products</a>
+    <a href="reviews.html">⭐ Reviews</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="https://wa.me/918454995315" target="_blank" style="color:#25D366;font-weight:700">📱 WhatsApp Quote</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🔒 Your Trust Matters</div>
+  <h1>Privacy <span>Policy</span></h1>
+  <p>How Gurudatta Trading Co. collects, uses, and protects your information when you use our website and Spring Rate Calculator.</p>
+</div>
+
+<div class="wrap">
+  <div class="updated">Last Updated: 30 June 2026</div>
+
+  <div class="card reveal">
+    <h2>📋 Overview</h2>
+    <p>This Privacy Policy explains how <strong style="color:#fff">Gurudatta Trading Co.</strong> ("we", "us", "our"), based in Mumbai, Maharashtra, India, collects, uses, and safeguards the information you share with us when you visit our website or use our online Spring Rate Calculator. By using this website, you agree to the practices described in this policy.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>📥 Information We Collect</h2>
+    <p>When you use our Spring Rate Calculator to request a quote, we collect the following details that you voluntarily provide:</p>
+    <ul>
+      <li>Full Name</li>
+      <li>Mobile Number</li>
+      <li>Email Address</li>
+      <li>Spring design inputs you enter (wire diameter, outer diameter, free length, coils, material type, etc.) — used only to generate your calculation results and quote</li>
+    </ul>
+    <p>We do not collect sensitive personal information such as payment details, government ID numbers, or financial information through this calculator.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🗄️ How We Store Your Information</h2>
+    <p>The information you submit through the Calculator (Name, Mobile Number, Email, and spring specifications) is stored securely in a private Google Sheet maintained by Gurudatta Trading Co. This data is accessible only to our internal team and is used solely to follow up with you regarding your spring enquiry and quote.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🎯 How We Use Your Information</h2>
+    <p>We use the information collected only for the following purposes:</p>
+    <ul>
+      <li>To prepare and respond to your custom spring quote request</li>
+      <li>To contact you via phone, WhatsApp, or email regarding your enquiry</li>
+      <li>To maintain internal records of customer enquiries</li>
+      <li>To improve our products and services</li>
+    </ul>
+  </div>
+
+  <div class="card reveal">
+    <h2>🚫 No Third-Party Sharing</h2>
+    <p>We do <strong style="color:#fff">not sell, rent, lease, or share</strong> your personal information (Name, Mobile Number, Email) with any third-party advertisers, marketing companies, or external organizations. Your data is used exclusively for Gurudatta Trading Co.'s own business purposes — responding to your enquiry and providing you a quote.</p>
+    <p>We may disclose your information only if required to do so by law or in response to a valid legal request from government or regulatory authorities.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🔐 Data Security</h2>
+    <p>We take reasonable measures to protect your information from unauthorized access, alteration, or disclosure. However, no method of electronic storage or transmission over the internet is 100% secure, and while we strive to protect your data, we cannot guarantee absolute security.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🍪 Cookies</h2>
+    <p>Our website may use basic cookies to improve browsing experience (such as remembering your selected unit of measurement or form preferences). These cookies do not collect personally identifiable information and do not give us access to your device beyond what you voluntarily share.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>⚖️ Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Request a copy of the personal information we hold about you</li>
+      <li>Request correction of any inaccurate information</li>
+      <li>Request deletion of your data from our records</li>
+      <li>Withdraw consent for us to contact you, at any time</li>
+    </ul>
+    <p>To exercise any of these rights, simply contact us using the details below.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🔗 Links to Other Websites</h2>
+    <p>Our website may contain links to external websites (such as WhatsApp). We are not responsible for the privacy practices or content of these external sites. We encourage you to review their respective privacy policies.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>🔄 Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for legal reasons. Any changes will be posted on this page with an updated "Last Updated" date.</p>
+  </div>
+
+  <div class="card reveal">
+    <h2>📞 Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please reach out to us:</p>
+    <div class="contact-box">
+      <p><strong>Gurudatta Trading Co.</strong></p>
+      <p>📍 Mumbai, Maharashtra, India</p>
+      <p>📱 WhatsApp / Phone: <a href="https://wa.me/918454995315">+91 84549 95315</a></p>
+      <p>✉️ Email: <a href="mailto:gurudattatradingco@gmail.com">gurudattatradingco@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-logo">GURUDATTA <span>TRADING CO.</span></div>
+    <div class="ft-sub">No.1 Compression · Mumbai, India</div>
+    <div class="ft-copy">© 2026 Gurudatta Trading Co. All rights reserved.<br>Mild Steel Springs Manufacturer & Supplier, Mumbai, India.</div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   DYNAMIC NAV — scroll state, animated mobile menu, outside-click
+   close (same pattern as home.html)
+   ================================================================ */
+const gnav = document.getElementById('gnav');
+const burgerBtn = document.getElementById('burgerBtn');
+const mobNav = document.getElementById('mob-nav');
+
+function setNavScrolled(){
+  if (!gnav) return;
+  gnav.classList.toggle('is-scrolled', window.scrollY > 12);
+}
+setNavScrolled();
+window.addEventListener('scroll', setNavScrolled, { passive: true });
+
+function closeMobNav(){
+  if (!mobNav || !burgerBtn) return;
+  mobNav.classList.remove('open');
+  mobNav.setAttribute('aria-hidden', 'true');
+  burgerBtn.classList.remove('open');
+  burgerBtn.setAttribute('aria-expanded', 'false');
+  burgerBtn.textContent = '☰';
+}
+
+function toggleNav(){
+  if (!mobNav || !burgerBtn) return;
+  const nowOpen = mobNav.classList.toggle('open');
+  mobNav.setAttribute('aria-hidden', String(!nowOpen));
+  burgerBtn.classList.toggle('open', nowOpen);
+  burgerBtn.setAttribute('aria-expanded', String(nowOpen));
+  burgerBtn.textContent = nowOpen ? '✕' : '☰';
+}
+
+if (mobNav) {
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobNav));
+}
+document.addEventListener('click', e => {
+  if (!mobNav || !mobNav.classList.contains('open')) return;
+  if (mobNav.contains(e.target) || e.target === burgerBtn) return;
+  closeMobNav();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobNav(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobNav(); });
+
+/* ================================================================
+   SCROLL REVEAL — fade-up animation as elements enter viewport
+   (same IntersectionObserver pattern as home.html)
+   ================================================================ */
+(function(){
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealTargets = document.querySelectorAll('.reveal');
+  revealTargets.forEach((el, i) => { el.style.transitionDelay = ((i % 6) * 0.06) + 's'; });
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach(el => revealObserver.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add('is-visible'));
+  }
+})();
+</script>
+</body>
+</html>
