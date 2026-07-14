@@ -824,6 +824,8 @@ function getVal(fld){
 function showSt(t,m){var el=document.getElementById('status-box');el.className='status show s-'+t;el.textContent=m;}
 function endName(v){return v==='C'?'Closed Ends':v==='CG'?'Closed & Ground':v==='DC'?'Double Closed':'Open Ends';}
 function windName(v){return v==='RH'?'Right Hand':'Left Hand';}
+/* dead (inactive) end coils by end configuration - standard spring design convention */
+function deadCoils(end){return end==='O'?0:end==='DC'?3:2;} /* O=Open(none dead), C/CG=2 dead, DC=3 dead */
 
 /* ══ CALCULATE ══ */
 function calculate(){
@@ -844,7 +846,9 @@ function calculate(){
   var Ln=fl?toMM(fl):OD*3;
   var C=D/d;
   var K=(4*C-1)/(4*C-4)+0.615/C;
-  var k=(Math.pow(d,4)*G)/(8*Math.pow(D,3)*n);
+  var Na=n-deadCoils(endType);       // active coils = total coils minus inactive end coils
+  if(Na<0.5){showSt('err','⚠ Total Coils too low for '+endName(endType)+' (needs more coils for the squared ends).');return;}
+  var k=(Math.pow(d,4)*G)/(8*Math.pow(D,3)*Na);
   var solidL=n*d, OD_val=OD, ID_val=D-d;
   var pitch=n>1?(Ln-d)/(n-1):Ln;
   var maxS=G===73000?830:(G===44000?350:(G===42000?310:900));
@@ -879,7 +883,7 @@ function calculate(){
     ['Free Length (L₀)',fmtU(Ln)+' '+uSuf()],
     ['Solid Length (Ls)',fmtU(solidL)+' '+uSuf()],
     ['Total Coils (n)',n],
-    ['Active Coils',n-2],
+    ['Active Coils (Na)',fmt(Na,2)],
     ['Pitch (p)',fmtU(pitch)+' '+uSuf()],
     ['Spring Index (C)',fmt(C,3)],
     ['Wahl Factor (K)',fmt(K,4)],
