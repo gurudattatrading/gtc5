@@ -141,11 +141,25 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:400px){.form-grid-2{grid-template-columns:1fr}}
 
-/* end types */
-.end-types{display:flex;gap:6px;flex-wrap:wrap}
-.etype{border:1.5px solid var(--bdr2);border-radius:6px;background:var(--ibg);padding:7px 12px;font-size:12px;font-weight:600;color:var(--tm);cursor:pointer;transition:.13s;user-select:none;min-width:42px;text-align:center}
-.etype:hover{border-color:var(--P);color:#fff}
-.etype.on{background:rgba(255,107,0,.15);color:var(--P);border-color:var(--P)}
+/* end configurations (icon cards) */
+.end-config-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.end-card{border:1.5px solid var(--bdr2);border-radius:10px;background:var(--ibg);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:.15s;color:var(--tm);user-select:none}
+.end-card:hover{border-color:var(--P);color:#fff;transform:translateY(-1px)}
+.end-card.on{background:rgba(255,107,0,.13);border-color:var(--P);color:var(--P)}
+.ec-ic{width:38px;height:44px;display:block;margin:0 auto 4px}
+.ec-name{font-size:11px;font-weight:700;color:inherit;line-height:1.25}
+.ec-sub{font-size:9px;color:var(--tl);margin-top:2px;line-height:1.3}
+.end-card.on .ec-sub{color:rgba(255,138,46,.85)}
+
+/* wind direction (icon cards) */
+.wind-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wind-card{border:1.5px solid var(--bdr2);border-radius:10px;background:var(--ibg);padding:10px 8px;text-align:center;cursor:pointer;transition:.15s;color:var(--tm);user-select:none;display:flex;flex-direction:column;align-items:center;gap:3px}
+.wind-card:hover{border-color:var(--P);color:#fff;transform:translateY(-1px)}
+.wind-card.on{background:rgba(255,107,0,.13);border-color:var(--P);color:var(--P)}
+.wc-ic{width:28px;height:28px}
+.wc-name{font-size:11px;font-weight:700;color:inherit}
+.wc-sub{font-size:9px;color:var(--tl)}
+.wind-card.on .wc-sub{color:rgba(255,138,46,.85)}
 
 /* attention note */
 .note-box{background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);border-radius:var(--rs);padding:9px 12px;font-size:11.5px;color:var(--tm);line-height:1.6;margin-bottom:12px}
@@ -429,23 +443,80 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
           </select>
         </div>
 
-        <!-- End Types -->
+        <!-- End Configurations -->
         <div class="form-section">
-          <label class="flbl">End Types</label>
-          <div class="end-types">
-            <div class="etype on" onclick="toggleEnd(this,'C')">C<br><span style="font-size:9px;opacity:.7">Closed</span></div>
-            <div class="etype" onclick="toggleEnd(this,'CG')">CG<br><span style="font-size:9px;opacity:.7">Closed Gr.</span></div>
-            <div class="etype" onclick="toggleEnd(this,'DC')">DC<br><span style="font-size:9px;opacity:.7">Double Cl.</span></div>
-            <div class="etype" onclick="toggleEnd(this,'O')">O<br><span style="font-size:9px;opacity:.7">Open</span></div>
+          <label class="flbl">End Configurations</label>
+          <div class="end-config-grid">
+            <div class="end-card on" data-val="C" onclick="toggleEnd(this)">
+              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <ellipse cx="30" cy="10" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="26" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="42" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="56" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="65" rx="16" ry="5.5"/>
+              </svg>
+              <div class="ec-name">Closed Ends</div>
+              <div class="ec-sub">Squared, not ground</div>
+            </div>
+            <div class="end-card" data-val="CG" onclick="toggleEnd(this)">
+              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <ellipse cx="30" cy="8" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="40" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="54" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="62" rx="16" ry="5.5"/>
+                <rect x="12" y="68" width="36" height="4" rx="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+              <div class="ec-name">Closed &amp; Ground</div>
+              <div class="ec-sub">Squared and ground flat</div>
+            </div>
+            <div class="end-card" data-val="DC" onclick="toggleEnd(this)">
+              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <ellipse cx="30" cy="8" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="40" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="50" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="59" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="67" rx="16" ry="5.5"/>
+              </svg>
+              <div class="ec-name">Double Closed</div>
+              <div class="ec-sub">Extra tight coil each end</div>
+            </div>
+            <div class="end-card" data-val="O" onclick="toggleEnd(this)">
+              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <ellipse cx="30" cy="10" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="38" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="52" rx="16" ry="5.5"/>
+                <ellipse cx="30" cy="66" rx="16" ry="5.5"/>
+                <path d="M15 66 L6 72"/>
+              </svg>
+              <div class="ec-name">Open Ends</div>
+              <div class="ec-sub">Plain, uncut coil</div>
+            </div>
           </div>
         </div>
 
         <!-- Wind Direction -->
         <div class="form-section">
           <label class="flbl">Wind Direction</label>
-          <div class="end-types">
-            <div class="etype on" onclick="toggleWind(this,'RH')">RH<br><span style="font-size:9px;opacity:.7">Right Hand</span></div>
-            <div class="etype" onclick="toggleWind(this,'LH')">LH<br><span style="font-size:9px;opacity:.7">Left Hand</span></div>
+          <div class="wind-grid">
+            <div class="wind-card on" data-val="RH" onclick="toggleWind(this)">
+              <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 A14 14 0 1 1 7 16"/>
+                <path d="M7 16 L4 8 M7 16 L14 13"/>
+              </svg>
+              <div class="wc-name">Right Hand</div>
+              <div class="wc-sub">RH — Clockwise</div>
+            </div>
+            <div class="wind-card" data-val="LH" onclick="toggleWind(this)">
+              <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 A14 14 0 1 0 33 16"/>
+                <path d="M33 16 L36 8 M33 16 L26 13"/>
+              </svg>
+              <div class="wc-name">Left Hand</div>
+              <div class="wc-sub">LH — Counter-clockwise</div>
+            </div>
           </div>
         </div>
 
@@ -608,13 +679,13 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
       <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
         <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</span>
         <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
-          Choose the spring type <strong style="color:#fff;">Compression, Extension or Torsion</strong> and select your unit system: English (inch) or Metric (mm).
+          Choose the spring type — <strong style="color:#fff;">Compression, Extension or Torsion</strong> — and select your unit system: English (inch) or Metric (mm).
         </p>
       </div>
       <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
         <span style="background:#ff7a1a; color:#0d1117; font-weight:800; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</span>
         <p style="margin:0; color:#c9d1d9; font-size:15px; line-height:1.6;">
-          Enter wire diameter, outer diameter, free length and total coils use an exact value or a Min–Max range, whichever suits your design.
+          Enter wire diameter, outer diameter, free length and total coils — use an exact value or a Min–Max range, whichever suits your design.
         </p>
       </div>
       <div class="si-reveal si-step" style="display:flex; gap:16px; align-items:flex-start; background:#161b22; border:1px solid #30363d; border-radius:12px; padding:18px 20px;">
@@ -681,7 +752,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
 var sType='C', unit='inch', lastR=null;
 var endType='C', windDir='RH';
 var modes={wd:'exact',od:'exact',fl:'exact',tc:'exact'};
-var scene,camera,renderer,sGroup;
+var scene,camera,renderer,sGroup,envTex;
 var drag=false,prev={x:0,y:0},rotX=0.25,rotY=0.5,zoom=5;
 var ok3=false;
 
@@ -694,6 +765,10 @@ function setType(t){
   document.querySelectorAll('.ttab').forEach(function(el,i){el.classList.toggle('on',['C','E','T'][i]===t);});
   document.getElementById('results-area').classList.add('hidden');
   document.getElementById('status-box').className='status';
+  if(ok3&&sGroup){scene.remove(sGroup);sGroup.traverse(function(c){if(c.isMesh){c.geometry.dispose();c.material.dispose();}});sGroup=null;}
+  lastR=null;
+  document.getElementById('vlbls').innerHTML='';
+  document.getElementById('ph').classList.remove('gone');
 }
 
 /* ══ UNIT ══ */
@@ -716,16 +791,14 @@ function setMode(fld,mode,btn){
 }
 
 /* ══ END TYPES ══ */
-function toggleEnd(el,v){
-  endType=v;
-  document.querySelectorAll('.etype').forEach(function(e){
-    if(['C','CG','DC','O'].includes(e.textContent.trim().split('\n')[0]))e.classList.remove('on');
-  });
+function toggleEnd(el){
+  endType=el.dataset.val;
+  el.closest('.end-config-grid').querySelectorAll('.end-card').forEach(function(e){e.classList.remove('on');});
   el.classList.add('on');
 }
-function toggleWind(el,v){
-  windDir=v;
-  el.closest('.end-types').querySelectorAll('.etype').forEach(function(e){e.classList.remove('on');});
+function toggleWind(el){
+  windDir=el.dataset.val;
+  el.closest('.wind-grid').querySelectorAll('.wind-card').forEach(function(e){e.classList.remove('on');});
   el.classList.add('on');
 }
 
@@ -749,6 +822,8 @@ function getVal(fld){
 }
 
 function showSt(t,m){var el=document.getElementById('status-box');el.className='status show s-'+t;el.textContent=m;}
+function endName(v){return v==='C'?'Closed Ends':v==='CG'?'Closed & Ground':v==='DC'?'Double Closed':'Open Ends';}
+function windName(v){return v==='RH'?'Right Hand':'Left Hand';}
 
 /* ══ CALCULATE ══ */
 function calculate(){
@@ -813,8 +888,8 @@ function calculate(){
     ['Max Safe Load',fmt(safeF,2)+' N ('+fmt(safeF/9.81,2)+' kg)'],
     ['Max Deflection',fmtU(dMax)+' '+uSuf()],
     ['Torsional Stress',fmt(stress,1)+' N/mm²'],
-    ['End Type',endType],
-    ['Wind Direction',windDir],
+    ['End Configuration',endName(endType)+' ('+endType+')'],
+    ['Wind Direction',windName(windDir)+' ('+windDir+')'],
     ['Material','G='+G.toLocaleString()+' N/mm²'],
     ['Customer',name],
     ['Mobile',mob]
@@ -887,7 +962,7 @@ function buildWA(name,mob){
   msg+='Type: '+(sType==='C'?'Compression':sType==='E'?'Extension':'Torsion')+'\n';
   msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
   msg+='Rate: '+fmt(r.k,3)+' N/mm | Load: '+fmt(r.safeF,1)+' N ('+fmt(r.safeF/9.81,2)+' kg)\n';
-  msg+='End: '+endType+' | Wind: '+windDir+'\n\nKrupaya quote dya.';
+  msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
   document.getElementById('wa-btn').href='https://wa.me/918454995315?text='+encodeURIComponent(msg);
 }
 
@@ -901,6 +976,41 @@ function resetForm(){
 }
 
 /* ══ THREE.JS ══ */
+function buildEnvMap(){
+  var size=64;
+  function makeFace(topColor,botColor,withStreak){
+    var data=new Uint8Array(size*size*4);
+    for(var y=0;y<size;y++){
+      var t=y/(size-1);
+      var r=topColor[0]+(botColor[0]-topColor[0])*t;
+      var g=topColor[1]+(botColor[1]-topColor[1])*t;
+      var b=topColor[2]+(botColor[2]-topColor[2])*t;
+      var streak=0;
+      if(withStreak){
+        var dd=Math.abs(t-0.5);
+        streak=Math.max(0,1-dd/0.16)*115;
+      }
+      for(var x=0;x<size;x++){
+        var idx=(y*size+x)*4;
+        data[idx]=Math.min(255,r+streak);
+        data[idx+1]=Math.min(255,g+streak);
+        data[idx+2]=Math.min(255,b+streak);
+        data[idx+3]=255;
+      }
+    }
+    var tex=new THREE.DataTexture(data,size,size,THREE.RGBAFormat);
+    tex.needsUpdate=true;
+    return tex;
+  }
+  var side=makeFace([102,114,160],[8,10,22],true);
+  var side2=makeFace([90,102,144],[8,10,22],true);
+  var top=makeFace([255,255,255],[42,48,80],false);
+  var bottom=makeFace([18,22,42],[2,3,6],false);
+  var cubeTex=new THREE.CubeTexture([side,side2,top,bottom,side,side2]);
+  cubeTex.needsUpdate=true;
+  return cubeTex;
+}
+
 function initThree(){
   var vb=document.getElementById('vbody');
   var W=vb.offsetWidth||300,H=vb.offsetHeight||260;
@@ -911,12 +1021,15 @@ function initThree(){
   renderer.setSize(W,H);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setClearColor(0x0a0f2c,1);
+  renderer.outputEncoding=THREE.sRGBEncoding;
 
-  scene.add(new THREE.AmbientLight(0xffffff,0.3));
-  var d1=new THREE.DirectionalLight(0xffffff,1.0);d1.position.set(5,10,7);scene.add(d1);
-  var d2=new THREE.DirectionalLight(0x4466ff,0.35);d2.position.set(-5,-4,-5);scene.add(d2);
-  var p1=new THREE.PointLight(0xff6b00,0.8,22);p1.position.set(4,4,4);scene.add(p1);
-  var p2=new THREE.PointLight(0x4488ff,0.4,16);p2.position.set(-4,-2,-3);scene.add(p2);
+  envTex=buildEnvMap();
+
+  scene.add(new THREE.AmbientLight(0xffffff,0.35));
+  var d1=new THREE.DirectionalLight(0xffffff,1.1);d1.position.set(5,10,7);scene.add(d1);
+  var d2=new THREE.DirectionalLight(0x8fa8ff,0.4);d2.position.set(-5,-4,-5);scene.add(d2);
+  var p1=new THREE.PointLight(0xff8a3d,0.7,22);p1.position.set(4,4,4);scene.add(p1);
+  var p2=new THREE.PointLight(0x6fa0ff,0.45,16);p2.position.set(-4,-2,-3);scene.add(p2);
   var g=new THREE.GridHelper(12,24,0x1a2a4a,0x0d1a30);g.position.y=-3.2;scene.add(g);
 
   ok3=true;
@@ -942,7 +1055,7 @@ function build3D(d,D,Ln,n,G){
   sGroup=new THREE.Group();
 
   var col=G===73000?0xb0c8e0:G===44000?0xd4813a:G===42000?0xd4b02a:G===81500?0x9ab0c4:0x7a9ab5;
-  var mat=new THREE.MeshPhongMaterial({color:col,specular:0xffffff,shininess:200,emissive:new THREE.Color(col).multiplyScalar(0.07)});
+  var mat=new THREE.MeshStandardMaterial({color:col,metalness:0.9,roughness:0.38,envMap:envTex,envMapIntensity:1.3});
 
   var segs=Math.round(n*90);
   var pts=[];
@@ -950,33 +1063,74 @@ function build3D(d,D,Ln,n,G){
   var geo=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),segs,sw,14,false);
   sGroup.add(new THREE.Mesh(geo,mat));
 
-  /* flat end coils */
-  [[ sH/2, 1],[-sH/2,-1]].forEach(function(p){
-    var ep=[],es=44;
-    for(var i=0;i<=es;i++){var t=i/es,a=t*Math.PI*2*0.92;ep.push(new THREE.Vector3(sR*Math.cos(a),p[0]+t*p[1]*sw*.4,sR*Math.sin(a)));}
-    sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ep),es,sw,10,false),mat));
-  });
+  /* actual start/end points of the coil tube, used to attach type-specific ends */
+  var aTop=n*Math.PI*2;
+  var topEnd=new THREE.Vector3(sR*Math.cos(aTop),sH/2,sR*Math.sin(aTop));
+  var botEnd=new THREE.Vector3(sR,-sH/2,0);
 
-  /* plates */
-  var pm=new THREE.MeshPhongMaterial({color:0x1a2a4a,specular:0x4466aa,shininess:90,emissive:0x0a1020,emissiveIntensity:.45});
-  var pg=new THREE.CylinderGeometry(sR*.8,sR*.8,0.04,44);
-  var tp=new THREE.Mesh(pg,pm);tp.position.y=sH/2+sw+0.02;sGroup.add(tp);
-  var bp=new THREE.Mesh(pg,pm);bp.position.y=-sH/2-sw-0.02;sGroup.add(bp);
+  if(sType==='C'){
+    /* ── COMPRESSION: squared & ground ends + bearing plates ── */
+    [[ sH/2, 1],[-sH/2,-1]].forEach(function(p){
+      var ep=[],es=44;
+      for(var i=0;i<=es;i++){var t=i/es,a=t*Math.PI*2*0.92;ep.push(new THREE.Vector3(sR*Math.cos(a),p[0]+t*p[1]*sw*.4,sR*Math.sin(a)));}
+      sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ep),es,sw,10,false),mat));
+    });
 
-  /* orange rings */
-  var rm=new THREE.MeshPhongMaterial({color:0xff6b00,emissive:0xff4400,emissiveIntensity:.3});
-  var rg=new THREE.TorusGeometry(sR*.65,0.012,7,38);
-  var tr=new THREE.Mesh(rg,rm);tr.position.y=sH/2+sw+0.04;tr.rotation.x=Math.PI/2;sGroup.add(tr);
-  var br=new THREE.Mesh(rg,rm);br.position.y=-sH/2-sw-0.04;br.rotation.x=Math.PI/2;sGroup.add(br);
+    var pm=new THREE.MeshStandardMaterial({color:0x1a2440,metalness:0.75,roughness:0.32,envMap:envTex,envMapIntensity:1.0});
+    var pg=new THREE.CylinderGeometry(sR*.8,sR*.8,0.04,44);
+    var tp=new THREE.Mesh(pg,pm);tp.position.y=sH/2+sw+0.02;sGroup.add(tp);
+    var bp=new THREE.Mesh(pg,pm);bp.position.y=-sH/2-sw-0.02;sGroup.add(bp);
+
+    var rm=new THREE.MeshStandardMaterial({color:0xff6b00,metalness:0.6,roughness:0.3,envMap:envTex,envMapIntensity:0.9,emissive:0xff4400,emissiveIntensity:.18});
+    var rg=new THREE.TorusGeometry(sR*.65,0.012,7,38);
+    var tr=new THREE.Mesh(rg,rm);tr.position.y=sH/2+sw+0.04;tr.rotation.x=Math.PI/2;sGroup.add(tr);
+    var br=new THREE.Mesh(rg,rm);br.position.y=-sH/2-sw-0.04;br.rotation.x=Math.PI/2;sGroup.add(br);
+
+  } else if(sType==='E'){
+    /* ── EXTENSION: open coil body + full-loop hooks on both ends ── */
+    var hr=Math.max(sR*0.55,0.14);
+    function hookLoop(endPt,dir){
+      var rDir=new THREE.Vector3(endPt.x,0,endPt.z);
+      if(rDir.length()<1e-4)rDir.set(1,0,0);else rDir.normalize();
+      var yDir=new THREE.Vector3(0,dir,0);
+      var loopCenter=endPt.clone().add(yDir.clone().multiplyScalar(hr));
+      var pts2=[],steps=40;
+      for(var i=0;i<=steps;i++){
+        var b=(i/steps)*Math.PI*2;
+        pts2.push(loopCenter.clone()
+          .add(rDir.clone().multiplyScalar(hr*Math.sin(b)))
+          .add(yDir.clone().multiplyScalar(-hr*Math.cos(b))));
+      }
+      var curve=new THREE.CatmullRomCurve3(pts2);
+      sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve,60,sw,10,false),mat));
+    }
+    hookLoop(topEnd,1);
+    hookLoop(botEnd,-1);
+
+  } else {
+    /* ── TORSION: tight coil body + straight tangential torque legs ── */
+    var legLen=Math.max(sR*2.6,sH*0.35,0.7);
+    function leg(endPt,angle,dirSign){
+      var tDir=new THREE.Vector3(-Math.sin(angle),0,Math.cos(angle)).multiplyScalar(dirSign);
+      var tipPt=endPt.clone().add(tDir.clone().multiplyScalar(legLen));
+      var curve=new THREE.CatmullRomCurve3([endPt,tipPt]);
+      sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve,10,sw,10,false),mat));
+    }
+    leg(topEnd,aTop,1);   // continues forward, past the last coil
+    leg(botEnd,0,-1);     // continues backward, before the first coil
+  }
 
   scene.add(sGroup);
-  zoom=Math.max(3,Math.max(sH,sR*2)*2.7);
+  var bbox=new THREE.Box3().setFromObject(sGroup),bsph=new THREE.Sphere();
+  bbox.getBoundingSphere(bsph);
+  zoom=Math.max(3,bsph.radius*3.3);
   rotX=0.25;rotY=0.4;
 
+  var typeName=sType==='C'?'Compression':sType==='E'?'Extension':'Torsion';
   document.getElementById('vlbls').innerHTML=
+    '<div class="vlbl"><div class="vdot" style="background:#ff6b00"></div>'+typeName+'</div>'+
     '<div class="vlbl"><div class="vdot" style="background:'+hx(col)+'"></div>'+mName(G)+'</div>'+
     '<div class="vlbl"><div class="vdot" style="background:#4499ff"></div>d='+fmtU(d)+uSuf()+'</div>'+
-    '<div class="vlbl"><div class="vdot" style="background:#ff6b00"></div>OD='+fmtU(d+D)+uSuf()+'</div>'+
     '<div class="vlbl"><div class="vdot" style="background:#22c55e"></div>n='+n+'</div>';
 
   document.getElementById('ph').classList.add('gone');
