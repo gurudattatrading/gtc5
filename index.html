@@ -1061,34 +1061,52 @@ function build3D(d,D,Ln,n,G){
   var col=G===73000?0xb0c8e0:G===44000?0xd4813a:G===42000?0xd4b02a:G===81500?0x9ab0c4:0x7a9ab5;
   var mat=new THREE.MeshStandardMaterial({color:col,metalness:0.9,roughness:0.38,envMap:envTex,envMapIntensity:1.3});
 
+  var windSign=windDir==='LH'?-1:1;   // flips the coil's winding handedness in 3D
   var segs=Math.round(n*90);
   var pts=[];
-  for(var i=0;i<=segs;i++){var t=i/segs,a=t*n*Math.PI*2;pts.push(new THREE.Vector3(sR*Math.cos(a),t*sH-sH/2,sR*Math.sin(a)));}
+  for(var i=0;i<=segs;i++){var t=i/segs,a=t*n*Math.PI*2*windSign;pts.push(new THREE.Vector3(sR*Math.cos(a),t*sH-sH/2,sR*Math.sin(a)));}
   var geo=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),segs,sw,14,false);
   sGroup.add(new THREE.Mesh(geo,mat));
 
   /* actual start/end points of the coil tube, used to attach type-specific ends */
-  var aTop=n*Math.PI*2;
+  var aTop=n*Math.PI*2*windSign;
   var topEnd=new THREE.Vector3(sR*Math.cos(aTop),sH/2,sR*Math.sin(aTop));
   var botEnd=new THREE.Vector3(sR,-sH/2,0);
 
   if(sType==='C'){
-    /* ── COMPRESSION: squared & ground ends + bearing plates ── */
-    [[ sH/2, 1],[-sH/2,-1]].forEach(function(p){
-      var ep=[],es=44;
-      for(var i=0;i<=es;i++){var t=i/es,a=t*Math.PI*2*0.92;ep.push(new THREE.Vector3(sR*Math.cos(a),p[0]+t*p[1]*sw*.4,sR*Math.sin(a)));}
-      sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ep),es,sw,10,false),mat));
-    });
-
+    /* ── COMPRESSION: end treatment depends on the chosen End Configuration ── */
     var pm=new THREE.MeshStandardMaterial({color:0x1a2440,metalness:0.75,roughness:0.32,envMap:envTex,envMapIntensity:1.0});
-    var pg=new THREE.CylinderGeometry(sR*.8,sR*.8,0.04,44);
-    var tp=new THREE.Mesh(pg,pm);tp.position.y=sH/2+sw+0.02;sGroup.add(tp);
-    var bp=new THREE.Mesh(pg,pm);bp.position.y=-sH/2-sw-0.02;sGroup.add(bp);
-
     var rm=new THREE.MeshStandardMaterial({color:0xff6b00,metalness:0.6,roughness:0.3,envMap:envTex,envMapIntensity:0.9,emissive:0xff4400,emissiveIntensity:.18});
-    var rg=new THREE.TorusGeometry(sR*.65,0.012,7,38);
-    var tr=new THREE.Mesh(rg,rm);tr.position.y=sH/2+sw+0.04;tr.rotation.x=Math.PI/2;sGroup.add(tr);
-    var br=new THREE.Mesh(rg,rm);br.position.y=-sH/2-sw-0.04;br.rotation.x=Math.PI/2;sGroup.add(br);
+
+    if(endType==='O'){
+      /* Open Ends: plain uncut coil - just a short free wire tail past each end, no squaring */
+      [[topEnd,1],[botEnd,-1]].forEach(function(pair){
+        var tailDir=new THREE.Vector3(Math.cos(0.5)* -0.4,pair[1]*0.9,Math.sin(0.5)*0.4).normalize();
+        var tipPt=pair[0].clone().add(tailDir.multiplyScalar(sw*7));
+        var curve=new THREE.CatmullRomCurve3([pair[0],tipPt]);
+        sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve,12,sw,8,false),mat));
+      });
+    } else {
+      /* Closed / Closed & Ground / Double Closed: one or two tight squared coils at each end */
+      var loopsPerEnd=endType==='DC'?2:1;
+      [[ sH/2, 1],[-sH/2,-1]].forEach(function(p){
+        for(var Li=0;Li<loopsPerEnd;Li++){
+          var yBase=p[0]+p[1]*Li*sw*1.7;
+          var ep=[],es=44;
+          for(var i=0;i<=es;i++){var t=i/es,a=t*Math.PI*2*0.92*windSign;ep.push(new THREE.Vector3(sR*Math.cos(a),yBase+t*p[1]*sw*.4,sR*Math.sin(a)));}
+          sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(ep),es,sw,10,false),mat));
+        }
+      });
+      if(endType==='CG'){
+        /* only "Ground" ends get the flat bearing plate + accent ring */
+        var pg=new THREE.CylinderGeometry(sR*.8,sR*.8,0.04,44);
+        var tp=new THREE.Mesh(pg,pm);tp.position.y=sH/2+sw+0.02;sGroup.add(tp);
+        var bp=new THREE.Mesh(pg,pm);bp.position.y=-sH/2-sw-0.02;sGroup.add(bp);
+        var rg=new THREE.TorusGeometry(sR*.65,0.012,7,38);
+        var tr=new THREE.Mesh(rg,rm);tr.position.y=sH/2+sw+0.04;tr.rotation.x=Math.PI/2;sGroup.add(tr);
+        var br=new THREE.Mesh(rg,rm);br.position.y=-sH/2-sw-0.04;br.rotation.x=Math.PI/2;sGroup.add(br);
+      }
+    }
 
   } else if(sType==='E'){
     /* ── EXTENSION: open coil body + full-loop hooks on both ends ── */
@@ -1115,7 +1133,7 @@ function build3D(d,D,Ln,n,G){
     /* ── TORSION: tight coil body + straight tangential torque legs ── */
     var legLen=Math.max(sR*2.6,sH*0.35,0.7);
     function leg(endPt,angle,dirSign){
-      var tDir=new THREE.Vector3(-Math.sin(angle),0,Math.cos(angle)).multiplyScalar(dirSign);
+      var tDir=new THREE.Vector3(-Math.sin(angle),0,Math.cos(angle)).multiplyScalar(dirSign*windSign);
       var tipPt=endPt.clone().add(tDir.clone().multiplyScalar(legLen));
       var curve=new THREE.CatmullRomCurve3([endPt,tipPt]);
       sGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve,10,sw,10,false),mat));
@@ -1135,7 +1153,9 @@ function build3D(d,D,Ln,n,G){
     '<div class="vlbl"><div class="vdot" style="background:#ff6b00"></div>'+typeName+'</div>'+
     '<div class="vlbl"><div class="vdot" style="background:'+hx(col)+'"></div>'+mName(G)+'</div>'+
     '<div class="vlbl"><div class="vdot" style="background:#4499ff"></div>d='+fmtU(d)+uSuf()+'</div>'+
-    '<div class="vlbl"><div class="vdot" style="background:#22c55e"></div>n='+n+'</div>';
+    '<div class="vlbl"><div class="vdot" style="background:#22c55e"></div>n='+n+'</div>'+
+    '<div class="vlbl"><div class="vdot" style="background:#a78bfa"></div>'+endName(endType)+'</div>'+
+    '<div class="vlbl"><div class="vdot" style="background:#f472b6"></div>'+windName(windDir)+'</div>';
 
   document.getElementById('ph').classList.add('gone');
 }
