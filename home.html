@@ -276,6 +276,7 @@ input[type=number] { -moz-appearance: textfield; }
 .cert-glow-green { background: radial-gradient(circle, rgba(39,174,96,0.18) 0%, transparent 70%); }
 .cert-glow-red   { background: radial-gradient(circle, rgba(230,57,70,0.20) 0%, transparent 70%); }
 .cert-glow-teal  { background: radial-gradient(circle, rgba(13,92,122,0.28) 0%, transparent 70%); }
+.cert-glow-purple{ background: radial-gradient(circle, rgba(155,89,255,0.22) 0%, transparent 70%); }
 .cert-featured-tag { position: absolute; top: 16px; right: 16px; background: var(--accent); color: var(--navy); font-family: var(--ff-a); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
 .cert-icon-wrap { margin-bottom: 18px; }
 .cert-icon-ring { width: 72px; height: 72px; border-radius: 50%; border: 2.5px solid; display: inline-flex; align-items: center; justify-content: center; animation: certPulse 3s ease-in-out infinite; }
@@ -284,6 +285,7 @@ input[type=number] { -moz-appearance: textfield; }
 .cert-ring-green { border-color: #27ae60; box-shadow: 0 0 18px rgba(39,174,96,0.3); }
 .cert-ring-red   { border-color: #e63946; box-shadow: 0 0 18px rgba(230,57,70,0.3); }
 .cert-ring-teal  { border-color: #0d5c7a; box-shadow: 0 0 18px rgba(13,92,122,0.4); }
+.cert-ring-purple{ border-color: #9b59ff; box-shadow: 0 0 18px rgba(155,89,255,0.35); }
 @keyframes certPulse { 0%,100% { box-shadow: 0 0 18px rgba(59,139,255,0.3); } 50% { box-shadow: 0 0 30px rgba(59,139,255,0.6); } }
 @keyframes certPulseGold { 0%,100% { box-shadow: 0 0 22px rgba(240,165,0,0.35); } 50% { box-shadow: 0 0 40px rgba(240,165,0,0.65); } }
 .cert-icon-text { font-family: var(--ff-d); font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; color: var(--white); text-align: center; line-height: 1.1; }
@@ -293,6 +295,7 @@ input[type=number] { -moz-appearance: textfield; }
 .cert-badge-green { background: rgba(39,174,96,0.15); color: #27ae60; border: 1px solid rgba(39,174,96,0.3); }
 .cert-badge-red   { background: rgba(230,57,70,0.15); color: #e63946; border: 1px solid rgba(230,57,70,0.35); }
 .cert-badge-teal  { background: rgba(13,92,122,0.18); color: #3fb8e8; border: 1px solid rgba(13,92,122,0.4); }
+.cert-badge-purple{ background: rgba(155,89,255,0.15); color: #b18aff; border: 1px solid rgba(155,89,255,0.35); }
 .cert-name  { font-family: var(--ff-d); font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
 .cert-full  { font-family: var(--ff-a); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); margin-bottom: 14px; }
 .cert-desc  { font-size: 13px; color: var(--grey-light); line-height: 1.65; margin-bottom: 18px; }
@@ -657,6 +660,15 @@ footer{background:var(--g-navy2);border-top:1px solid var(--g-bdr);padding:24px 
         <div class="cert-desc">Registered under the Goods and Services Tax Act, Government of India — Form GST REG-06.</div>
         <div class="cert-view">View Certificate →</div>
       </div>
+      <div class="cert-card" role="button" tabindex="0" aria-label="View TradeIndia Certificate of Trust" onclick="window.open('tradeindia-trust-certificate.pdf','_blank','noopener,noreferrer')">
+        <div class="cert-glow cert-glow-purple"></div>
+        <div class="cert-icon-wrap"><div class="cert-icon-ring cert-ring-purple"><span class="cert-icon-text" style="font-size:.85rem;">TRUST</span></div></div>
+        <div class="cert-badge cert-badge-purple">Trusted Seller</div>
+        <div class="cert-name">Certificate of Trust</div>
+        <div class="cert-full">TradeIndia Verified Partner</div>
+        <div class="cert-desc">Verified trusted seller partner of TradeIndia — address, GSTIN, mobile &amp; email independently confirmed.</div>
+        <div class="cert-view">View Certificate →</div>
+      </div>
     </div>
     <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
       <a href="iec-certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-thumb-link">
@@ -678,6 +690,10 @@ footer{background:var(--g-navy2);border-top:1px solid var(--g-bdr);padding:24px 
       <a href="gst-registration-certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-thumb-link">
         <img src="gst-registration-thumb.jpg" alt="GST Certificate — Gurudatta Trading Co." class="cert-thumb-img" onerror="this.style.display='none'"/>
         <span class="cert-thumb-lbl">GST Certificate</span>
+      </a>
+      <a href="tradeindia-trust-certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-thumb-link">
+        <img src="tradeindia-trust-thumb.jpg" alt="TradeIndia Certificate of Trust — Gurudatta Trading Co." class="cert-thumb-img" onerror="this.style.display='none'"/>
+        <span class="cert-thumb-lbl">Certificate of Trust</span>
       </a>
     </div>
   </div>
