@@ -8,14 +8,14 @@
 <link rel="shortcut icon" href="logo.jpg">
 <link rel="apple-touch-icon" href="logo.jpg"> 
   
-<meta name="description" content="Read 1000+ customer reviews for Gurudatta Trading Co. — Trusted spring manufacturer from Mumbai with 25+ years experience."/>
+<meta name="description" content="Read genuine customer reviews for Gurudatta Trading Co. — Trusted spring manufacturer from Mumbai with 25+ years experience."/>
 <meta name="keywords" content="Gurudatta Trading Co reviews, spring manufacturer reviews Mumbai, customer testimonials spring supplier India"/>
 <meta name="author" content="Gurudatta Trading Co."/>
 <meta name="robots" content="index, follow"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Customer Reviews | Gurudatta Trading Co."/>
 <meta property="og:image" content="https://2.wlimg.com/company_logo/13516914.jpg"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gurudatta Trading Co.","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"1000","bestRating":"5"},"telephone":"+918454995315","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"}}</script>
+<script type="application/ld+json" id="ldjson-reviews">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gurudatta Trading Co.","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"12","bestRating":"5"},"telephone":"+918454995315","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -268,17 +268,17 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
   <div class="stats-strip">
     <div class="stats-inner">
       <div class="stat-big reveal">
-        <div class="stat-big-num">4.9</div>
+        <div class="stat-big-num" id="statBigNum">4.8</div>
         <div class="stat-big-stars">★★★★★</div>
         <div class="stat-big-lbl">Overall Rating</div>
       </div>
       <div class="stats-div"></div>
       <div class="bar-group reveal">
-        <div class="bar-row"><span>5★</span><div class="bar-track"><div class="bar-fill" data-w="90"></div></div><span>90%</span></div>
-        <div class="bar-row"><span>4★</span><div class="bar-track"><div class="bar-fill" data-w="8"></div></div><span>8%</span></div>
-        <div class="bar-row"><span>3★</span><div class="bar-track"><div class="bar-fill" data-w="2"></div></div><span>2%</span></div>
-        <div class="bar-row"><span>2★</span><div class="bar-track"><div class="bar-fill" data-w="0"></div></div><span>0%</span></div>
-        <div class="bar-row"><span>1★</span><div class="bar-track"><div class="bar-fill" data-w="0"></div></div><span>0%</span></div>
+        <div class="bar-row"><span>5★</span><div class="bar-track"><div class="bar-fill" data-star="5" data-w="83"></div></div><span class="bar-pct" data-star-pct="5">83%</span></div>
+        <div class="bar-row"><span>4★</span><div class="bar-track"><div class="bar-fill" data-star="4" data-w="17"></div></div><span class="bar-pct" data-star-pct="4">17%</span></div>
+        <div class="bar-row"><span>3★</span><div class="bar-track"><div class="bar-fill" data-star="3" data-w="0"></div></div><span class="bar-pct" data-star-pct="3">0%</span></div>
+        <div class="bar-row"><span>2★</span><div class="bar-track"><div class="bar-fill" data-star="2" data-w="0"></div></div><span class="bar-pct" data-star-pct="2">0%</span></div>
+        <div class="bar-row"><span>1★</span><div class="bar-track"><div class="bar-fill" data-star="1" data-w="0"></div></div><span class="bar-pct" data-star-pct="1">0%</span></div>
       </div>
       <div class="stats-div"></div>
       <div class="stat-nums reveal">
@@ -415,6 +415,46 @@ const defaultReviews = [
    text:"Good range and reasonable prices. The spring calculator helped me finalize the spec before ordering saved a lot of back and forth communication. Recommended."}
 ];
 
+/* ================================================================
+   RATING STATS — SINGLE SOURCE OF TRUTH
+   Recomputes the overall rating, star-breakdown %, and the JSON-LD
+   aggregateRating straight from `defaultReviews` above, so the
+   numbers shown on the page and the structured data always match
+   the reviews actually displayed — even after reviews are added
+   or removed later.
+   ================================================================ */
+function computeAndApplyReviewStats(){
+  const total = defaultReviews.length;
+  const counts = {5:0, 4:0, 3:0, 2:0, 1:0};
+  let sum = 0;
+  defaultReviews.forEach(r => { counts[r.rating] = (counts[r.rating] || 0) + 1; sum += r.rating; });
+  const avgRounded = total ? Math.round((sum / total) * 10) / 10 : 0;
+
+  const bigNum = document.getElementById('statBigNum');
+  if (bigNum) bigNum.textContent = avgRounded.toFixed(1);
+
+  document.querySelectorAll('.bar-fill[data-star]').forEach(bar => {
+    const pct = total ? Math.round((counts[bar.dataset.star] / total) * 100) : 0;
+    bar.dataset.w = pct;
+  });
+  document.querySelectorAll('.bar-pct[data-star-pct]').forEach(span => {
+    const pct = total ? Math.round((counts[span.dataset.starPct] / total) * 100) : 0;
+    span.textContent = pct + '%';
+  });
+
+  const ld = document.getElementById('ldjson-reviews');
+  if (ld) {
+    try {
+      const data = JSON.parse(ld.textContent);
+      data.aggregateRating = data.aggregateRating || {"@type": "AggregateRating"};
+      data.aggregateRating.ratingValue = avgRounded.toFixed(1);
+      data.aggregateRating.reviewCount = String(total);
+      data.aggregateRating.bestRating = "5";
+      ld.textContent = JSON.stringify(data);
+    } catch (e) { /* malformed JSON-LD — leave the static fallback values as-is */ }
+  }
+}
+
 function escapeHtml(str){
   const d = document.createElement('div');
   d.textContent = str;
@@ -463,6 +503,7 @@ document.querySelectorAll('.bar-fill').forEach(bar => {
 });
 
 renderReviews();
+computeAndApplyReviewStats();
 attachReveal(document.querySelectorAll('.reveal:not(.rv-card)'));
 </script>
 </body>
