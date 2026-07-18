@@ -434,12 +434,12 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
         <div class="form-section">
           <label class="flbl">Material Type</label>
           <select id="mat">
-            <option value="81500">Music Wire ASTM A228 — G=81,500 N/mm²</option>
-            <option value="79300">Hard Drawn Wire ASTM A227 — G=79,300 N/mm²</option>
-            <option value="80700">Chrome Vanadium ASTM A232 — G=80,700 N/mm²</option>
-            <option value="73000">Stainless Steel ASTM A313 — G=73,000 N/mm²</option>
-            <option value="44000">Phosphor Bronze ASTM B197 — G=44,000 N/mm²</option>
-            <option value="80000" selected>Mild Steel IS 4454 — G=80,000 N/mm²</option>
+            <option value="81500|203000">Music Wire ASTM A228 — G=81,500 N/mm²</option>
+            <option value="79300|196500">Hard Drawn Wire ASTM A227 — G=79,300 N/mm²</option>
+            <option value="80700|203000">Chrome Vanadium ASTM A232 — G=80,700 N/mm²</option>
+            <option value="73000|193000">Stainless Steel ASTM A313 — G=73,000 N/mm²</option>
+            <option value="44000|103000">Phosphor Bronze ASTM B197 — G=44,000 N/mm²</option>
+            <option value="80000|200000" selected>Mild Steel IS 4454 — G=80,000 N/mm²</option>
           </select>
         </div>
 
@@ -559,14 +559,14 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
       </div>
 
       <div class="card" id="force-card">
-        <div class="card-hd"><div class="card-ico">⚡</div><div><div class="card-title">Force Tester</div><div class="card-sub">F = k × x</div></div></div>
+        <div class="card-hd"><div class="card-ico">⚡</div><div><div class="card-title" id="fc-title">Force Tester</div><div class="card-sub" id="fc-sub">F = k × x</div></div></div>
         <div class="card-body">
           <div class="force-row">
-            <label>Deflection</label>
+            <label id="fc-lbl">Deflection</label>
             <input type="number" id="fc-t" placeholder="mm" step="0.5" min="0" oninput="calcForce()">
             <div class="force-res" id="fc-r">—</div>
           </div>
-          <div style="font-size:11px;color:var(--tl);margin-top:6px">Force = Spring Rate × Deflection</div>
+          <div style="font-size:11px;color:var(--tl);margin-top:6px" id="fc-help">Force = Spring Rate × Deflection</div>
           <div id="fc-warn" class="hidden status s-warn" style="margin-top:8px"></div>
         </div>
       </div>
@@ -824,8 +824,14 @@ function getVal(fld){
 function showSt(t,m){var el=document.getElementById('status-box');el.className='status show s-'+t;el.textContent=m;}
 function endName(v){return v==='C'?'Closed Ends':v==='CG'?'Closed & Ground':v==='DC'?'Double Closed':'Open Ends';}
 function windName(v){return v==='RH'?'Right Hand':'Left Hand';}
-/* dead (inactive) end coils by end configuration - standard spring design convention */
+/* dead (inactive) end coils by end configuration - standard spring design convention.
+   NOTE: this only applies to Compression springs (squared/ground ends). Extension springs
+   (hooks) and Torsion springs (straight legs) have no dead body coils. */
 function deadCoils(end){return end==='O'?0:end==='DC'?3:2;} /* O=Open(none dead), C/CG=2 dead, DC=3 dead */
+
+/* Allowable design shear stress (N/mm²) for Compression/Extension springs — wire is loaded
+   in torsion (shear) of the cross-section. */
+function shearAllowFor(G){return G===73000?830:(G===44000?350:(G===42000?310:900));}
 
 /* ══ CALCULATE ══ */
 function calculate(){
@@ -836,7 +842,9 @@ function calculate(){
 
   var wd=getVal('wd'), od=getVal('od'), tc=getVal('tc');
   var fl=getVal('fl');
-  var G=parseFloat(document.getElementById('mat').value);
+  var matParts=document.getElementById('mat').value.split('|');
+  var G=parseFloat(matParts[0]);          // Shear Modulus — used for Compression & Extension
+  var E=parseFloat(matParts[1]);          // Young's Modulus — used for Torsion (bending)
 
   if(!wd||!od||!tc){showSt('err','⚠ Wire Dia, Outer Dia आणि Total Coils आवश्यक आहेत.');return;}
 
@@ -845,61 +853,141 @@ function calculate(){
   if(D<=0){showSt('err','⚠ Outer Diameter must be greater than Wire Diameter.');return;}
   var Ln=fl?toMM(fl):OD*3;
   var C=D/d;
+
+  /* Two DIFFERENT stress-correction factors — do not swap them:
+     K  = Wahl SHEAR factor  → Compression & Extension (wire cross-section loaded in torsion)
+     Kb = Wahl BENDING factor → Torsion springs (wire loaded in bending, like a coiled beam) */
   var K=(4*C-1)/(4*C-4)+0.615/C;
-  var Na=n-deadCoils(endType);       // active coils = total coils minus inactive end coils
+  var Kb=(4*C*C-C-1)/(4*C*(C-1));
+
+  /* Active coils: only Compression springs lose coils to squared/ground ends.
+     Extension (hooks) & Torsion (straight legs) springs have no dead body coils. */
+  var Na=(sType==='C')?(n-deadCoils(endType)):n;
   if(Na<0.5){showSt('err','⚠ Total Coils too low for '+endName(endType)+' (needs more coils for the squared ends).');return;}
-  var k=(Math.pow(d,4)*G)/(8*Math.pow(D,3)*Na);
-  var solidL=n*d, OD_val=OD, ID_val=D-d;
-  var pitch=n>1?(Ln-d)/(n-1):Ln;
-  var maxS=G===73000?830:(G===44000?350:(G===42000?310:900));
-  var safeF=(maxS*Math.PI*Math.pow(d,3))/(K*8*D);
-  var dMax=safeF/k;
-  var stress=K*(8*safeF*D)/(Math.PI*Math.pow(d,3));
-  lastR={d:d,D:D,OD:OD,Ln:Ln,n:n,k:k,solidL:solidL,OD_val:OD_val,ID_val:ID_val,safeF:safeF,dMax:dMax,stress:stress,pitch:pitch};
 
   var w=[],ok=true;
-  if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
-  if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
-  if(solidL>=Ln){w.push('Solid Length ≥ Free Length!');ok=false;}
-  if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
-  else if(ok)showSt('warn','⚠ '+w.join(' | '));
-  else showSt('err','✗ '+w.join(' | '));
 
-  buildKPI([
-    ['Spring Rate (k)',fmt(k,3),'N/mm'],
-    ['Safe Load',fmt(safeF,1),'N'],
-    ['Wt. Equiv.',fmt(safeF/9.81,2),'kg'],
-    ['Max Defl.',fmtU(dMax),uSuf()],
-    ['Outer Dia',fmtU(OD_val),uSuf()],
-    ['Solid Len.',fmtU(solidL),uSuf()]
-  ]);
+  if(sType==='T'){
+    /* ══════════════════════════════════════════════════════════════════════
+       TORSION SPRING — the wire is stressed in BENDING, not shear.
+       Must use Young's Modulus (E), the Wahl BENDING factor (Kb), and the
+       load/deflection are TORQUE (N·mm) and ANGLE (revolutions), not
+       force (N) and linear deflection (mm) like a compression spring.
+       ══════════════════════════════════════════════════════════════════════ */
+    var k_t=(E*Math.pow(d,4))/(10.8*D*Na);                 // spring rate, N·mm per revolution
+    var bendAllow=shearAllowFor(G)*(75/45);                 // torsion bending allowable ≈1.67× the shear allowable (std. spring-design ratio: ~75% Sut for bending vs ~45% Sut for shear)
+    var M_max=(bendAllow*Math.PI*Math.pow(d,3))/(32*Kb);    // max safe torque, N·mm
+    var thetaMaxRev=M_max/k_t;                              // max safe wind angle, revolutions
+    var stress=Kb*32*M_max/(Math.PI*Math.pow(d,3));         // bending stress at M_max, N/mm² (≈bendAllow)
+    var bodyLen=n*d;                                        // coiled body length (no "solid length" concept for torsion)
 
-  buildSpec([
-    ['Spring Type',sType==='C'?'Compression':sType==='E'?'Extension':'Torsion'],
-    ['Wire Diameter (d)',fmtU(d)+' '+uSuf()],
-    ['Outer Diameter (OD)',fmtU(OD_val)+' '+uSuf()],
-    ['Mean Coil Dia (D)',fmtU(D)+' '+uSuf()],
-    ['Inner Diameter (ID)',fmtU(ID_val)+' '+uSuf()],
-    ['Free Length (L₀)',fmtU(Ln)+' '+uSuf()],
-    ['Solid Length (Ls)',fmtU(solidL)+' '+uSuf()],
-    ['Total Coils (n)',n],
-    ['Active Coils (Na)',fmt(Na,2)],
-    ['Pitch (p)',fmtU(pitch)+' '+uSuf()],
-    ['Spring Index (C)',fmt(C,3)],
-    ['Wahl Factor (K)',fmt(K,4)],
-    ['Shear Modulus (G)',G.toLocaleString()+' N/mm²'],
-    ['Spring Rate (k)',fmt(k,4)+' N/mm'],
-    ['Max Safe Load',fmt(safeF,2)+' N ('+fmt(safeF/9.81,2)+' kg)'],
-    ['Max Deflection',fmtU(dMax)+' '+uSuf()],
-    ['Torsional Stress',fmt(stress,1)+' N/mm²'],
-    ['End Configuration',endName(endType)+' ('+endType+')'],
-    ['Wind Direction',windName(windDir)+' ('+windDir+')'],
-    ['Material','G='+G.toLocaleString()+' N/mm²'],
-    ['Customer',name],
-    ['Mobile',mob]
-  ]);
+    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
+    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
+    if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+    else if(ok)showSt('warn','⚠ '+w.join(' | '));
+    else showSt('err','✗ '+w.join(' | '));
+
+    lastR={mode:'T',d:d,D:D,OD:OD,Ln:Ln,n:n,Na:Na,C:C,Kb:Kb,E:E,G:G,
+      rate:k_t,maxLoad:M_max,maxDefl:thetaMaxRev,stress:stress,bodyLen:bodyLen};
+
+    buildKPI([
+      ['Spring Rate (k)',fmt(k_t,1),'N·mm/rev'],
+      ['Max Torque',fmt(M_max,1),'N·mm'],
+      ['Torque Equiv.',fmt(M_max/98.0665,2),'kgf·cm'],
+      ['Max Wind Angle',fmt(thetaMaxRev*360,1),'deg'],
+      ['Outer Dia',fmtU(OD),uSuf()],
+      ['Body Length',fmtU(bodyLen),uSuf()]
+    ]);
+
+    buildSpec([
+      ['Spring Type','Torsion'],
+      ['Wire Diameter (d)',fmtU(d)+' '+uSuf()],
+      ['Outer Diameter (OD)',fmtU(OD)+' '+uSuf()],
+      ['Mean Coil Dia (D)',fmtU(D)+' '+uSuf()],
+      ['Body Length',fmtU(bodyLen)+' '+uSuf()],
+      ['Total Coils (n)',n],
+      ['Active Coils (Na)',fmt(Na,2)],
+      ['Spring Index (C)',fmt(C,3)],
+      ['Wahl Bending Factor (Kb)',fmt(Kb,4)],
+      ["Young's Modulus (E)",E.toLocaleString()+' N/mm²'],
+      ['Spring Rate (k)',fmt(k_t,2)+' N·mm/rev'],
+      ['Max Safe Torque',fmt(M_max,2)+' N·mm ('+fmt(M_max/98.0665,2)+' kgf·cm)'],
+      ['Max Wind Angle',fmt(thetaMaxRev*360,1)+'° ('+fmt(thetaMaxRev,3)+' rev)'],
+      ['Bending Stress',fmt(stress,1)+' N/mm²'],
+      ['Wind Direction',windName(windDir)+' ('+windDir+')'],
+      ['Material','E='+E.toLocaleString()+' N/mm² (G='+G.toLocaleString()+')'],
+      ['Customer',name],
+      ['Mobile',mob]
+    ]);
+
+  } else {
+    /* ══════════════════════════════════════════════════════════════════════
+       COMPRESSION / EXTENSION SPRING — wire is stressed in SHEAR
+       (torsion of the wire's own cross-section). Uses Shear Modulus (G)
+       and the Wahl SHEAR factor (K). Load/deflection are force (N) and
+       linear deflection (mm), as before.
+       ══════════════════════════════════════════════════════════════════════ */
+    var k=(Math.pow(d,4)*G)/(8*Math.pow(D,3)*Na);
+    var solidL=n*d;
+    var pitch=n>1?(Ln-d)/(n-1):Ln;
+    var allow=shearAllowFor(G);
+    /* Extension springs: the critical stress point is normally the hook bend, not the
+       coil body — this calculator doesn't model hook bend-radius geometry, so a 25%
+       derate on the body-shear allowable keeps the (unmodelled) hook on the safe side. */
+    if(sType==='E')allow=allow*0.75;
+    var safeF=(allow*Math.PI*Math.pow(d,3))/(K*8*D);
+    var dMax=safeF/k;
+    var stress=K*(8*safeF*D)/(Math.PI*Math.pow(d,3));
+
+    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
+    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
+    if(sType==='C'&&solidL>=Ln){w.push('Solid Length ≥ Free Length!');ok=false;}   // solid-length limit only applies to Compression
+    if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+    else if(ok)showSt('warn','⚠ '+w.join(' | '));
+    else showSt('err','✗ '+w.join(' | '));
+
+    lastR={mode:sType,d:d,D:D,OD:OD,Ln:Ln,n:n,Na:Na,C:C,K:K,G:G,
+      rate:k,maxLoad:safeF,maxDefl:dMax,stress:stress,solidL:solidL,pitch:pitch};
+
+    var kpiRows=[
+      ['Spring Rate (k)',fmt(k,3),'N/mm'],
+      ['Safe Load',fmt(safeF,1),'N'],
+      ['Wt. Equiv.',fmt(safeF/9.81,2),'kg'],
+      [sType==='E'?'Max Extension':'Max Defl.',fmtU(dMax),uSuf()],
+      ['Outer Dia',fmtU(OD),uSuf()]
+    ];
+    kpiRows.push(sType==='E'?['Max Length (L₀+x)',fmtU(Ln+dMax),uSuf()]:['Solid Len.',fmtU(solidL),uSuf()]);
+    buildKPI(kpiRows);
+
+    var specRows=[
+      ['Spring Type',sType==='C'?'Compression':'Extension'],
+      ['Wire Diameter (d)',fmtU(d)+' '+uSuf()],
+      ['Outer Diameter (OD)',fmtU(OD)+' '+uSuf()],
+      ['Mean Coil Dia (D)',fmtU(D)+' '+uSuf()],
+      ['Inner Diameter (ID)',fmtU(D-d)+' '+uSuf()],
+      ['Free Length (L₀)',fmtU(Ln)+' '+uSuf()]
+    ];
+    if(sType==='C')specRows.push(['Solid Length (Ls)',fmtU(solidL)+' '+uSuf()]);
+    specRows.push(['Total Coils (n)',n]);
+    specRows.push(['Active Coils (Na)',fmt(Na,2)]);
+    specRows.push(['Pitch (p)',fmtU(pitch)+' '+uSuf()]);
+    specRows.push(['Spring Index (C)',fmt(C,3)]);
+    specRows.push(['Wahl Factor (K)',fmt(K,4)]);
+    specRows.push(['Shear Modulus (G)',G.toLocaleString()+' N/mm²']);
+    specRows.push(['Spring Rate (k)',fmt(k,4)+' N/mm']);
+    specRows.push(['Max Safe Load',fmt(safeF,2)+' N ('+fmt(safeF/9.81,2)+' kg)']);
+    specRows.push([sType==='E'?'Max Extension':'Max Deflection',fmtU(dMax)+' '+uSuf()]);
+    specRows.push(['Shear Stress',fmt(stress,1)+' N/mm²'+(sType==='E'?' (body — hook is critical, derated 25%)':'')]);
+    specRows.push(['End Configuration',endName(endType)+' ('+endType+')']);
+    specRows.push(['Wind Direction',windName(windDir)+' ('+windDir+')']);
+    specRows.push(['Material','G='+G.toLocaleString()+' N/mm²']);
+    specRows.push(['Customer',name]);
+    specRows.push(['Mobile',mob]);
+    buildSpec(specRows);
+  }
 
   document.getElementById('force-card').classList.remove('hidden');
+  updateTesterUI();
   document.getElementById('fc-t').value='';
   document.getElementById('fc-r').textContent='—';
   document.getElementById('fc-warn').classList.add('hidden');
@@ -907,14 +995,14 @@ function calculate(){
   buildWA(name,mob);
   document.getElementById('results-area').classList.remove('hidden');
   build3D(d,D,Ln,n,G);
-  sendToSheets(name,mob,d,D,OD_val,Ln,n,k,safeF,endType,windDir,G);
+  sendToSheets(name,mob,d,D,OD,Ln,n,lastR.rate,lastR.maxLoad,endType,windDir,G,lastR.mode);
 }
 
 /* ══ GOOGLE SHEETS ══ */
-function sendToSheets(name,mob,d,D,OD,Ln,n,k,safeF,end,wind,G){
+function sendToSheets(name,mob,d,D,OD,Ln,n,rate,load,end,wind,G,mode){
   try{
     var url='https://script.google.com/macros/s/AKfycbyHiblHcr6RYJvZiKah-GHMKd3b1aCA8xYH0f1QUtZdtBIwg0btkNTyVgQTclhsqi-K/exec';
-    var data={name:name,mobile:mob,type:sType,unit:unit,wireDia:d,meanDia:D,outerDia:OD,freeLen:Ln,coils:n,rate:fmt(k,3),load:fmt(safeF,1),endType:end,wind:wind,material:G,timestamp:new Date().toISOString()};
+    var data={name:name,mobile:mob,type:sType,mode:mode,unit:unit,wireDia:d,meanDia:D,outerDia:OD,freeLen:Ln,coils:n,rate:fmt(rate,3),load:fmt(load,1),endType:end,wind:wind,material:G,timestamp:new Date().toISOString()};
     fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(function(){});
   }catch(e){}
 }
@@ -934,17 +1022,45 @@ function sendToSheets(name,mob,d,D,OD,Ln,n,k,safeF,end,wind,G){
     items.forEach((el) => observer.observe(el));
   })();
 
-/* ══ FORCE TESTER ══ */
+/* ══ FORCE / TORQUE TESTER ══ */
+function updateTesterUI(){
+  if(!lastR)return;
+  var titleEl=document.getElementById('fc-title'),subEl=document.getElementById('fc-sub');
+  var lblEl=document.getElementById('fc-lbl'),helpEl=document.getElementById('fc-help');
+  var inputEl=document.getElementById('fc-t');
+  if(lastR.mode==='T'){
+    titleEl.textContent='Torque Tester';
+    subEl.textContent='M = k × θ';
+    lblEl.textContent='Twist Angle';
+    inputEl.placeholder='degrees';
+    helpEl.textContent='Torque = Spring Rate × Wind Angle';
+  } else {
+    titleEl.textContent='Force Tester';
+    subEl.textContent='F = k × x';
+    lblEl.textContent='Deflection';
+    inputEl.placeholder=uSuf();
+    helpEl.textContent='Force = Spring Rate × Deflection';
+  }
+}
 function calcForce(){
   if(!lastR)return;
   var t=parseFloat(document.getElementById('fc-t').value);
   var el=document.getElementById('fc-r'),we=document.getElementById('fc-warn');
   if(!t||t<=0){el.textContent='—';we.style.display='none';return;}
-  var tMM=toMM(t),f=lastR.k*tMM;
-  el.innerHTML=fmt(f,1)+' N<br><small style="opacity:.8">'+fmt(f/9.81,2)+' kg</small>';
-  if(tMM>lastR.dMax){we.textContent='⚠ Safe limit ओलांडते! Spring damage.';we.style.display='block';}
-  else if(tMM>lastR.dMax*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
-  else we.style.display='none';
+
+  if(lastR.mode==='T'){
+    var rev=t/360,M=lastR.rate*rev;                 // input is degrees of twist
+    el.innerHTML=fmt(M,1)+' N·mm<br><small style="opacity:.8">'+fmt(M/98.0665,2)+' kgf·cm</small>';
+    if(rev>lastR.maxDefl){we.textContent='⚠ Safe wind-angle limit ओलांडते! Spring damage.';we.style.display='block';}
+    else if(rev>lastR.maxDefl*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
+    else we.style.display='none';
+  } else {
+    var tMM=toMM(t),f=lastR.rate*tMM;
+    el.innerHTML=fmt(f,1)+' N<br><small style="opacity:.8">'+fmt(f/9.81,2)+' kg</small>';
+    if(tMM>lastR.maxDefl){we.textContent='⚠ Safe limit ओलांडते! Spring damage.';we.style.display='block';}
+    else if(tMM>lastR.maxDefl*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
+    else we.style.display='none';
+  }
 }
 
 /* ══ UI BUILDERS ══ */
@@ -964,9 +1080,15 @@ function buildWA(name,mob){
   msg+='Name: '+name+'\nMobile: '+mob+'\n\n';
   msg+='Spring Enquiry:\n';
   msg+='Type: '+(sType==='C'?'Compression':sType==='E'?'Extension':'Torsion')+'\n';
-  msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
-  msg+='Rate: '+fmt(r.k,3)+' N/mm | Load: '+fmt(r.safeF,1)+' N ('+fmt(r.safeF/9.81,2)+' kg)\n';
-  msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+  if(r.mode==='T'){
+    msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | Body Len: '+fmt(r.bodyLen,2)+'mm | n: '+r.n+'\n';
+    msg+='Rate: '+fmt(r.rate,2)+' N·mm/rev | Max Torque: '+fmt(r.maxLoad,1)+' N·mm ('+fmt(r.maxLoad/98.0665,2)+' kgf·cm)\n';
+    msg+='Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+  } else {
+    msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
+    msg+='Rate: '+fmt(r.rate,3)+' N/mm | Load: '+fmt(r.maxLoad,1)+' N ('+fmt(r.maxLoad/9.81,2)+' kg)\n';
+    msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+  }
   document.getElementById('wa-btn').href='https://wa.me/918454995315?text='+encodeURIComponent(msg);
 }
 
