@@ -17,8 +17,75 @@
 <meta property="og:title" content="Spring Rate Calculator | Gurudatta Trading Co.">
 <meta property="og:description" content="Free online spring rate calculator by Gurudatta Trading Co. Compute spring rate, solid height, max load, stress and full spec report instantly.">
 <meta property="og:image" content="https://2.wlimg.com/company_logo/13516914.jpg">
+<meta property="og:url" content="https://gtcsprings.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gurudatta Trading Co.">
+<link rel="canonical" href="https://gtcsprings.com/"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"LocalBusiness",
+      "@id":"https://gtcsprings.com/#business",
+      "name":"Gurudatta Trading Co.",
+      "alternateName":"Gurudatta Trading Company",
+      "description":"Compression, Extension & Torsion Springs Manufacturer in Mumbai. MS & SS Springs supplier with 25+ years experience.",
+      "url":"https://gtcsprings.com/",
+      "telephone":"+918454995315",
+      "email":"connect.gtc5@gmail.com",
+      "foundingDate":"2000",
+      "address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400000","addressCountry":"IN"},
+      "geo":{"@type":"GeoCoordinates","latitude":"19.0760","longitude":"72.8777"},
+      "sameAs":["https://www.indiamart.com/gurudattatradingco/","https://www.exportersindia.com/gurudattatradingco/"]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://gtcsprings.com/#calculator",
+      "name":"Spring Rate Calculator by Gurudatta Trading Co.",
+      "url":"https://gtcsprings.com/",
+      "applicationCategory":"EngineeringApplication",
+      "operatingSystem":"Any (Web Browser)",
+      "description":"Free online calculator for Compression, Extension and Torsion springs. Computes spring rate, safe load, deflection, solid height and stress, with a live 3D preview, in English (inch) or Metric (mm) units.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+      "provider":{"@id":"https://gtcsprings.com/#business"},
+      "datePublished":"2025-01-01",
+      "dateModified":"2026-07-28",
+      "featureList":["Compression, Extension & Torsion spring calculation","English (inch) and Metric (mm) units","Exact or Min-Max range inputs","Live 3D spring preview","Full specification sheet export to WhatsApp"]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://gtcsprings.com/home.html"},
+        {"@type":"ListItem","position":2,"name":"Spring Rate Calculator","item":"https://gtcsprings.com/"}
+      ]
+    },
+    {
+      "@type":"HowTo",
+      "@id":"https://gtcsprings.com/#howto",
+      "name":"How to Use the Spring Rate Calculator",
+      "description":"Calculate spring rate, safe load, deflection and solid height for a Compression, Extension or Torsion spring in four steps.",
+      "totalTime":"PT2M",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Choose spring type and units","text":"Choose the spring type — Compression, Extension or Torsion — and select your unit system: English (inch) or Metric (mm)."},
+        {"@type":"HowToStep","position":2,"name":"Enter dimensions","text":"Enter wire diameter, outer diameter, free length and total coils. Use an exact value or a Min–Max range, whichever suits your design."},
+        {"@type":"HowToStep","position":3,"name":"Select material and end type, then calculate","text":"Select material type (Music Wire, Stainless Steel, Mild Steel, etc.) and end type, then hit Calculate."},
+        {"@type":"HowToStep","position":4,"name":"Review results and request a quote","text":"Review key results, the full specification sheet and the 3D preview, then request a quote on WhatsApp directly."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"What is a spring rate calculator?","acceptedAnswer":{"@type":"Answer","text":"A spring rate calculator is a tool that computes a spring's stiffness (spring rate, k), along with its safe load, deflection and solid height, from basic dimensions — wire diameter, outer diameter, free length and number of coils. Gurudatta Trading Co.'s calculator does this instantly for Compression, Extension and Torsion springs, in both English (inch) and Metric (mm) units."}},
+        {"@type":"Question","name":"How is spring rate calculated?","acceptedAnswer":{"@type":"Answer","text":"For a compression or extension spring, spring rate (k) equals G × d⁴ divided by (8 × D³ × Na), where G is the material's shear modulus, d is wire diameter, D is mean coil diameter and Na is the number of active coils. Torsion springs are calculated in bending using the material's Young's Modulus (E) instead. This calculator applies the correct formula automatically based on the spring type selected."}},
+        {"@type":"Question","name":"What is the difference between Compression, Extension and Torsion springs?","acceptedAnswer":{"@type":"Answer","text":"Compression springs resist a squeezing force and push back when compressed. Extension springs have hooks at each end and resist a pulling or stretching force. Torsion springs have straight legs and resist a twisting or rotational force rather than a push or pull. Each type uses a different stress formula, which is why the calculator asks for the spring type first."}},
+        {"@type":"Question","name":"Is this spring rate calculator free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. Gurudatta Trading Co.'s spring rate calculator is completely free with no signup required. Enter your dimensions, hit Calculate, and get an instant spec report plus a live 3D preview of your spring."}},
+        {"@type":"Question","name":"Can Gurudatta Trading Co. manufacture the spring I design here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once your design is ready, you can send the full specification sheet straight to Gurudatta Trading Co. on WhatsApp to request a manufacturing quote — the same Mumbai-based team that has manufactured compression, extension and torsion springs for over 25 years."}}
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -141,24 +208,49 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:400px){.form-grid-2{grid-template-columns:1fr}}
 
-/* end configurations (icon cards) */
-.end-config-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.end-card{border:1.5px solid var(--bdr2);border-radius:10px;background:var(--ibg);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:.15s;color:var(--tm);user-select:none}
-.end-card:hover{border-color:var(--P);color:#fff;transform:translateY(-1px)}
-.end-card.on{background:rgba(255,107,0,.13);border-color:var(--P);color:var(--P)}
-.ec-ic{width:38px;height:44px;display:block;margin:0 auto 4px}
-.ec-name{font-size:11px;font-weight:700;color:inherit;line-height:1.25}
-.ec-sub{font-size:9px;color:var(--tl);margin-top:2px;line-height:1.3}
-.end-card.on .ec-sub{color:rgba(255,138,46,.85)}
+/* end configurations (dropdown) */
+.ec-dd{position:relative}
+.ec-dd-trigger{width:100%;display:flex;align-items:center;gap:10px;background:var(--ibg);border:1.5px solid var(--bdr2);border-radius:var(--rs);padding:9px 12px;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;transition:.14s;color:#fff}
+.ec-dd-trigger:hover{border-color:var(--P)}
+.ec-dd.open .ec-dd-trigger{border-color:var(--P);background:rgba(255,107,0,.05)}
+.ec-dd-ic{width:24px;height:30px;flex-shrink:0;color:var(--P);display:flex;align-items:center;justify-content:center}
+.ec-dd-ic svg{width:100%;height:100%;display:block}
+.ec-dd-txt{flex:1;min-width:0}
+.ec-dd-name{font-size:13px;font-weight:700;color:#fff;line-height:1.25}
+.ec-dd-sub{font-size:10.5px;color:var(--tl);margin-top:1px;line-height:1.3}
+.ec-dd-chev{width:15px;height:15px;flex-shrink:0;color:var(--tm);transition:.18s}
+.ec-dd.open .ec-dd-chev{transform:rotate(180deg);color:var(--P)}
+
+.ec-dd-panel{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#141b3f;border:1.5px solid var(--bdr2);border-radius:var(--rs);box-shadow:0 12px 32px rgba(0,0,0,.5);z-index:60;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.16s;overflow:hidden}
+.ec-dd-panel.open{opacity:1;visibility:visible;transform:translateY(0)}
+.ec-dd-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;transition:.12s;border-bottom:1px solid var(--bdr);user-select:none}
+.ec-dd-opt:last-child{border-bottom:none}
+.ec-dd-opt:hover{background:rgba(255,255,255,.06)}
+.ec-dd-opt.on{background:rgba(255,107,0,.13)}
+.ec-dd-opt .ec-ic{width:24px;height:30px;flex-shrink:0;margin:0;display:block;color:var(--tm)}
+.ec-dd-opt.on .ec-ic{color:var(--P)}
+.ec-dd-opt-txt{flex:1;min-width:0}
+.ec-dd-opt .ec-name{font-size:12.5px;font-weight:700;color:var(--tm);line-height:1.25}
+.ec-dd-opt.on .ec-name{color:var(--P)}
+.ec-dd-opt .ec-sub{font-size:10px;color:var(--tl);margin-top:1px;line-height:1.3}
+.ec-dd-opt.on .ec-sub{color:rgba(255,138,46,.85)}
+.ec-dd-check{width:16px;height:16px;flex-shrink:0;color:var(--P);opacity:0}
+.ec-dd-opt.on .ec-dd-check{opacity:1}
 
 /* wind direction (icon cards) */
 .wind-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.wind-card{border:1.5px solid var(--bdr2);border-radius:10px;background:var(--ibg);padding:10px 8px;text-align:center;cursor:pointer;transition:.15s;color:var(--tm);user-select:none;display:flex;flex-direction:column;align-items:center;gap:3px}
-.wind-card:hover{border-color:var(--P);color:#fff;transform:translateY(-1px)}
-.wind-card.on{background:rgba(255,107,0,.13);border-color:var(--P);color:var(--P)}
-.wc-ic{width:28px;height:28px}
-.wc-name{font-size:11px;font-weight:700;color:inherit}
-.wc-sub{font-size:9px;color:var(--tl)}
+.wind-card{border:1.5px solid var(--bdr2);border-radius:10px;background:var(--ibg);padding:13px 8px 11px;text-align:center;cursor:pointer;transition:.18s;color:var(--tm);user-select:none;display:flex;flex-direction:column;align-items:center;gap:5px}
+.wind-card:hover{border-color:var(--P);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.wind-card.on{background:rgba(255,107,0,.13);border-color:var(--P);color:var(--P);box-shadow:0 4px 16px rgba(255,107,0,.15)}
+.wc-ic-badge{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;transition:.18s}
+.wind-card.on .wc-ic-badge{background:rgba(255,107,0,.16)}
+.wind-card:hover .wc-ic-badge{background:rgba(255,255,255,.09)}
+.wind-card.on:hover .wc-ic-badge{background:rgba(255,107,0,.22)}
+.wc-ic{width:26px;height:26px;transition:transform .25s ease}
+.wind-card[data-val="RH"]:hover .wc-ic{transform:rotate(35deg)}
+.wind-card[data-val="LH"]:hover .wc-ic{transform:rotate(-35deg)}
+.wc-name{font-size:12.5px;font-weight:700;color:inherit;margin-top:1px}
+.wc-sub{font-size:10px;color:var(--tl);letter-spacing:.01em}
 .wind-card.on .wc-sub{color:rgba(255,138,46,.85)}
 
 /* attention note */
@@ -448,53 +540,60 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
         <!-- End Configurations -->
         <div class="form-section">
           <label class="flbl">End Configurations</label>
-          <div class="end-config-grid">
-            <div class="end-card on" data-val="C" onclick="toggleEnd(this)">
-              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                <ellipse cx="30" cy="10" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="26" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="42" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="56" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="65" rx="16" ry="5.5"/>
-              </svg>
-              <div class="ec-name">Closed Ends</div>
-              <div class="ec-sub">Squared, not ground</div>
-            </div>
-            <div class="end-card" data-val="CG" onclick="toggleEnd(this)">
-              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                <ellipse cx="30" cy="8" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="40" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="54" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="62" rx="16" ry="5.5"/>
-                <rect x="12" y="68" width="36" height="4" rx="1.5" fill="currentColor" stroke="none"/>
-              </svg>
-              <div class="ec-name">Closed &amp; Ground</div>
-              <div class="ec-sub">Squared and ground flat</div>
-            </div>
-            <div class="end-card" data-val="DC" onclick="toggleEnd(this)">
-              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                <ellipse cx="30" cy="8" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="40" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="50" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="59" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="67" rx="16" ry="5.5"/>
-              </svg>
-              <div class="ec-name">Double Closed</div>
-              <div class="ec-sub">Extra tight coil each end</div>
-            </div>
-            <div class="end-card" data-val="O" onclick="toggleEnd(this)">
-              <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                <ellipse cx="30" cy="10" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="24" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="38" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="52" rx="16" ry="5.5"/>
-                <ellipse cx="30" cy="66" rx="16" ry="5.5"/>
-                <path d="M15 66 L6 72"/>
-              </svg>
-              <div class="ec-name">Open Ends</div>
-              <div class="ec-sub">Plain, uncut coil</div>
+          <div class="ec-dd" id="ec-dd">
+            <button type="button" class="ec-dd-trigger" id="ec-dd-trigger" onclick="toggleEndDD(event)" aria-haspopup="listbox" aria-expanded="false">
+              <span class="ec-dd-ic" id="ec-dd-ic">
+                <svg viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <ellipse cx="30" cy="10" rx="16" ry="5.5"/><ellipse cx="30" cy="26" rx="16" ry="5.5"/><ellipse cx="30" cy="42" rx="16" ry="5.5"/><ellipse cx="30" cy="56" rx="16" ry="5.5"/><ellipse cx="30" cy="65" rx="16" ry="5.5"/>
+                </svg>
+              </span>
+              <span class="ec-dd-txt">
+                <span class="ec-dd-name" id="ec-dd-name">Closed Ends</span>
+                <span class="ec-dd-sub" id="ec-dd-sub">Squared, not ground</span>
+              </span>
+              <svg class="ec-dd-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="ec-dd-panel" id="ec-dd-panel" role="listbox">
+              <div class="ec-dd-opt on" data-val="C" role="option" aria-selected="true" onclick="selectEnd(this)">
+                <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <ellipse cx="30" cy="10" rx="16" ry="5.5"/><ellipse cx="30" cy="26" rx="16" ry="5.5"/><ellipse cx="30" cy="42" rx="16" ry="5.5"/><ellipse cx="30" cy="56" rx="16" ry="5.5"/><ellipse cx="30" cy="65" rx="16" ry="5.5"/>
+                </svg>
+                <span class="ec-dd-opt-txt">
+                  <span class="ec-name">Closed Ends</span>
+                  <span class="ec-sub">Squared, not ground</span>
+                </span>
+                <svg class="ec-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="ec-dd-opt" data-val="CG" role="option" aria-selected="false" onclick="selectEnd(this)">
+                <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <ellipse cx="30" cy="8" rx="16" ry="5.5"/><ellipse cx="30" cy="24" rx="16" ry="5.5"/><ellipse cx="30" cy="40" rx="16" ry="5.5"/><ellipse cx="30" cy="54" rx="16" ry="5.5"/><ellipse cx="30" cy="62" rx="16" ry="5.5"/><rect x="12" y="68" width="36" height="4" rx="1.5" fill="currentColor" stroke="none"/>
+                </svg>
+                <span class="ec-dd-opt-txt">
+                  <span class="ec-name">Closed &amp; Ground</span>
+                  <span class="ec-sub">Squared and ground flat</span>
+                </span>
+                <svg class="ec-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="ec-dd-opt" data-val="DC" role="option" aria-selected="false" onclick="selectEnd(this)">
+                <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <ellipse cx="30" cy="8" rx="16" ry="5.5"/><ellipse cx="30" cy="24" rx="16" ry="5.5"/><ellipse cx="30" cy="40" rx="16" ry="5.5"/><ellipse cx="30" cy="50" rx="16" ry="5.5"/><ellipse cx="30" cy="59" rx="16" ry="5.5"/><ellipse cx="30" cy="67" rx="16" ry="5.5"/>
+                </svg>
+                <span class="ec-dd-opt-txt">
+                  <span class="ec-name">Double Closed</span>
+                  <span class="ec-sub">Extra tight coil each end</span>
+                </span>
+                <svg class="ec-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="ec-dd-opt" data-val="O" role="option" aria-selected="false" onclick="selectEnd(this)">
+                <svg class="ec-ic" viewBox="0 0 60 76" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <ellipse cx="30" cy="10" rx="16" ry="5.5"/><ellipse cx="30" cy="24" rx="16" ry="5.5"/><ellipse cx="30" cy="38" rx="16" ry="5.5"/><ellipse cx="30" cy="52" rx="16" ry="5.5"/><ellipse cx="30" cy="66" rx="16" ry="5.5"/><path d="M15 66 L6 72"/>
+                </svg>
+                <span class="ec-dd-opt-txt">
+                  <span class="ec-name">Open Ends</span>
+                  <span class="ec-sub">Plain, uncut coil</span>
+                </span>
+                <svg class="ec-dd-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
             </div>
           </div>
         </div>
@@ -504,18 +603,24 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
           <label class="flbl">Wind Direction</label>
           <div class="wind-grid">
             <div class="wind-card on" data-val="RH" onclick="toggleWind(this)">
-              <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 A14 14 0 1 1 7 16"/>
-                <path d="M7 16 L4 8 M7 16 L14 13"/>
-              </svg>
+              <span class="wc-ic-badge">
+                <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23.36 7.44 A13 13 0 1 1 8.74 13.5"/>
+                  <polygon points="4.24,10.9 12.99,6.14 13.25,16.1" fill="currentColor" stroke="none"/>
+                </svg>
+              </span>
               <div class="wc-name">Right Hand</div>
-              <div class="wc-sub">RH Clockwise</div>
+              <div class="wc-sub">RH — Clockwise</div>
             </div>
             <div class="wind-card" data-val="LH" onclick="toggleWind(this)">
-              <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 A14 14 0 1 0 33 16"/>
-                <path d="M33 16 L36 8 M33 16 L26 13"/>
-              </svg>
+              <span class="wc-ic-badge">
+                <svg class="wc-ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+                  <g transform="scale(-1,1) translate(-40,0)">
+                    <path d="M23.36 7.44 A13 13 0 1 1 8.74 13.5"/>
+                    <polygon points="4.24,10.9 12.99,6.14 13.25,16.1" fill="currentColor" stroke="none"/>
+                  </g>
+                </svg>
+              </span>
               <div class="wc-name">Left Hand</div>
               <div class="wc-sub">LH — Counter-clockwise</div>
             </div>
@@ -720,6 +825,33 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
         and fast.
       </p>
     </div>
+
+    <!-- FAQ -->
+    <h2 class="si-reveal" style="font-size:26px; font-weight:800; color:#fff; margin-bottom:22px;">
+      Frequently Asked Questions
+    </h2>
+    <div style="display:grid; gap:14px; margin-bottom:20px;">
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">What is a spring rate calculator?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">A spring rate calculator is a tool that computes a spring's stiffness (spring rate, k), along with its safe load, deflection and solid height, from basic dimensions — wire diameter, outer diameter, free length and number of coils. This calculator does it instantly for Compression, Extension and Torsion springs, in English (inch) or Metric (mm) units.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">How is spring rate calculated?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">For a compression or extension spring, spring rate (k) = G × d⁴ / (8 × D³ × Na) — where G is the material's shear modulus, d is wire diameter, D is mean coil diameter and Na is the number of active coils. Torsion springs are calculated in bending using the material's Young's Modulus (E) instead. This calculator applies the correct formula automatically based on the spring type you select.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">What's the difference between Compression, Extension and Torsion springs?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Compression springs resist a squeezing force and push back when compressed. Extension springs have hooks at each end and resist a pulling or stretching force. Torsion springs have straight legs and resist a twisting force rather than a push or pull. Each type uses a different stress formula, which is why the calculator asks for the spring type first.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">Is this spring rate calculator free to use?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Yes. Gurudatta Trading Co.'s spring rate calculator is completely free with no signup required. Enter your dimensions, hit Calculate, and get an instant spec report plus a live 3D preview of your spring.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">Can Gurudatta Trading Co. manufacture the spring I design here?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Yes. Once your design is ready, send the full specification sheet straight to Gurudatta Trading Co. on WhatsApp to request a manufacturing quote — the same Mumbai-based team that has manufactured compression, extension and torsion springs for over 25 years.</p>
+      </div>
+    </div>
     <!-- CTA -->
     <div class="si-reveal" style="text-align:center; margin-top:36px;">
       <a href="https://wa.me/918454995315" style="
@@ -798,12 +930,38 @@ function setMode(fld,mode,btn){
   });
 }
 
-/* ══ END TYPES ══ */
-function toggleEnd(el){
-  endType=el.dataset.val;
-  el.closest('.end-config-grid').querySelectorAll('.end-card').forEach(function(e){e.classList.remove('on');});
-  el.classList.add('on');
+/* ══ END TYPES (dropdown) ══ */
+function toggleEndDD(e){
+  e.stopPropagation();
+  var dd=document.getElementById('ec-dd');
+  var panel=document.getElementById('ec-dd-panel');
+  var trig=document.getElementById('ec-dd-trigger');
+  var willOpen=!panel.classList.contains('open');
+  panel.classList.toggle('open',willOpen);
+  dd.classList.toggle('open',willOpen);
+  trig.setAttribute('aria-expanded',willOpen?'true':'false');
 }
+function selectEnd(el){
+  endType=el.dataset.val;
+  var panel=el.closest('.ec-dd-panel');
+  panel.querySelectorAll('.ec-dd-opt').forEach(function(o){o.classList.remove('on');o.setAttribute('aria-selected','false');});
+  el.classList.add('on');
+  el.setAttribute('aria-selected','true');
+  document.getElementById('ec-dd-name').textContent=el.querySelector('.ec-name').textContent;
+  document.getElementById('ec-dd-sub').textContent=el.querySelector('.ec-sub').textContent;
+  document.getElementById('ec-dd-ic').innerHTML=el.querySelector('.ec-ic').outerHTML;
+  panel.classList.remove('open');
+  document.getElementById('ec-dd').classList.remove('open');
+  document.getElementById('ec-dd-trigger').setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('ec-dd');
+  if(dd && !dd.contains(e.target)){
+    document.getElementById('ec-dd-panel').classList.remove('open');
+    dd.classList.remove('open');
+    document.getElementById('ec-dd-trigger').setAttribute('aria-expanded','false');
+  }
+});
 function toggleWind(el){
   windDir=el.dataset.val;
   el.closest('.wind-grid').querySelectorAll('.wind-card').forEach(function(e){e.classList.remove('on');});
