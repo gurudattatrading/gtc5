@@ -184,6 +184,64 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
   .reveal{opacity:1;transform:none;transition:none}
 }
 
+  /* =========================
+   MOBILE BOTTOM NAVIGATION
+   ========================= */
+
+.bottom-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding-bottom: 70px;
+    }
+
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: #080b18;
+        border-top: 1px solid #252a45;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .bnav-btn {
+        flex: 1;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+        text-decoration: none;
+        color: #8b8da5;
+        transition: 0.2s ease;
+    }
+
+    .bnav-btn span {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .bnav-btn small {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .bnav-btn:hover,
+    .bnav-btn.active {
+        color: #ff8a00;
+    }
+}
+  
 </style>
 </head>
 <body>
@@ -529,5 +587,32 @@ document.getElementById('cf-name').addEventListener('input',function(){
   }
 });
 </script>
+  <!-- Mobile Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="index.html" class="bnav-btn">
+        <span>🏠</span>
+        <small>HOME</small>
+    </a>
+
+    <a href="calculator.html" class="bnav-btn">
+        <span>⚙️</span>
+        <small>CALCULATOR</small>
+    </a>
+
+    <a href="products.html" class="bnav-btn">
+        <span>🔩</span>
+        <small>PRODUCTS</small>
+    </a>
+
+    <a href="reviews.html" class="bnav-btn">
+        <span>⭐</span>
+        <small>REVIEWS</small>
+    </a>
+
+    <a href="contact.html" class="bnav-btn">
+        <span>📞</span>
+        <small>CONTACT</small>
+    </a>
+</nav>
 </body>
 </html>
