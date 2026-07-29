@@ -323,10 +323,7 @@ footer{background:var(--g-navy2);border-top:1px solid var(--g-bdr);padding:24px 
 .bnav { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; background: rgba(10,15,30,0.97); backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 6px 0 env(safe-area-inset-bottom, 6px); }
 .bnav-inner { display: flex; justify-content: space-around; }
 .bnav-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--grey); background: none; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: inherit; transition: color var(--tr); }
-.bnav-btn.active,
-.bnav-btn:hover {
-  color: var(--P);
-}
+.bnav-btn.active, .bnav-btn:hover { color: var(--accent); }
 .bnav-icon { font-size: 19px; }
 .bnav-lbl  { font-family: var(--ff-a); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
 
