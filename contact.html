@@ -503,6 +503,9 @@ document.getElementById('cf-btn').addEventListener('click',async()=>{
   try{
     const response=await fetch('https://script.google.com/macros/s/AKfycbzyt07hWQI4dCRwvBZjp8Wlx7LUcR860nyZyl5BXNM2G-AwibuY-2ElGedJPrxSVlwtJQ/exec',{
       method:'POST',
+      mode:'no-cors', // BUGFIX: without this, Google Apps Script's un-CORS'd response gets
+                       // blocked by the browser and fetch() throws — so real submissions
+                       // were showing the user a false "Could not send" error.
       headers:{'Content-Type':'text/plain;charset=utf-8'},
       body:JSON.stringify({
         action:'contact',
