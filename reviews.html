@@ -490,7 +490,8 @@ function renderReviews(){
 /* ================================================================
    SCROLL REVEAL
    ================================================================ */
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let prefersReducedMotion = false;
+try { prefersReducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { prefersReducedMotion = false; }
 let revealObserver = null;
 if (!prefersReducedMotion && 'IntersectionObserver' in window) {
   revealObserver = new IntersectionObserver((entries) => {
