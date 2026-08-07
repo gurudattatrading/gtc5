@@ -404,8 +404,30 @@ function goProduct(catSlug,prodSlug){toggleMobNavClose();showProduct(catSlug,pro
 function goCat(catSlug){toggleMobNavClose();showCat(catSlug)}
 function toggleMobNavClose(){closeMobNav()}
 
+/* ════ URL ROUTING ════ */
+/* BUGFIX: this page re-renders content dynamically ("SPA-style routing", per the
+   comment above) but never actually updated the browser URL — so the Back button
+   left the page entirely instead of going to the previous view, refreshing always
+   reset to Home, and individual products/categories had no shareable link.
+   updateUrl() pushes a real history entry per view; a popstate listener + the
+   init check at the bottom restore the right view on Back/Forward and on load. */
+function updateUrl(view,catSlug,prodSlug){
+  var params=new URLSearchParams();
+  if(view==='cat'){params.set('cat',catSlug);}
+  else if(view==='product'){params.set('cat',catSlug);params.set('p',prodSlug);}
+  var qs=params.toString();
+  history.pushState({view:view,cat:catSlug,p:prodSlug},'',location.pathname+(qs?('?'+qs):''));
+}
+window.addEventListener('popstate',function(){
+  var params=new URLSearchParams(location.search);
+  var cat=params.get('cat'),p=params.get('p');
+  if(cat&&p)showProduct(cat,p,true);
+  else if(cat)showCat(cat,true);
+  else showHome(true);
+});
+
 /* ════ HOME VIEW ════ */
-function showHome(){
+function showHome(skipPush){
   document.getElementById('pageWrap').innerHTML=`<div class="home-page">
     <div class="home-hero reveal">
       <div class="home-hero-label">Our Catalogue</div>
@@ -422,10 +444,11 @@ function showHome(){
     document.getElementById('cg').appendChild(c);
   });
   initReveal();
+  if(!skipPush)updateUrl('home');
 }
 
 /* ════ CATEGORY VIEW ════ */
-function showCat(catSlug){
+function showCat(catSlug,skipPush){
   const cat=CATS.find(c=>sl(c.name)===catSlug);
   if(!cat)return;
   document.getElementById('pageWrap').innerHTML=`<div class="cat-page">
@@ -456,10 +479,11 @@ function showCat(catSlug){
   });
   scrollTop();
   initReveal();
+  if(!skipPush)updateUrl('cat',catSlug);
 }
 
 /* ════ PRODUCT DETAIL VIEW ════ */
-function showProduct(catSlug,prodSlug){
+function showProduct(catSlug,prodSlug,skipPush){
   const cat=CATS.find(c=>sl(c.name)===catSlug);
   const p=cat?.products.find(pr=>sl(pr.name)===prodSlug);
   if(!p)return;
@@ -507,10 +531,19 @@ function showProduct(catSlug,prodSlug){
   </div>`;
   scrollTop();
   initReveal();
+  if(!skipPush)updateUrl('product',catSlug,prodSlug);
 }
 
 /* ════ INIT ════ */
-showHome();
+/* BUGFIX: restore whatever view the URL points to (so a shared/bookmarked link or a
+   page refresh lands on the right category/product) instead of always forcing Home. */
+(function initFromUrl(){
+  var params=new URLSearchParams(location.search);
+  var cat=params.get('cat'),p=params.get('p');
+  if(cat&&p)showProduct(cat,p,true);
+  else if(cat)showCat(cat,true);
+  else showHome(true);
+})();
 </script>
 </body>
 </html>
