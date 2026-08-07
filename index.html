@@ -823,7 +823,8 @@ document.querySelectorAll('.cert-card[role="button"]').forEach(card => {
 });
 
 /* ===== DYNAMIC ON SCROLL ===== */
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let prefersReducedMotion = false;
+try { prefersReducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { prefersReducedMotion = false; }
 
 /* 1) Subtle parallax on the hero spring graphic — adds depth as you scroll */
 const heroSpring = document.querySelector('.hero-spring');
