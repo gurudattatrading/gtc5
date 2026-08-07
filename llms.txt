@@ -6,16 +6,16 @@ Gurudatta Trading Co. designs and manufactures custom coil springs to customer s
 
 ## Tools
 
-- [Spring Rate Calculator](https://gtcsprings.com/): Free browser-based calculator for Compression, Extension and Torsion springs. Enter wire diameter, outer diameter, free length and total coils (exact value or Min–Max range) to get spring rate, safe load, deflection, solid height, stress and a live rotatable 3D preview, in English (inch) or Metric (mm) units. No signup required. Results can be sent as a spec sheet via WhatsApp to request a manufacturing quote.
+- [Spring Rate Calculator](https://industrialspringmanufacturer.com/calculator.html): Free browser-based calculator for Compression, Extension and Torsion springs. Enter wire diameter, outer diameter, free length and total coils (exact value or Min–Max range) to get spring rate, safe load, deflection, solid height, stress and a live rotatable 3D preview, in English (inch) or Metric (mm) units. No signup required. Results can be sent as a spec sheet via WhatsApp to request a manufacturing quote.
 
 ## Company
 
-- [Home](https://gtcsprings.com/home.html): Overview of Gurudatta Trading Co. — compression spring manufacturer based in Mumbai, India.
-- [Products](https://gtcsprings.com/products.html): Spring types and materials supplied (Mild Steel, Stainless Steel, Music Wire, and others).
-- [Spring Manufacturer in Maharashtra](https://gtcsprings.com/spring-manufacturer-maharashtra.html): Background on the company's manufacturing capability and service area within Maharashtra.
-- [Reviews](https://gtcsprings.com/reviews.html): Customer reviews and ratings.
-- [Contact](https://gtcsprings.com/contact.html): Phone, WhatsApp, email and location details for quote requests.
+- [Home](https://industrialspringmanufacturer.com/index.html): Overview of Gurudatta Trading Co. — compression spring manufacturer based in Mumbai, India.
+- [Products](https://industrialspringmanufacturer.com/products.html): Spring types and materials supplied (Mild Steel, Stainless Steel, Music Wire, and others).
+- [Spring Manufacturer in Maharashtra](https://industrialspringmanufacturer.com/spring-manufacturer-maharashtra.html): Background on the company's manufacturing capability and service area within Maharashtra.
+- [Reviews](https://industrialspringmanufacturer.com/reviews.html): Customer reviews and ratings.
+- [Contact](https://industrialspringmanufacturer.com/contact.html): Phone, WhatsApp, email and location details for quote requests.
 
 ## Optional
 
-- [Privacy Policy](https://gtcsprings.com/privacypolicy.html): Data-handling policy for the website and calculator.
+- [Privacy Policy](https://industrialspringmanufacturer.com/privacypolicy.html): Data-handling policy for the website and calculator.
