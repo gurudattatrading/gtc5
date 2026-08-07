@@ -915,7 +915,21 @@ function setType(t){
 }
 
 /* ══ UNIT ══ */
+/* BUGFIX: switching ENGLISH↔METRIC used to just relabel the fields and leave the
+   numbers untouched, so a value typed as "0.5" (inch) silently became "0.5" (mm)
+   after switching — a 25.4x error. Now we convert every already-filled numeric
+   field to the new unit before switching. */
 function setUnit(u){
+  if(u===unit){return;}
+  var factor=(u==='mm')?25.4:(1/25.4); // old unit -> new unit
+  var decimals=(u==='mm')?3:4;
+  ['wd-e','od-e','fl-e','wd-mn','wd-mx','od-mn','od-mx','fl-mn','fl-mx'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el||el.value==='')return;
+    var v=parseFloat(el.value);
+    if(isNaN(v))return;
+    el.value=fmt(v*factor,decimals);
+  });
   unit=u;
   document.getElementById('ut-inch').classList.toggle('on',u==='inch');
   document.getElementById('ut-mm').classList.toggle('on',u==='mm');
@@ -999,8 +1013,24 @@ function windName(v){return v==='RH'?'Right Hand':'Left Hand';}
 function deadCoils(end){return end==='O'?0:end==='DC'?3:2;} /* O=Open(none dead), C/CG=2 dead, DC=3 dead */
 
 /* Allowable design shear stress (N/mm²) for Compression/Extension springs — wire is loaded
-   in torsion (shear) of the cross-section. */
-function shearAllowFor(G){return G===73000?830:(G===44000?350:(G===42000?310:900));}
+   in torsion (shear) of the cross-section.
+   BUGFIX: previously only Stainless (73000) and Phosphor Bronze (44000) had their own value —
+   Music Wire, Hard Drawn, Chrome Vanadium AND Mild Steel all fell through to the same 900
+   N/mm² default, which wrongly gave Mild Steel the same strength rating as premium spring
+   steels. Each material in the dropdown now has its own approximate design-allowable value
+   (mid-range estimates per standard spring-design references; real allowable also varies
+   with wire diameter, same simplification the calculator already used).
+   Also removed the dead G===42000 branch — that was leftover from a "Brass" material option
+   that no longer exists in the #mat dropdown. */
+var SHEAR_ALLOW={
+  81500:900,  // Music Wire        ASTM A228
+  80700:800,  // Chrome Vanadium   ASTM A232
+  79300:700,  // Hard Drawn Wire   ASTM A227
+  73000:830,  // Stainless Steel   ASTM A313
+  80000:420,  // Mild Steel        IS 4454  (notably weaker than the spring steels above)
+  44000:350   // Phosphor Bronze   ASTM B197
+};
+function shearAllowFor(G){return SHEAR_ALLOW[G]||420;}
 
 /* ══ CALCULATE ══ */
 function calculate(){
@@ -1439,7 +1469,7 @@ function build3D(d,D,Ln,n,G){
   var sR=(D/2)*sc,sH=Ln*sc,sw=Math.max(0.02,Math.min(0.1,(d/2)*sc));
   sGroup=new THREE.Group();
 
-  var col=G===73000?0xb0c8e0:G===44000?0xd4813a:G===42000?0xd4b02a:G===81500?0x9ab0c4:0x7a9ab5;
+  var col=G===73000?0xb0c8e0:G===44000?0xd4813a:G===81500?0x9ab0c4:0x7a9ab5;
   var mat=new THREE.MeshStandardMaterial({color:col,metalness:0.9,roughness:0.38,envMap:envTex,envMapIntensity:1.3});
 
   var windSign=windDir==='LH'?-1:1;   // flips the coil's winding handedness in 3D
@@ -1542,7 +1572,7 @@ function build3D(d,D,Ln,n,G){
 }
 
 function hx(c){return '#'+('000000'+c.toString(16)).slice(-6);}
-function mName(G){return G===73000?'Stainless':G===44000?'Ph.Bronze':G===42000?'Brass':G===81500?'Music Wire':G===79300?'Hard Drawn':G===80700?'Chrome-V':'Mild Steel';}
+function mName(G){return G===73000?'Stainless':G===44000?'Ph.Bronze':G===81500?'Music Wire':G===79300?'Hard Drawn':G===80700?'Chrome-V':'Mild Steel';}
 
 /* ══ CONTROLS ══ */
 function setupCtrl(el){
