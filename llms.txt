@@ -4,17 +4,47 @@
 
 Gurudatta Trading Co. designs and manufactures custom coil springs to customer specification and also supplies from stock. Headquartered in Mumbai, Maharashtra, India. Phone/WhatsApp: +91 84549 95315. Email: connect.gtc5@gmail.com.
 
+## Key Facts
+
+- Founded: 2000 (25+ years in operation)
+- Headquarters: Mumbai, Maharashtra, India
+- Business type: Direct manufacturer (not a trading middleman)
+- Spring types manufactured: Compression springs, Extension springs, Torsion springs
+- Materials: Mild Steel, Stainless Steel, Music Wire, other alloys on request
+- Order sizes: Single prototype springs up to bulk industrial orders; custom sizes made to drawing or sample
+- Delivery area: PAN India, plus export (IEC — Import Export Code registered)
+- Certifications: ISO 9001:2015 (Quality Management), GST registered (GSTIN 27CBBPG9951J1ZB), IEC registered, Udyam/MSME registered, IndiaMART TrustSeal verified, TradeIndia Certificate of Trust
+- Typical quote response time: within 24 hours (WhatsApp, email or phone)
+- Customer rating: 4.8/5 (aggregate, as displayed on-site)
+
+## Spring Types
+
+- **Compression Spring**: An open-coil spring that resists a pushing/squeezing (compressive) force and pushes back to its original length when released. Common uses: mattresses, valves, machinery, cushioning.
+- **Extension Spring**: A tightly-coiled spring that resists a pulling/stretching force and pulls back to its original length when released. Common uses: trampolines, garage doors, trigger mechanisms.
+- **Torsion Spring**: A spring that stores and releases rotational/twisting force, exerting torque when twisted. Common uses: clothespins, hinges, clips, lever mechanisms.
+
+All three types are manufactured in Mild Steel, Stainless Steel and Music Wire, in standard sizes or fully custom to a customer's drawing, sample, or working parameters (wire diameter, outer diameter, free length, load).
+
 ## Tools
 
 - [Spring Rate Calculator](https://industrialspringmanufacturer.com/calculator.html): Free browser-based calculator for Compression, Extension and Torsion springs. Enter wire diameter, outer diameter, free length and total coils (exact value or Min–Max range) to get spring rate, safe load, deflection, solid height, stress and a live rotatable 3D preview, in English (inch) or Metric (mm) units. No signup required. Results can be sent as a spec sheet via WhatsApp to request a manufacturing quote.
 
 ## Company
 
-- [Home](https://industrialspringmanufacturer.com/index.html): Overview of Gurudatta Trading Co. — compression spring manufacturer based in Mumbai, India.
+- [Home](https://industrialspringmanufacturer.com/index.html): Overview of Gurudatta Trading Co. — compression spring manufacturer based in Mumbai, India, including an About section, spring-type comparison table, quick facts, and FAQ.
 - [Products](https://industrialspringmanufacturer.com/products.html): Spring types and materials supplied (Mild Steel, Stainless Steel, Music Wire, and others).
 - [Spring Manufacturer in Maharashtra](https://industrialspringmanufacturer.com/spring-manufacturer-maharashtra.html): Background on the company's manufacturing capability and service area within Maharashtra.
 - [Reviews](https://industrialspringmanufacturer.com/reviews.html): Customer reviews and ratings.
 - [Contact](https://industrialspringmanufacturer.com/contact.html): Phone, WhatsApp, email and location details for quote requests.
+
+## Frequently Asked Questions
+
+- **What types of springs does Gurudatta Trading Co. manufacture?** Compression springs, extension springs and torsion springs, in mild steel, stainless steel and music wire, in standard catalogue sizes and fully custom dimensions.
+- **Do you manufacture custom springs to a drawing or sample?** Yes — share a drawing, sample spring, or working parameters (wire diameter, outer diameter, free length, load) over WhatsApp or email.
+- **How do I calculate spring rate before ordering?** Use the free Spring Rate Calculator linked above — it returns spring rate, safe load, deflection, solid height and stress instantly.
+- **Do you deliver outside Mumbai/Maharashtra?** Yes, dispatch is PAN India, and the company is IEC-registered for international/export orders.
+- **Is there a minimum order quantity?** No fixed MOQ — orders range from single prototype springs to bulk industrial quantities.
+- **How fast is a quotation provided?** Within 24 hours via WhatsApp, email or phone.
 
 ## Optional
 
