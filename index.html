@@ -47,6 +47,19 @@
   "sameAs":["https://www.indiamart.com/gurudattatradingco/","https://www.exportersindia.com/gurudattatradingco/"]
 }
 </script>
+<!-- FAQPage schema — mirrors the on-page FAQ section for search & AI answer engines -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Where can I find a spring manufacturer in Mumbai?","acceptedAnswer":{"@type":"Answer","text":"Gurudatta Trading Co. is a spring manufacturer based in Mumbai, Maharashtra, manufacturing Compression, Extension and Torsion springs in Mild Steel and Stainless Steel for automotive, industrial and export use."}},
+    {"@type":"Question","name":"What types of springs does Gurudatta Trading Co. manufacture?","acceptedAnswer":{"@type":"Answer","text":"Gurudatta Trading Co. manufactures Compression Springs, Extension Springs, Torsion Springs, Disc Springs and more, in Mild Steel, Stainless Steel and specialty alloys, to IS, BIS and DIN standards."}},
+    {"@type":"Question","name":"Does Gurudatta Trading Co. deliver outside Mumbai?","acceptedAnswer":{"@type":"Answer","text":"Yes, Gurudatta Trading Co. delivers PAN India from its Mumbai manufacturing unit, with custom sizing and bulk order support."}},
+    {"@type":"Question","name":"How can I calculate spring rate online for free?","acceptedAnswer":{"@type":"Answer","text":"Gurudatta Trading Co. offers a free online Spring Rate Calculator with a live 3D preview — enter your spring specs to instantly get spring rate, load and stress results."}}
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
@@ -185,7 +198,7 @@ input[type=number] { -moz-appearance: textfield; }
 }
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-a);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.25);border-radius:20px;padding:6px 16px;margin-bottom:22px}
 .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
-.hero-h1{font-family:var(--ff-d);font-weight:700;font-size:clamp(2.3rem,7vw,4.2rem);line-height:1.04;color:var(--white);margin-bottom:20px;word-break:break-word}
+.hero-h1{font-family:var(--ff-d);font-weight:900;font-size:clamp(2.3rem,7vw,4.2rem);line-height:1.04;color:var(--white);margin-bottom:20px;word-break:break-word}
 .hero-h1 .acc{color:var(--accent)}
 .hero-h1 .hl{display:inline-block;font-size:.5em;letter-spacing:2px;color:var(--highlight);margin-top:6px}
 .hero-sub{font-size:clamp(14px,2.2vw,16px);color:var(--grey-light);line-height:1.75;max-width:520px;margin-bottom:34px}
@@ -498,13 +511,22 @@ footer{background:var(--g-navy2);border-top:1px solid var(--g-bdr);padding:24px 
   </div>
 </section>
 
+<!-- ===== ABOUT / OVERVIEW (clear factual summary for search & AI answer engines) ===== -->
+<section style="background:var(--navy);padding:56px 0 8px;">
+  <div class="container">
+    <p style="color:var(--grey-light);font-size:16px;line-height:1.85;max-width:840px;">
+      <strong style="color:var(--white);">Gurudatta Trading Co.</strong> is a spring manufacturer in Mumbai, Maharashtra, India, with over 25 years of experience designing and manufacturing Compression, Extension and Torsion springs. Operating since 2000, the company manufactures springs in Mild Steel, Stainless Steel, Music Wire and other alloys to IS, BIS and DIN standards, and has supplied 500+ spring products to 1000+ clients across India's automotive, industrial and export sectors, with PAN India delivery. Gurudatta Trading Co. also built India's first spring website with an integrated <a href="calculator.html" style="color:var(--accent);">free Spring Rate Calculator</a>, featuring a live 3D preview.
+    </p>
+  </div>
+</section>
+
 <!-- ===== WHY CHOOSE US ===== -->
 <!-- FIX 8: CSS classes instead of inline onmouseover — works on mobile touch -->
 <section style="background:var(--navy-mid);padding:80px 0;position:relative;">
   <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--accent),transparent);"></div>
   <div class="container">
     <span class="sec-label">Why Choose Us</span>
-    <h2 class="sec-title">India's Most Trusted<br>Spring Manufacturer</h2>
+    <h2 class="sec-title">India's Most Trusted<br>Spring Manufacturer in Mumbai</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:48px;">
       <div class="feature-card">
         <div class="feature-icon">🏭</div>
@@ -697,6 +719,35 @@ footer{background:var(--g-navy2);border-top:1px solid var(--g-bdr);padding:24px 
         <img src="tradeindia-trust-thumb.jpg" alt="TradeIndia Certificate of Trust — Gurudatta Trading Co." class="cert-thumb-img" onerror="this.style.display='none'"/>
         <span class="cert-thumb-lbl">Certificate of Trust</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ (structured Q&A for search & AI answer engines) ===== -->
+<section id="faq-section" style="background:var(--navy-mid);padding:72px 0;position:relative;">
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);"></div>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:44px;">
+      <span class="sec-label">FAQ</span>
+      <h2 class="sec-title" style="text-align:center;font-size:clamp(1.6rem,4vw,2.4rem);">Frequently Asked Questions</h2>
+    </div>
+    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px;">
+      <div>
+        <h3 style="font-family:var(--ff-a);font-weight:600;font-size:17px;color:var(--white);margin-bottom:6px;">Where can I find a spring manufacturer in Mumbai?</h3>
+        <p style="color:var(--grey-light);font-size:15px;line-height:1.75;">Gurudatta Trading Co. is a spring manufacturer based in Mumbai, Maharashtra, manufacturing Compression, Extension and Torsion springs in Mild Steel and Stainless Steel for automotive, industrial and export use.</p>
+      </div>
+      <div>
+        <h3 style="font-family:var(--ff-a);font-weight:600;font-size:17px;color:var(--white);margin-bottom:6px;">What types of springs does Gurudatta Trading Co. manufacture?</h3>
+        <p style="color:var(--grey-light);font-size:15px;line-height:1.75;">Gurudatta Trading Co. manufactures Compression Springs, Extension Springs, Torsion Springs, Disc Springs and more, in Mild Steel, Stainless Steel and specialty alloys, to IS, BIS and DIN standards.</p>
+      </div>
+      <div>
+        <h3 style="font-family:var(--ff-a);font-weight:600;font-size:17px;color:var(--white);margin-bottom:6px;">Does Gurudatta Trading Co. deliver outside Mumbai?</h3>
+        <p style="color:var(--grey-light);font-size:15px;line-height:1.75;">Yes — Gurudatta Trading Co. delivers PAN India from its Mumbai manufacturing unit, with custom sizing and bulk order support.</p>
+      </div>
+      <div>
+        <h3 style="font-family:var(--ff-a);font-weight:600;font-size:17px;color:var(--white);margin-bottom:6px;">How can I calculate spring rate online for free?</h3>
+        <p style="color:var(--grey-light);font-size:15px;line-height:1.75;">Gurudatta Trading Co. offers a free online Spring Rate Calculator with a live 3D preview enter your spring specs to instantly get spring rate, load and stress results.</p>
+      </div>
     </div>
   </div>
 </section>
