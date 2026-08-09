@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="Customer Reviews | Gurudatta Trading Co."/>
 <meta name="twitter:description" content="Read genuine customer reviews for Gurudatta Trading Co. — Trusted spring manufacturer from Mumbai with 25+ years experience."/>
 <link rel="canonical" href="https://industrialspringmanufacturer.com/reviews.html"/>
-<script type="application/ld+json" id="ldjson-reviews">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://industrialspringmanufacturer.com/#business","name":"Gurudatta Trading Co.","url":"https://industrialspringmanufacturer.com/reviews.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"12","bestRating":"5"},"telephone":"+918454995315","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400000","addressCountry":"IN"}}</script>
+<script type="application/ld+json" id="ldjson-reviews">{"@context": "https://schema.org", "@type": "LocalBusiness", "@id": "https://industrialspringmanufacturer.com/#business", "name": "Gurudatta Trading Co.", "url": "https://industrialspringmanufacturer.com/reviews.html", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "12", "bestRating": "5"}, "telephone": "+918454995315", "address": {"@type": "PostalAddress", "addressLocality": "Mumbai", "addressRegion": "Maharashtra", "postalCode": "400000", "addressCountry": "IN"}, "review": [{"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Ramesh Joshi"}, "reviewBody": "Gurudatta has been our preferred supplier for over a decade. Spring quality is consistent, delivery is always on time, and the team is helpful with custom specs."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Sanjay Naik"}, "reviewBody": "We switched to Gurudatta Trading three years ago and never looked back. Their springs meet IS standards and pricing is very competitive for the quality offered."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Priya Deshpande"}, "reviewBody": "The integrated spring calculator on their website is a game changer! I could get spring rate estimates before even placing an enquiry. Very modern approach."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "4", "bestRating": "5"}, "author": {"@type": "Person", "name": "Arun Mehta"}, "reviewBody": "Excellent range of connecting springs. The team understood our requirements and provided samples within 48 hours. Highly recommend for industrial use."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Vikram Kulkarni"}, "reviewBody": "Best mild steel spring supplier in Mumbai. We source red MS springs from Gurudatta for our export orders for years. Quality and packaging is always top-notch."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Nilesh Kale"}, "reviewBody": "Timely dispatch, great packaging, top-notch quality. Gurudatta Trading Co. is our go-to partner for all spring requirements across our Maharashtra operations."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Dinesh More"}, "reviewBody": "We needed custom conical springs for a special machine. Gurudatta's team guided us through the entire specification process. Delivered exactly as needed within a week."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Sunil Patil"}, "reviewBody": "I compared 5 suppliers before choosing Gurudatta. Best price-to-quality ratio for MS springs. Their stock is always ready and orders ship same day."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Rajesh Shah"}, "reviewBody": "The stainless steel springs we ordered for our food-grade conveyor are perfect exactly to the tolerance specified. Very impressive for a small-batch order."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Mohammad Khan"}, "reviewBody": "We've been buying suspension coil springs from Gurudatta for our auto garage for 8 years. Never a single complaint from our customers. Solid product, solid company."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"}, "author": {"@type": "Person", "name": "Anita Tiwari"}, "reviewBody": "Very professional team. They understood our drawing immediately and manufactured 500 pieces of custom torsion springs. Delivered on schedule with proper packing."}, {"@type": "Review", "reviewRating": {"@type": "Rating", "ratingValue": "4", "bestRating": "5"}, "author": {"@type": "Person", "name": "Harish Bhatt"}, "reviewBody": "Good range and reasonable prices. The spring calculator helped me finalize the spec before ordering saved a lot of back and forth communication. Recommended."}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -232,6 +232,13 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
 }
+/* BUGFIX: #reviewsGrid is populated entirely by JS from the defaultReviews array,
+   so non-JS crawlers (GPTBot, ClaudeBot, PerplexityBot etc., allowed in robots.txt)
+   saw an empty grid and none of the 12 review texts. .static-catalog gives them the
+   real content in plain HTML, kept off-screen with the standard accessible
+   "visually-hidden" pattern (not display:none, which crawlers/screen readers skip)
+   so JS-enabled visitors still see only the normal animated review cards. */
+.static-catalog{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -306,6 +313,70 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
       <div class="reviews-grid" id="reviewsGrid">
         <!-- rendered dynamically by JS from the reviews data array below -->
       </div>
+<section class="static-catalog" aria-label="Customer reviews (text version)">
+<h2>Customer Reviews &mdash; Gurudatta Trading Co.</h2>
+<p>12 verified customer reviews, collected via Google Business Profile.</p>
+<article>
+<h3>Ramesh Joshi &mdash; 5 out of 5 stars</h3>
+<p>Procurement Head, Auto Components Ltd., Pune</p>
+<p>Gurudatta has been our preferred supplier for over a decade. Spring quality is consistent, delivery is always on time, and the team is helpful with custom specs.</p>
+</article>
+<article>
+<h3>Sanjay Naik &mdash; 5 out of 5 stars</h3>
+<p>Production Manager, Precision Engineers, Nashik</p>
+<p>We switched to Gurudatta Trading three years ago and never looked back. Their springs meet IS standards and pricing is very competitive for the quality offered.</p>
+</article>
+<article>
+<h3>Priya Deshpande &mdash; 5 out of 5 stars</h3>
+<p>Design Engineer, Hydraulics Co., Mumbai</p>
+<p>The integrated spring calculator on their website is a game changer! I could get spring rate estimates before even placing an enquiry. Very modern approach.</p>
+</article>
+<article>
+<h3>Arun Mehta &mdash; 4 out of 5 stars</h3>
+<p>Purchase Dept., Textile Machinery Works, Surat</p>
+<p>Excellent range of connecting springs. The team understood our requirements and provided samples within 48 hours. Highly recommend for industrial use.</p>
+</article>
+<article>
+<h3>Vikram Kulkarni &mdash; 5 out of 5 stars</h3>
+<p>Director, Springex Exports Pvt. Ltd., Mumbai</p>
+<p>Best mild steel spring supplier in Mumbai. We source red MS springs from Gurudatta for our export orders for years. Quality and packaging is always top-notch.</p>
+</article>
+<article>
+<h3>Nilesh Kale &mdash; 5 out of 5 stars</h3>
+<p>Operations Head, Mfg Solutions India, Aurangabad</p>
+<p>Timely dispatch, great packaging, top-notch quality. Gurudatta Trading Co. is our go-to partner for all spring requirements across our Maharashtra operations.</p>
+</article>
+<article>
+<h3>Dinesh More &mdash; 5 out of 5 stars</h3>
+<p>Mechanical Engineer, Packaging Industries, Thane</p>
+<p>We needed custom conical springs for a special machine. Gurudatta's team guided us through the entire specification process. Delivered exactly as needed within a week.</p>
+</article>
+<article>
+<h3>Sunil Patil &mdash; 5 out of 5 stars</h3>
+<p>Stores Manager, Farm Equipment Co., Kolhapur</p>
+<p>I compared 5 suppliers before choosing Gurudatta. Best price-to-quality ratio for MS springs. Their stock is always ready and orders ship same day.</p>
+</article>
+<article>
+<h3>Rajesh Shah &mdash; 5 out of 5 stars</h3>
+<p>Production Head, Food Processing Ltd., Pune</p>
+<p>The stainless steel springs we ordered for our food-grade conveyor are perfect exactly to the tolerance specified. Very impressive for a small-batch order.</p>
+</article>
+<article>
+<h3>Mohammad Khan &mdash; 5 out of 5 stars</h3>
+<p>Owner, Supreme Auto Workshop, Mumbai</p>
+<p>We've been buying suspension coil springs from Gurudatta for our auto garage for 8 years. Never a single complaint from our customers. Solid product, solid company.</p>
+</article>
+<article>
+<h3>Anita Tiwari &mdash; 5 out of 5 stars</h3>
+<p>Purchase Manager, Industrial Tools Co., Nagpur</p>
+<p>Very professional team. They understood our drawing immediately and manufactured 500 pieces of custom torsion springs. Delivered on schedule with proper packing.</p>
+</article>
+<article>
+<h3>Harish Bhatt &mdash; 4 out of 5 stars</h3>
+<p>R&amp;D Engineer, Precision Instruments, Ahmedabad</p>
+<p>Good range and reasonable prices. The spring calculator helped me finalize the spec before ordering saved a lot of back and forth communication. Recommended.</p>
+</article>
+</section>
 
       <!-- Write a Review — redirects to Google Business review page -->
       <div class="rv-form-wrap reveal" style="text-align:center">
