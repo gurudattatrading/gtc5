@@ -105,7 +105,7 @@ nav.is-scrolled .nav-icon{width:36px;height:36px}
 .breadcrumb .cur{color:var(--text);font-weight:500}
 .breadcrumb .sep{color:var(--faint)}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
-.sec-head h2{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.sec-head h1,.sec-head h2{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
 .sec-cnt{font-size:.76rem;color:var(--muted);background:var(--card2);padding:.3rem .7rem;border-radius:4px}
 .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:1rem}
 @media(max-width:480px){.prod-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}}
@@ -458,7 +458,7 @@ function showHome(skipPush){
   document.getElementById('pageWrap').innerHTML=`<div class="home-page">
     <div class="home-hero reveal">
       <div class="home-hero-label">Our Catalogue</div>
-      <h1>All Products</h1>
+      <h1>Spring Products &ndash; Compression, Extension &amp; Torsion Springs</h1>
       <p>${total} products across ${CATS.length} categories click a category to browse</p>
     </div>
     <div class="cats-grid" id="cg"></div>
@@ -487,7 +487,7 @@ function showCat(catSlug,skipPush){
       <span class="cur">${cat.name}</span>
     </div>
     <div class="sec-head">
-      <h2><span>${cat.icon}</span>${cat.name}</h2>
+      <h1><span>${cat.icon}</span>${cat.name}</h1>
       <span class="sec-cnt">${cat.products.length} products</span>
     </div>
     <div class="prod-grid" id="pg"></div>
@@ -542,7 +542,7 @@ function showProduct(catSlug,prodSlug,skipPush){
       </div>
       <div class="reveal">
         <div class="pd-cat">${cat.icon} ${cat.name}</div>
-        <div class="pd-title">${p.name}</div>
+        <h1 class="pd-title">${p.name}</h1>
         <div class="pd-tagline">${p.tagline}</div>
         <table class="pd-specs">${p.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>
         <div class="pd-actions">
