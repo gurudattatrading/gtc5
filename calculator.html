@@ -195,9 +195,14 @@ nav{background:var(--navy2);border-bottom:1px solid var(--bdr);position:sticky;t
 .mpill.on{background:var(--P);color:#fff}
 
 /* inputs */
-input[type=number],input[type=text],select{background:var(--ibg);border:1.5px solid var(--bdr2);border-radius:var(--rs);padding:10px 12px;font-size:16px;color:#fff;font-family:'Inter',sans-serif;outline:none;width:100%;transition:.14s;-webkit-appearance:none;appearance:none}
-input[type=number]::placeholder,input[type=text]::placeholder{color:var(--tl)}
-input[type=number]:focus,input[type=text]:focus,select:focus{border-color:var(--P);background:rgba(255,107,0,.04)}
+/* BUGFIX: Mobile Number field was switched to type="tel" (so maxlength/keypad work
+   correctly on mobile — see the umobile input below), but this dark-theme styling
+   only targeted type=number/type=text, so the tel field fell back to the browser's
+   default WHITE input box — it visually didn't match the Full Name field next to it.
+   Added type=tel to every rule here so it gets identical styling. */
+input[type=number],input[type=text],input[type=tel],select{background:var(--ibg);border:1.5px solid var(--bdr2);border-radius:var(--rs);padding:10px 12px;font-size:16px;color:#fff;font-family:'Inter',sans-serif;outline:none;width:100%;transition:.14s;-webkit-appearance:none;appearance:none}
+input[type=number]::placeholder,input[type=text]::placeholder,input[type=tel]::placeholder{color:var(--tl)}
+input[type=number]:focus,input[type=text]:focus,input[type=tel]:focus,select:focus{border-color:var(--P);background:rgba(255,107,0,.04)}
 select option{background:#1a1f3c;color:#fff}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 
@@ -318,7 +323,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 .v-sub{font-size:10px;color:var(--tm)}
 .badge-3d{background:rgba(255,107,0,.15);color:var(--P);font-size:10px;font-weight:700;padding:3px 10px;border-radius:12px;border:1px solid rgba(255,107,0,.3);letter-spacing:.05em;white-space:nowrap}
 
-.viewer-body{flex:1;position:relative;overflow:hidden;cursor:grab}
+.viewer-body{flex:1;position:relative;overflow:hidden;cursor:grab;touch-action:none}
 .viewer-body:active{cursor:grabbing}
 #cv{display:block;width:100%;height:100%}
 
@@ -638,7 +643,12 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
           </div>
           <div>
             <label class="flbl req-lbl">Mobile Number</label>
-            <input type="number" id="umobile" placeholder="10-digit number" maxlength="10">
+            <!-- BUGFIX: type="number" ignores maxlength (browsers don't enforce it on that
+                 input type), so users could type past 10 digits — regex caught it only on
+                 Calculate click. type="tel" still gives the numeric keypad on mobile, and
+                 maxlength actually works on it; the oninput filter also strips any
+                 non-digit char (paste, etc.) and hard-caps at 10 in real time. -->
+            <input type="tel" id="umobile" placeholder="10-digit number" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)">
           </div>
         </div>
 
@@ -681,7 +691,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
         </div>
       </div>
 
-      <a class="wa-btn" id="wa-btn" href="#" target="_blank">📱 WhatsApp वर Quote मागवा Gurudatta Trading Co.</a>
+      <a class="wa-btn" id="wa-btn" href="#" target="_blank">📱 Request Quote on WhatsApp — Gurudatta Trading Co.</a>
     </div>
 
   </div><!-- /left -->
@@ -699,7 +709,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
       <canvas id="cv"></canvas>
       <div class="ph" id="ph">
         <span class="ph-ic">🔩</span>
-        <div class="ph-txt"><strong>3D Spring Preview</strong>Dimensions भरा आणि<br><span style="color:var(--P);font-weight:600">Calculate</span> दाबा</div>
+        <div class="ph-txt"><strong>3D Spring Preview</strong>Fill in the Dimensions and<br>press <span style="color:var(--P);font-weight:600">Calculate</span></div>
       </div>
     </div>
     <div class="viewer-ft">
@@ -883,7 +893,29 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- BUGFIX: previously a single hardcoded CDN <script src> with zero error handling.
+     If that one CDN was slow, blocked (ad-blocker/firewall), or briefly down, `THREE`
+     never got defined, initThree() threw silently, and every future build3D() call
+     became a permanent no-op — so the 3D panel stayed stuck on the "press Calculate"
+     placeholder forever, even after a fully successful design (exactly the bug seen
+     in testing). Now three.js is loaded with automatic fallback across mirrors, and
+     initThree() is only called once we know THREE actually loaded; if every mirror
+     fails, the viewer shows a clear error state instead of a misleading placeholder. -->
+<script>
+(function loadThree(mirrors, i){
+  if(i>=mirrors.length){window.addEventListener('load',function(){show3DLoadError();});return;}
+  var s=document.createElement('script');
+  s.src=mirrors[i];
+  s.async=false; // preserve load order / delay window "load" until resolved, like a normal <script src>
+  s.onload=function(){window.addEventListener('load',function(){setTimeout(initThree,120);});};
+  s.onerror=function(){loadThree(mirrors,i+1);};
+  document.head.appendChild(s);
+})([
+  'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+  'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js',
+  'https://unpkg.com/three@0.128.0/build/three.min.js'
+],0);
+</script>
 <script>
 /* ══ STATE ══ */
 var sType='C', unit='inch', lastR=null;
@@ -935,6 +967,18 @@ function setUnit(u){
   document.getElementById('ut-mm').classList.toggle('on',u==='mm');
   var lbl=u==='inch'?'IN':'MM';
   document.querySelectorAll('.usuf').forEach(function(el){el.textContent=lbl;});
+  updatePlaceholders();
+}
+
+/* BUGFIX: "e.g. 0.060" (wire dia) and "e.g. 0.500" (OD) are inch-scale example
+   values hardcoded in the HTML. Switching to mm used to leave them exactly as-is,
+   so mm mode showed a nonsensical "e.g. 0.060 mm" wire — a misleading example.
+   Now the example text itself switches units along with everything else. */
+function updatePlaceholders(){
+  var wdEl=document.getElementById('wd-e');
+  if(wdEl)wdEl.placeholder=(unit==='mm')?'e.g. 1.5':'e.g. 0.060';
+  var odEl=document.getElementById('od-e');
+  if(odEl)odEl.placeholder=(unit==='mm')?'e.g. 12.5':'e.g. 0.500';
 }
 
 /* ══ MODE (exact/range) ══ */
@@ -1045,7 +1089,7 @@ function calculate(){
   var G=parseFloat(matParts[0]);          // Shear Modulus — used for Compression & Extension
   var E=parseFloat(matParts[1]);          // Young's Modulus — used for Torsion (bending)
 
-  if(!wd||!od||!tc){showSt('err','⚠ Wire Diameter, Outside Diameter आणि Total Coils आवश्यक आहेत.');return;}
+  if(!wd||!od||!tc){showSt('err','⚠ Wire Diameter, Outside Diameter and Total Coils are required.');return;}
 
   var d=toMM(wd), OD=toMM(od), n=tc;
   var D=OD-d;                        // Mean coil dia
@@ -1088,9 +1132,9 @@ function calculate(){
     var stress=Kb*32*M_max/(Math.PI*Math.pow(d,3));         // bending stress at M_max, N/mm² (≈bendAllow)
     var bodyLen=n*d;                                        // coiled body length (no "solid length" concept for torsion)
 
-    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
-    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
-    if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing Difficult');ok=false;}
+    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling Possible');
+    if(!w.length)showSt('ok','✓ Design is good! No warnings.');
     else if(ok)showSt('warn','⚠ '+w.join(' | '));
     else showSt('err','✗ '+w.join(' | '));
 
@@ -1160,11 +1204,11 @@ function calculate(){
     var dMax=(safeF>Fi)?(safeF-Fi)/k:0;
     var stress=(critPoint==='Hook Bending (Pt. A)')?safeF*bendCoeff:((critPoint==='Hook Torsion (Pt. B)')?Kt*(8*safeF*D)/(Math.PI*Math.pow(d,3)):K*(8*safeF*D)/(Math.PI*Math.pow(d,3)));
 
-    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
-    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
-    if(Ln<bodyLen){w.push('Free Length coil-body पेक्षा कमी आहे!');ok=false;}
-    else if(dMax<=0){w.push('Free Length इतकी कमी की Initial Tension च ओलांडत नाही — deflection सुरूच होत नाही');ok=false;}
-    if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing Difficult');ok=false;}
+    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling Possible');
+    if(Ln<bodyLen){w.push('Free Length is less than the coil body length!');ok=false;}
+    else if(dMax<=0){w.push('Free Length too short to even exceed Initial Tension — deflection never starts');ok=false;}
+    if(!w.length)showSt('ok','✓ Design is good! No warnings.');
     else if(ok)showSt('warn','⚠ '+w.join(' | '));
     else showSt('err','✗ '+w.join(' | '));
 
@@ -1219,10 +1263,10 @@ function calculate(){
     var dMax=safeF/k;
     var stress=K*(8*safeF*D)/(Math.PI*Math.pow(d,3));
 
-    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing कठीण');ok=false;}
-    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling शक्य');
+    if(C<4){w.push('Spring Index C='+fmt(C,1)+' < 4 — Manufacturing Difficult');ok=false;}
+    if(C>12)w.push('Spring Index C='+fmt(C,1)+' > 12 — Buckling Possible');
     if(solidL>=Ln){w.push('Solid Length ≥ Free Length!');ok=false;}
-    if(!w.length)showSt('ok','✓ Design चांगला आहे! कोणत्याही warnings नाहीत.');
+    if(!w.length)showSt('ok','✓ Design is good! No warnings.');
     else if(ok)showSt('warn','⚠ '+w.join(' | '));
     else showSt('err','✗ '+w.join(' | '));
 
@@ -1262,6 +1306,20 @@ function calculate(){
       ['Customer',name],
       ['Mobile',mob]
     ]);
+  }
+
+  /* BUGFIX: when the design has a FATAL error (ok=false → status "✗ error", e.g.
+     "Solid Length ≥ Free Length!" or spring index too low), the spring is
+     physically impossible to manufacture. Previously the code below ran
+     unconditionally, so an error design still showed full KPI cards / spec
+     sheet / 3D render, silently posted the lead to Google Sheets, AND built a
+     WhatsApp quote button with invalid specs — customer would think they got a
+     valid quote. Now all of that is skipped; only the error message stays visible. */
+  if(!ok){
+    document.getElementById('results-area').classList.add('hidden');
+    document.getElementById('force-card').classList.add('hidden');
+    lastR=null;
+    return;
   }
 
   document.getElementById('force-card').classList.remove('hidden');
@@ -1335,15 +1393,15 @@ function calcForce(){
   if(lastR.mode==='T'){
     var rev=t/360,M=lastR.rate*rev;                 // input is degrees of twist
     el.innerHTML=fmt(M,1)+' N·mm<br><small style="opacity:.8">'+fmt(M/98.0665,2)+' kgf·cm</small>';
-    if(rev>lastR.maxDefl){we.textContent='⚠ Safe wind-angle limit ओलांडते! Spring damage.';we.style.display='block';}
-    else if(rev>lastR.maxDefl*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
+    if(rev>lastR.maxDefl){we.textContent='⚠ Exceeds safe wind-angle limit! Spring damage.';we.style.display='block';}
+    else if(rev>lastR.maxDefl*.8){we.textContent='⚠ Exceeds 80% limit — use caution.';we.style.display='block';}
     else we.style.display='none';
   } else {
     var tMM=toMM(t);
     var f=(lastR.mode==='E')?(lastR.Fi+lastR.rate*tMM):(lastR.rate*tMM);
     el.innerHTML=fmt(f,1)+' N<br><small style="opacity:.8">'+fmt(f/9.81,2)+' kg</small>';
-    if(tMM>lastR.maxDefl){we.textContent='⚠ Safe limit ओलांडते! Spring damage.';we.style.display='block';}
-    else if(tMM>lastR.maxDefl*.8){we.textContent='⚠ 80% limit ओलांडते — काळजी घ्या.';we.style.display='block';}
+    if(tMM>lastR.maxDefl){we.textContent='⚠ Exceeds safe limit! Spring damage.';we.style.display='block';}
+    else if(tMM>lastR.maxDefl*.8){we.textContent='⚠ Exceeds 80% limit — use caution.';we.style.display='block';}
     else we.style.display='none';
   }
 }
@@ -1361,22 +1419,22 @@ function buildSpec(rows){
 }
 function buildWA(name,mob){
   var r=lastR;
-  var msg='Namaskar Gurudatta Trading Co.,\n\n';
+  var msg='Hello Gurudatta Trading Co.,\n\n';
   msg+='Name: '+name+'\nMobile: '+mob+'\n\n';
   msg+='Spring Enquiry:\n';
   msg+='Type: '+(sType==='C'?'Compression':sType==='E'?'Extension':'Torsion')+'\n';
   if(r.mode==='T'){
     msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | Body Len: '+fmt(r.bodyLen,2)+'mm | n: '+r.n+'\n';
     msg+='Rate: '+fmt(r.rate,2)+' N·mm/rev | Max Torque: '+fmt(r.maxLoad,1)+' N·mm ('+fmt(r.maxLoad/98.0665,2)+' kgf·cm)\n';
-    msg+='Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+    msg+='Wind: '+windName(windDir)+' ('+windDir+')\n\nPlease share a quote.';
   } else if(r.mode==='E'){
     msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
     msg+='Rate: '+fmt(r.rate,3)+' N/mm | Initial Tension: '+fmt(r.Fi,2)+' N | Max Load: '+fmt(r.maxLoad,1)+' N ('+fmt(r.maxLoad/9.81,2)+' kg)\n';
-    msg+='Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+    msg+='Wind: '+windName(windDir)+' ('+windDir+')\n\nPlease share a quote.';
   } else {
     msg+='Wire Dia: '+fmt(r.d,2)+'mm | OD: '+fmt(r.OD,2)+'mm | L₀: '+fmt(r.Ln,2)+'mm | n: '+r.n+'\n';
     msg+='Rate: '+fmt(r.rate,3)+' N/mm | Load: '+fmt(r.maxLoad,1)+' N ('+fmt(r.maxLoad/9.81,2)+' kg)\n';
-    msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nKrupaya quote dya.';
+    msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nPlease share a quote.';
   }
   document.getElementById('wa-btn').href='https://wa.me/918454995315?text='+encodeURIComponent(msg);
 }
@@ -1427,30 +1485,50 @@ function buildEnvMap(){
 }
 
 function initThree(){
-  var vb=document.getElementById('vbody');
-  var W=vb.offsetWidth||300,H=vb.offsetHeight||260;
-  scene=new THREE.Scene();
-  camera=new THREE.PerspectiveCamera(42,W/H,0.01,300);
-  camera.position.set(0,0,zoom);
-  renderer=new THREE.WebGLRenderer({canvas:document.getElementById('cv'),antialias:true,alpha:false});
-  renderer.setSize(W,H);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setClearColor(0x0a0f2c,1);
-  renderer.outputEncoding=THREE.sRGBEncoding;
+  /* BUGFIX: wrapped in try/catch — e.g. a device/browser with no WebGL support would
+     throw here (renderer creation) with zero handling before, leaving ok3 false forever
+     and the misleading "press Calculate" placeholder stuck even after a valid design. */
+  try{
+    var vb=document.getElementById('vbody');
+    var W=vb.offsetWidth||300,H=vb.offsetHeight||260;
+    scene=new THREE.Scene();
+    camera=new THREE.PerspectiveCamera(42,W/H,0.01,300);
+    camera.position.set(0,0,zoom);
+    renderer=new THREE.WebGLRenderer({canvas:document.getElementById('cv'),antialias:true,alpha:false});
+    renderer.setSize(W,H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setClearColor(0x0a0f2c,1);
+    renderer.outputEncoding=THREE.sRGBEncoding;
 
-  envTex=buildEnvMap();
+    envTex=buildEnvMap();
 
-  scene.add(new THREE.AmbientLight(0xffffff,0.35));
-  var d1=new THREE.DirectionalLight(0xffffff,1.1);d1.position.set(5,10,7);scene.add(d1);
-  var d2=new THREE.DirectionalLight(0x8fa8ff,0.4);d2.position.set(-5,-4,-5);scene.add(d2);
-  var p1=new THREE.PointLight(0xff8a3d,0.7,22);p1.position.set(4,4,4);scene.add(p1);
-  var p2=new THREE.PointLight(0x6fa0ff,0.45,16);p2.position.set(-4,-2,-3);scene.add(p2);
-  var g=new THREE.GridHelper(12,24,0x1a2a4a,0x0d1a30);g.position.y=-3.2;scene.add(g);
+    scene.add(new THREE.AmbientLight(0xffffff,0.35));
+    var d1=new THREE.DirectionalLight(0xffffff,1.1);d1.position.set(5,10,7);scene.add(d1);
+    var d2=new THREE.DirectionalLight(0x8fa8ff,0.4);d2.position.set(-5,-4,-5);scene.add(d2);
+    var p1=new THREE.PointLight(0xff8a3d,0.7,22);p1.position.set(4,4,4);scene.add(p1);
+    var p2=new THREE.PointLight(0x6fa0ff,0.45,16);p2.position.set(-4,-2,-3);scene.add(p2);
+    var g=new THREE.GridHelper(12,24,0x1a2a4a,0x0d1a30);g.position.y=-3.2;scene.add(g);
 
-  ok3=true;
-  setupCtrl(vb);
-  renderLoop();
+    ok3=true;
+    setupCtrl(vb);
+    renderLoop();
+  }catch(e){
+    show3DLoadError();
+  }
 }
+
+/* BUGFIX: previously, if three.js failed to load/init for ANY reason (CDN blocked,
+   offline, no WebGL support), the 3D panel silently stayed on the generic "Fill in
+   Dimensions and press Calculate" placeholder forever — even after a successful
+   calculation — making it look broken/stuck with no explanation. Now it shows an
+   honest, visible message instead. */
+function show3DLoadError(){
+  var ph=document.getElementById('ph');
+  if(!ph)return;
+  ph.classList.remove('gone');
+  ph.innerHTML='<span class="ph-ic">⚠️</span><div class="ph-txt"><strong>3D preview unavailable</strong>Couldn\'t load the 3D engine.<br>Please check your internet connection and refresh the page.</div>';
+}
+
 
 function renderLoop(){
   requestAnimationFrame(renderLoop);
@@ -1586,13 +1664,21 @@ function setupCtrl(el){
   el.addEventListener('wheel',function(e){
     e.preventDefault();zoom=Math.max(1.5,Math.min(20,zoom+e.deltaY*.009));
   },{passive:false});
+  /* BUGFIX: these were {passive:true} with no preventDefault and no CSS
+     touch-action:none on .viewer-body, so on mobile a one-finger drag to rotate
+     the spring also scrolled the whole page (touch + drag conflict). Desktop
+     mouse-drag never had this problem since it doesn't go through touch events.
+     Now touchstart/touchmove are non-passive and call preventDefault(), backed
+     by touch-action:none in CSS, so the browser never takes over the gesture. */
   var ts=null,pz=null;
   el.addEventListener('touchstart',function(e){
     if(e.touches.length===1){drag=true;ts={x:e.touches[0].clientX,y:e.touches[0].clientY};}
     if(e.touches.length===2){pz=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}
-  },{passive:true});
+    e.preventDefault();
+  },{passive:false});
   el.addEventListener('touchend',function(){drag=false;ts=null;pz=null;});
   el.addEventListener('touchmove',function(e){
+    e.preventDefault();
     if(e.touches.length===1&&drag&&ts){
       rotY+=(e.touches[0].clientX-ts.x)*.008;rotX+=(e.touches[0].clientY-ts.y)*.008;
       ts={x:e.touches[0].clientX,y:e.touches[0].clientY};
@@ -1601,7 +1687,7 @@ function setupCtrl(el){
       var nz=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
       zoom=Math.max(1.5,Math.min(20,zoom-(nz-pz)*.03));pz=nz;
     }
-  },{passive:true});
+  },{passive:false});
 }
 
 function onResize(){
@@ -1612,7 +1698,6 @@ function onResize(){
   camera.aspect=W/H;camera.updateProjectionMatrix();renderer.setSize(W,H);
 }
 
-window.addEventListener('load',function(){setTimeout(initThree,120);});
 window.addEventListener('resize',function(){setTimeout(onResize,60);});
 </script>
 </body>
