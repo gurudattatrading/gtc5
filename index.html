@@ -903,7 +903,7 @@ window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobN
 /* Auto-highlight the current page in both nav menus — no manual "act" class needed per page */
 (function highlightActiveNav(){
   let current = location.pathname.split('/').pop();
-  if (current === '') current = 'index.html';
+  if (current === '') current = '/';
   document.querySelectorAll('.nav-links a[href], .mob-nav a[href], .bnav-btn[onclick]').forEach(el => {
     const href = el.getAttribute('href') || (el.getAttribute('onclick') || '').match(/'([^']+)'/)?.[1] || '';
     if (href && href === current) {
