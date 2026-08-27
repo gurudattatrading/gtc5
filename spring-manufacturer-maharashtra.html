@@ -231,6 +231,13 @@ table.spec-sheet tbody tr:hover{background:rgba(249,115,22,.05)}
 .cert-thumb-link:hover .cert-thumb-img{border-color:var(--accent)}
 .cert-thumb-lbl{font-family:'Rajdhani',sans-serif;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .gstin-line{text-align:center;margin-top:1rem;font-size:.78rem;color:var(--muted)}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:1.2rem}
+@media(max-width:700px){.related-grid{grid-template-columns:1fr}}
+.related-grid a{display:block;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;text-decoration:none;transition:border-color .25s ease,transform .25s ease}
+.related-grid a:hover{border-color:var(--accent);transform:translateY(-3px)}
+.related-grid .rel-label{font-family:'Rajdhani',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700;margin-bottom:5px}
+.related-grid h4{font-family:'Rajdhani',sans-serif;font-size:.95rem;color:var(--text);margin-bottom:4px}
+.related-grid p{font-size:.78rem;color:var(--muted);margin:0}
 
 /* FAQ */
 .faq details{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden}
@@ -298,6 +305,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
       <a href="calculator.html">⚙️ Calculator</a>
       <a href="products.html">🔩 Products</a>
       <a href="reviews.html">⭐ Reviews</a>
+      <a href="blog.html">📝 Blog</a>
       <a href="contact.html">📞 Contact</a>
       <a href="https://wa.me/918454995315" class="nav-wa" target="_blank">📱 WhatsApp</a>
     </div>
@@ -308,6 +316,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
     <a href="calculator.html">⚙️ Calculator</a>
     <a href="products.html">🔩 Products</a>
     <a href="reviews.html">⭐ Reviews</a>
+    <a href="blog.html">📝 Blog</a>
     <a href="contact.html">📞 Contact</a>
     <a href="https://wa.me/918454995315" target="_blank" style="color:#25D366;font-weight:700">📱 WhatsApp Quote</a>
   </div>
@@ -515,6 +524,16 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
   </section>
 
   <section class="section reveal">
+    <div class="sec-eyebrow">Keep Reading</div>
+    <h2 class="sec-h2">Related Guides &amp; Blog Posts</h2>
+    <div class="related-grid">
+      <a href="types-of-springs-guide.html"><div class="rel-label">Guide</div><h4>Types of Springs Guide</h4><p>Compression, extension, torsion &amp; material selection explained.</p></a>
+      <a href="spring-manufacturer-mumbai.html"><div class="rel-label">City Guide</div><h4>Spring Manufacturer in Mumbai</h4><p>Coverage across Goregaon, Andheri, Malad, Borivali &amp; more.</p></a>
+      <a href="blog.html"><div class="rel-label">Blog</div><h4>All Guides &amp; Blog Posts</h4><p>Browse every engineering guide and blog post.</p></a>
+    </div>
+  </section>
+
+  <section class="section reveal">
     <div class="final-cta">
       <h2 class="sec-h2">Get a Spring Quote from Gurudatta Trading Co.</h2>
       <p class="sec-p">Send your specification on WhatsApp and the team responds within 24 hours  anywhere in Maharashtra.</p>
@@ -538,6 +557,7 @@ footer{background:var(--navy2);border-top:1px solid var(--bdr);padding:24px 20px
     <div class="ft-links">
       <a href="calculator.html">Calculator</a>
       <a href="products.html">Products</a>
+      <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
       <a href="privacypolicy.html">Privacy Policy</a>
     </div>
