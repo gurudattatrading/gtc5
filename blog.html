@@ -311,25 +311,13 @@ details.toc[open] summary::after{content:'\2212'}
 .warn-list li b{color:var(--text)}
 
 /* ═══ BLOG INDEX PAGE ═══ */
-.filter-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.filter-chip-row label.chip{position:relative;cursor:pointer;background:var(--card);border:1.5px solid var(--border);color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:.85rem;font-weight:700;padding:7px 15px;border-radius:20px;transition:.15s;user-select:none}
-.filter-chip-row label.chip input{position:absolute;opacity:0;width:0;height:0}
-.filter-chip-row label.chip:has(input:checked){background:var(--accent);color:#fff;border-color:var(--accent)}
-.filter-chip-row label.chip:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
-.blog-filter-scope:has(#f-guide:checked) .blog-card:not(.cat-guide){display:none}
-.blog-filter-scope:has(#f-city:checked) .blog-card:not(.cat-city){display:none}
-.blog-filter-scope:has(#f-regional:checked) .blog-card:not(.cat-regional){display:none}
-.blog-filter-scope:has(#f-guide:checked) .coming-soon-card,
-.blog-filter-scope:has(#f-city:checked) .coming-soon-card,
-.blog-filter-scope:has(#f-regional:checked) .coming-soon-card{display:none}
-.blog-filter-scope:has(#f-engineering:checked) .blog-card:not(.cat-engineering){display:none}
-.blog-filter-scope:has(#f-engineering:checked) .coming-soon-card{display:none}
-
-.featured-post{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:28px;transition:border-color .2s}
-.featured-post:hover{border-color:var(--accent)}
+.featured-post{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;margin-bottom:28px;transition:border-color .25s ease,box-shadow .25s ease}
+.featured-post:hover{border-color:var(--accent);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 @media(max-width:800px){.featured-post{grid-template-columns:1fr}}
-.featured-post .fp-visual{background:linear-gradient(150deg,#141420,#1a1008);display:flex;align-items:center;justify-content:center;padding:26px;min-height:160px}
-.featured-post .fp-visual svg{width:100%;max-width:180px;height:auto}
+.featured-post .fp-visual{position:relative;background:linear-gradient(150deg,#141420,#1a1008);display:flex;align-items:center;justify-content:center;padding:26px;min-height:160px;overflow:hidden}
+.featured-post .fp-visual svg{width:100%;max-width:180px;height:auto;animation:fpFloat 4s ease-in-out infinite}
+@keyframes fpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.featured-post .fp-badge{position:absolute;top:14px;left:14px;background:var(--accent);color:#0a0a0f;font-family:'Rajdhani',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.07em;padding:4px 11px;border-radius:20px;text-transform:uppercase}
 .featured-post .fp-body{padding:24px 26px;display:flex;flex-direction:column;justify-content:center}
 .featured-post .fp-eyebrow{font-family:'Rajdhani',sans-serif;font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
 .featured-post h3{font-family:'Rajdhani',sans-serif;font-size:clamp(1.2rem,2.4vw,1.55rem);font-weight:700;color:var(--text);margin-bottom:8px}
@@ -339,19 +327,29 @@ details.toc[open] summary::after{content:'\2212'}
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.blog-grid{grid-template-columns:1fr}}
-.blog-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
-.blog-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.blog-card .bc-visual{background:var(--card2);padding:20px;display:flex;align-items:center;justify-content:center}
-.blog-card .bc-visual svg{width:100%;max-width:100px;height:auto}
+.blog-card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.blog-card:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 16px 34px rgba(0,0,0,.35),0 0 0 1px var(--aglow2)}
+.blog-card .bc-visual{background:var(--card2);padding:20px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.blog-card .bc-visual svg{width:100%;max-width:100px;height:auto;transition:transform .35s ease}
+.blog-card:hover .bc-visual svg{transform:scale(1.12) rotate(-3deg)}
 .blog-card .bc-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
 .blog-card .bc-tag{align-self:flex-start;background:var(--aglow);color:var(--accent);font-family:'Rajdhani',sans-serif;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:9px;text-transform:uppercase;letter-spacing:.04em}
 .blog-card h4{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px}
 .blog-card p{font-size:.8rem;color:var(--muted);margin-bottom:10px;flex:1;line-height:1.55}
 .blog-card .bc-meta{font-size:.72rem;color:var(--faint);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:10px}
-.blog-card .bc-meta .bc-read{color:var(--accent);font-weight:700}
+.blog-card .bc-meta .bc-read{color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:2px;transition:gap .2s ease}
+.blog-card:hover .bc-meta .bc-read{gap:7px}
 
-.coming-soon-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1.5px dashed var(--border);border-radius:10px;padding:22px 16px;color:var(--faint);background:transparent}
-.coming-soon-card .cs-icon{font-size:22px;margin-bottom:6px}
+.bc-new{position:absolute;top:12px;right:12px;background:var(--accent);color:#0a0a0f;font-family:'Rajdhani',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.05em;padding:3px 10px;border-radius:20px;text-transform:uppercase;animation:newPulse 2.2s ease-in-out infinite;z-index:1}
+@keyframes newPulse{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,.55)}50%{box-shadow:0 0 0 6px rgba(249,115,22,0)}}
+
+.sec-head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sec-count{flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:5px 13px;border-radius:20px;text-transform:uppercase}
+
+.coming-soon-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1.5px dashed var(--border);border-radius:10px;padding:22px 16px;color:var(--faint);background:transparent;transition:border-color .25s ease,background .25s ease,transform .25s ease}
+.coming-soon-card:hover{border-color:var(--accent);background:var(--aglow2);transform:translateY(-3px)}
+.coming-soon-card .cs-icon{font-size:22px;margin-bottom:6px;display:inline-block;transition:transform .35s ease}
+.coming-soon-card:hover .cs-icon{transform:rotate(90deg)}
 .coming-soon-card h4{font-family:'Rajdhani',sans-serif;font-size:.88rem;color:var(--muted);margin-bottom:3px}
 .coming-soon-card p{font-size:.72rem;margin:0}
 
@@ -447,6 +445,7 @@ details.toc[open] summary::after{content:'\2212'}
   <section class="section reveal">
     <a class="featured-post" href="types-of-springs-guide.html">
       <div class="fp-visual">
+        <span class="fp-badge">New</span>
         <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="80" r="60" fill="none" stroke="rgba(249,115,22,.4)" stroke-width="2" stroke-dasharray="4 4"/>
           <polyline points="60,40 100,52 60,64 100,76 60,88 100,100 60,112 100,120" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -462,29 +461,95 @@ details.toc[open] summary::after{content:'\2212'}
       </div>
     </a>
 
-    <div class="blog-filter-scope">
-      <div class="filter-chip-row">
-        <label class="chip"><input type="radio" name="blogFilter" id="f-all" checked> All Posts</label>
-        <label class="chip"><input type="radio" name="blogFilter" id="f-guide"> Guides</label>
-        <label class="chip"><input type="radio" name="blogFilter" id="f-city"> City Guides</label>
-        <label class="chip"><input type="radio" name="blogFilter" id="f-regional"> Regional Guides</label>
-        <label class="chip"><input type="radio" name="blogFilter" id="f-engineering"> Engineering</label>
+    <!-- ═════════════════════════════════════════════════════════════════
+         📘 GUIDES  —  evergreen, educational "how it works / how to choose"
+         content. This is one of the site's TWO content types (the other is
+         📰 BLOG, in the section right after this one).
+
+         TO ADD A NEW GUIDE LATER:
+           1. Copy one <a class="blog-card">…</a> block below and edit the
+              icon, tag text, title, description and link.
+           2a. If it's a short guide, write it as an anchor section instead —
+               copy one <article class="inline-guide" id="your-id">…</article>
+               block from the "inline-guides" section further down this file,
+               and point this card's href to "#your-id".
+           2b. If it's a long/standalone guide (like this one), duplicate
+               types-of-springs-guide.html as a starting template and point
+               this card's href to your new filename.
+           3. Add the new page/anchor to the blogPost list in the JSON-LD
+              script block near the top of this file, and — for a new
+              standalone page — to sitemap.xml.
+    ═════════════════════════════════════════════════════════════════ -->
+    <div class="sec-head-row">
+      <div>
+        <div class="sec-eyebrow" style="margin-top:8px">Learn &amp; Design</div>
+        <h2 class="sec-h2">📘 Guides</h2>
       </div>
+      <span class="sec-count">9 Guides</span>
+    </div>
+    <p class="sec-p">Evergreen, engineering-first guides on spring types, materials, design and manufacturing — written by the team that actually winds, heat-treats and tests every spring.</p>
+    <div class="blog-grid">
+
+      <a class="blog-card cat-guide" href="types-of-springs-guide.html">
+        <span class="bc-new">New</span>
+        <div class="bc-visual">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="30,20 70,30 30,40 70,50 30,60 70,70 30,80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="bc-body">
+          <span class="bc-tag">Guide</span>
+          <h4>Types of Springs Guide</h4>
+          <p>Compression, extension, torsion, die &amp; disc springs explained — how to choose the right type and material.</p>
+          <div class="bc-meta"><span>10 min read</span><span class="bc-read">Read Guide →</span></div>
+        </div>
+      </a>
+
+      <a class="blog-card cat-guide" href="#spring-rate-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 72H82M30 72V48M70 72V32M30 48L70 32" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="48" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/><circle cx="70" cy="32" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Rate Guide</h4><p>Understand spring rate, load and deflection, and how wire size, coil diameter and active coils affect performance.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#compression-spring-design"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="25,25 75,25 25,38 75,38 25,51 75,51 25,64 75,64 25,77 75,77" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Compression Spring Design Guide</h4><p>A practical checklist covering wire diameter, coil diameter, free length, active coils, load and solid height.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#spring-material-selection"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="24" width="56" height="52" rx="7" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 40H65M35 52H65M35 64H55" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Material Selection Guide</h4><p>How to choose spring wire based on corrosion exposure, temperature, cycle life, strength and application conditions.</p><div class="bc-meta"><span>9 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#extension-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25v20q0 15 25 15t25-15V25M25 18v10M75 18v10M18 18h14M68 18h14" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Extension Spring Guide</h4><p>Learn about hooks, initial tension, extended length, working load and the key measurements needed for replacement.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#torsion-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="24" fill="none" stroke="#f97316" stroke-width="4"/><path d="M50 26V12M50 74V88M74 50h14M26 50H12" stroke="#3b8bff" stroke-width="4" stroke-linecap="round"/><path d="M62 32l9-5-2 10" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Torsion Spring Guide</h4><p>Torque, leg position, winding direction and the common design considerations for hinges, clamps and levers.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide cat-engineering" href="#spring-manufacturing-process"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M50 20v12M80 50H68M50 80V68M20 50h12" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Engineering</span><h4>Spring Manufacturing Process</h4><p>From wire selection and coiling to stress relieving, finishing, inspection and final testing.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Article →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#how-to-measure-a-spring"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 30h60M20 70h60M20 30v40M80 30v40" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 30v40M50 30v40M65 30v40" stroke="#f97316" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Practical</span><h4>How to Measure a Spring Before Ordering</h4><p>A replacement-spring checklist for wire diameter, coil diameter, free length, hooks, legs and working dimensions.</p><div class="bc-meta"><span>6 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide cat-engineering" href="#spring-failure-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25l18 18-12 12 18 20M75 25L57 43l12 12-18 20" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="20" r="4" fill="#3b8bff"/></svg></div><div class="bc-body"><span class="bc-tag">Industrial</span><h4>Spring Failure Guide</h4><p>Common signs of fatigue, overload, corrosion, incorrect geometry and installation issues — plus a replacement checklist.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Article →</span></div></div></a>
+
+      <div class="coming-soon-card">
+        <div class="cs-icon">＋</div>
+        <h4>More Guides</h4>
+        <p>New engineering and application guides can be added here without changing the page layout.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-full-alt">
+    <div class="section reveal">
+      <!-- ═════════════════════════════════════════════════════════════════
+           📰 BLOG  —  city / regional coverage, company updates, case
+           studies. This is the site's second content type (see 📘 GUIDES
+           above).
+
+           TO ADD A NEW BLOG POST LATER:
+             1. Duplicate spring-manufacturer-mumbai.html (or any existing
+                blog page) as a starting template for a new city/regional/
+                company post, and save it as a new .html file.
+             2. Copy one <a class="blog-card">…</a> block below and edit the
+                icon, tag text, title, description and href to point to the
+                new file.
+             3. Add the new page's URL to sitemap.xml and to the blogPost
+                list in the JSON-LD script block near the top of this file.
+      ═════════════════════════════════════════════════════════════════ -->
+      <div class="sec-head-row">
+        <div>
+          <div class="sec-eyebrow">Company &amp; Regional</div>
+          <h2 class="sec-h2">📰 Blog</h2>
+        </div>
+        <span class="sec-count">2 Posts</span>
+      </div>
+      <p class="sec-p">City coverage, regional delivery updates and company news from Gurudatta Trading Co.</p>
       <div class="blog-grid">
 
-        <a class="blog-card cat-guide" href="types-of-springs-guide.html">
-          <div class="bc-visual">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="30,20 70,30 30,40 70,50 30,60 70,70 30,80" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="bc-body">
-            <span class="bc-tag">Guide</span>
-            <h4>Types of Springs Guide</h4>
-            <p>Compression, extension, torsion, die &amp; disc springs explained — how to choose the right type and material.</p>
-            <div class="bc-meta"><span>10 min read</span><span class="bc-read">Read Guide →</span></div>
-          </div>
-        </a>
-
         <a class="blog-card cat-city" href="spring-manufacturer-mumbai.html">
+          <span class="bc-new">New</span>
           <div class="bc-visual">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <path d="M25,80 L25,45 L40,30 L55,45 L55,80 Z" fill="none" stroke="#3b8bff" stroke-width="4" stroke-linejoin="round"/>
@@ -495,7 +560,7 @@ details.toc[open] summary::after{content:'\2212'}
             <span class="bc-tag">City Guide</span>
             <h4>Spring Manufacturer in Mumbai</h4>
             <p>Goregaon, Malad, Borivali and every Mumbai suburb — plus our free spring rate calculator with a 3D preview.</p>
-            <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div>
+            <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
         </a>
 
@@ -512,23 +577,14 @@ details.toc[open] summary::after{content:'\2212'}
             <span class="bc-tag">Regional Guide</span>
             <h4>Spring Manufacturer in Maharashtra</h4>
             <p>Manufacturing capability and delivery coverage across Pune, Nashik, Kolhapur, Nagpur and the rest of the state.</p>
-            <div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div>
+            <div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
         </a>
 
-        <a class="blog-card cat-guide" href="#spring-rate-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 72H82M30 72V48M70 72V32M30 48L70 32" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="48" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/><circle cx="70" cy="32" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Rate Guide</h4><p>Understand spring rate, load and deflection, and how wire size, coil diameter and active coils affect performance.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide" href="#compression-spring-design"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="25,25 75,25 25,38 75,38 25,51 75,51 25,64 75,64 25,77 75,77" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Compression Spring Design Guide</h4><p>A practical checklist covering wire diameter, coil diameter, free length, active coils, load and solid height.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide" href="#spring-material-selection"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="24" width="56" height="52" rx="7" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 40H65M35 52H65M35 64H55" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Material Selection Guide</h4><p>How to choose spring wire based on corrosion exposure, temperature, cycle life, strength and application conditions.</p><div class="bc-meta"><span>9 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide" href="#extension-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25v20q0 15 25 15t25-15V25M25 18v10M75 18v10M18 18h14M68 18h14" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Extension Spring Guide</h4><p>Learn about hooks, initial tension, extended length, working load and the key measurements needed for replacement.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide" href="#torsion-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="24" fill="none" stroke="#f97316" stroke-width="4"/><path d="M50 26V12M50 74V88M74 50h14M26 50H12" stroke="#3b8bff" stroke-width="4" stroke-linecap="round"/><path d="M62 32l9-5-2 10" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Torsion Spring Guide</h4><p>Torque, leg position, winding direction and the common design considerations for hinges, clamps and levers.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide cat-engineering" href="#spring-manufacturing-process"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M50 20v12M80 50H68M50 80V68M20 50h12" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Engineering</span><h4>Spring Manufacturing Process</h4><p>From wire selection and coiling to stress relieving, finishing, inspection and final testing.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Article →</span></div></div></a>
-        <a class="blog-card cat-guide" href="#how-to-measure-a-spring"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 30h60M20 70h60M20 30v40M80 30v40" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 30v40M50 30v40M65 30v40" stroke="#f97316" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Practical</span><h4>How to Measure a Spring Before Ordering</h4><p>A replacement-spring checklist for wire diameter, coil diameter, free length, hooks, legs and working dimensions.</p><div class="bc-meta"><span>6 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-        <a class="blog-card cat-guide cat-engineering" href="#spring-failure-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25l18 18-12 12 18 20M75 25L57 43l12 12-18 20" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="20" r="4" fill="#3b8bff"/></svg></div><div class="bc-body"><span class="bc-tag">Industrial</span><h4>Spring Failure Guide</h4><p>Common signs of fatigue, overload, corrosion, incorrect geometry and installation issues — plus a replacement checklist.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Article →</span></div></div></a>
-
         <div class="coming-soon-card">
           <div class="cs-icon">＋</div>
-          <h4>More Spring Guides</h4>
-          <p>New engineering and application guides can be added here without changing the page layout.</p>
+          <h4>More Blog Posts</h4>
+          <p>New city coverage, case studies and company updates can be added here without changing the page layout.</p>
         </div>
 
       </div>
@@ -630,6 +686,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 let prefersReducedMotion = false;
 try { prefersReducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { prefersReducedMotion = false; }
+document.querySelectorAll('.featured-post, .blog-card, .coming-soon-card').forEach(el=>el.classList.add('reveal'));
 const revealTargets = document.querySelectorAll('.reveal');
 revealTargets.forEach((el,i)=>{ el.style.transitionDelay = ((i%4)*0.06)+'s'; });
 if(!prefersReducedMotion && 'IntersectionObserver' in window){
