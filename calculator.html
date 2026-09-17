@@ -98,7 +98,12 @@
         {"@type":"Question","name":"How is spring rate calculated?","acceptedAnswer":{"@type":"Answer","text":"For a compression or extension spring, spring rate (k) equals G × d⁴ divided by (8 × D³ × Na), where G is the material's shear modulus, d is wire diameter, D is mean coil diameter and Na is the number of active coils. Torsion springs are calculated in bending using the material's Young's Modulus (E) instead. This calculator applies the correct formula automatically based on the spring type selected."}},
         {"@type":"Question","name":"What is the difference between Compression, Extension and Torsion springs?","acceptedAnswer":{"@type":"Answer","text":"Compression springs resist a squeezing force and push back when compressed. Extension springs have hooks at each end and resist a pulling or stretching force. Torsion springs have straight legs and resist a twisting or rotational force rather than a push or pull. Each type uses a different stress formula, which is why the calculator asks for the spring type first."}},
         {"@type":"Question","name":"Is this spring rate calculator free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes. Gurudatta Trading Co.'s spring rate calculator is completely free with no signup required. Enter your dimensions, hit Calculate, and get an instant spec report plus a live 3D preview of your spring."}},
-        {"@type":"Question","name":"Can Gurudatta Trading Co. manufacture the spring I design here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once your design is ready, you can send the full specification sheet straight to Gurudatta Trading Co. on WhatsApp to request a manufacturing quote the same Mumbai-based team that has manufactured compression, extension and torsion springs for over 25 years."}}
+        {"@type":"Question","name":"Can Gurudatta Trading Co. manufacture the spring I design here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once your design is ready, you can send the full specification sheet straight to Gurudatta Trading Co. on WhatsApp to request a manufacturing quote the same Mumbai-based team that has manufactured compression, extension and torsion springs for over 25 years."}},
+        {"@type":"Question","name":"What's the difference between active coils and total coils?","acceptedAnswer":{"@type":"Answer","text":"Total coils is the full physical coil count wound into the spring, while active coils (Na) are the coils that actually flex and set the spring rate. Squared and ground ends remove roughly one coil's worth of activity from each end, so active coils is typically 1.5-2 fewer than total coils."}},
+        {"@type":"Question","name":"What is spring index and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Spring index (C) is the mean coil diameter divided by the wire diameter. Most practical compression springs fall between an index of 4 and 12; outside that range the spring is hard to wind or tends to buckle."}},
+        {"@type":"Question","name":"How much can I safely compress a spring before it's damaged?","acceptedAnswer":{"@type":"Answer","text":"A compression spring should never be compressed fully to its solid height under normal working load. A safe design keeps working deflection to about 70-80% of maximum travel."}},
+        {"@type":"Question","name":"How many times can a compression spring be compressed before it wears out?","acceptedAnswer":{"@type":"Answer","text":"Spring life depends on stress level, material and load type; low-stress static springs can last millions of cycles, while highly stressed springs may be rated for tens of thousands."}},
+        {"@type":"Question","name":"Why doesn't my calculated spring rate match a manufactured spring's spec sheet?","acceptedAnswer":{"@type":"Answer","text":"Manufacturing tolerance normally causes a real spring's rate to vary by roughly ±10% from the theoretical formula."}}
       ]
     }
   ]
@@ -889,6 +894,26 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
         <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">Can Gurudatta Trading Co. manufacture the spring I design here?</h3>
         <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Yes. Once your design is ready, send the full specification sheet straight to Gurudatta Trading Co. on WhatsApp to request a manufacturing quote the same Mumbai-based team that has manufactured compression, extension and torsion springs for over 25 years.</p>
       </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">What's the difference between active coils and total coils?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Total coils is the full physical coil count wound into the spring, while active coils (Na) are the coils that actually flex and set the spring rate. Squared and ground ends remove roughly one coil's worth of activity from each end, so active coils is typically 1.5–2 fewer than total coils. This calculator uses active coils in its formula, which is the most common reason a manual calculation doesn't match the tool's result.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">What is spring index and why does it matter?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Spring index (C) is the mean coil diameter divided by the wire diameter. Most practical compression springs fall between an index of 4 and 12 — below 4 the spring is hard to wind and stress concentrates on the inside of the coil, above 12 it tends to buckle or tangle. This calculator flags designs outside that safe range.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">How much can I safely compress a spring before it's damaged?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">A compression spring should never be compressed fully to its solid height under normal working load — that overstresses the wire and shortens fatigue life. A safe design keeps working deflection to about 70–80% of maximum travel, leaving a margin before solid height, which this calculator's results let you check.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">How many times can a compression spring be compressed before it wears out?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Spring life depends on stress level, material and load type — low-stress static springs can last millions of cycles, while highly stressed or shock-loaded springs may be rated for tens of thousands. Music wire and shot-peened stainless steel generally give the best fatigue life for repeated-cycle applications.</p>
+      </div>
+      <div class="si-reveal" style="background:#161b22; border:1px solid #30363d; border-radius:12px; padding:20px 22px;">
+        <h3 style="color:#fff; font-size:16px; font-weight:700; margin:0 0 8px;">Why doesn't my calculated spring rate match a manufactured spring's spec sheet?</h3>
+        <p style="margin:0; color:#c9d1d9; font-size:14.5px; line-height:1.7;">Manufacturing tolerance on wire diameter and coil diameter normally causes a real spring's rate to vary by roughly ±10% from the theoretical formula. A bigger gap usually means active coils (not total coils) or the material's shear modulus was entered incorrectly.</p>
+      </div>
     </div>
       
     <!-- CTA -->
@@ -918,6 +943,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
       <a href="how-it-works.html">How It Works</a>
       <a href="calculator.html">Calculator</a>
       <a href="products.html">Products</a>
+      <a href="compression-spring-manufacturer.html">Compression Spring Manufacturer</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
       <a href="sitemap.html">Site Map</a>
