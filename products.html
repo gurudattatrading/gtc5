@@ -512,7 +512,7 @@ function showHome(skipPush){
   CATS.forEach(cat=>{
     const c=document.createElement('a');
     c.className='cat-card reveal';
-    c.href='products.html?cat='+sl(cat.name);
+    c.href='products/'+sl(cat.name)+'/';
     c.innerHTML=`<div class="cat-icon">${cat.icon}</div><div class="cat-name">${cat.name}</div><div class="cat-cnt">${cat.products.length} products</div><div class="cat-arr">Browse →</div>`;
     c.onclick=e=>{e.preventDefault();goCat(sl(cat.name));};
     document.getElementById('cg').appendChild(c);
@@ -542,7 +542,7 @@ function showCat(catSlug,skipPush){
     const im=iurl(p.img);
     const card=document.createElement('a');
     card.className='pc reveal';
-    card.href='products.html?cat='+sl(cat.name)+'&p='+sl(p.name);
+    card.href='products/'+sl(cat.name)+'/'+sl(p.name)+'.html';
     card.innerHTML=`
       <div class="pc-imgw"><img class="pc-img" src="${im||FB}" alt="${p.name}" loading="lazy" onerror="this.src='${FB}'"/></div>
       <div class="pc-body"><div class="pc-tag">${cat.name}</div><div class="pc-name">${p.name}</div></div>
@@ -555,7 +555,7 @@ function showCat(catSlug,skipPush){
   });
   scrollTop();
   initReveal();
-  setMeta(cat.name+' Products | Gurudatta Trading Co.',BASE_URL+'?cat='+catSlug,'Browse '+cat.products.length+' '+cat.name+' products manufactured by Gurudatta Trading Co., Mumbai.');
+  setMeta(cat.name+' Products | Gurudatta Trading Co.','https://industrialspringmanufacturer.com/products/'+catSlug+'/','Browse '+cat.products.length+' '+cat.name+' products manufactured by Gurudatta Trading Co., Mumbai.');
   if(!skipPush)updateUrl('cat',catSlug);
 }
 
@@ -568,7 +568,7 @@ function showProduct(catSlug,prodSlug,skipPush){
   const related=cat.products.filter(pr=>sl(pr.name)!==prodSlug).slice(0,4);
   const relHTML=related.length?`<div class="related reveal">
     <h3>More in ${cat.name}</h3>
-    <div class="prod-grid">${related.map(r=>{const ri=iurl(r.img);return `<a class="pc reveal" href="products.html?cat=${sl(cat.name)}&p=${sl(r.name)}" onclick="event.preventDefault();showProduct('${sl(cat.name)}','${sl(r.name)}');scrollTop()">
+    <div class="prod-grid">${related.map(r=>{const ri=iurl(r.img);return `<a class="pc reveal" href="products/${sl(cat.name)}/${sl(r.name)}.html" onclick="event.preventDefault();showProduct('${sl(cat.name)}','${sl(r.name)}');scrollTop()">
       <div class="pc-imgw"><img class="pc-img" src="${ri||FB}" alt="${r.name}" loading="lazy" onerror="this.src='${FB}'"/></div>
       <div class="pc-body"><div class="pc-tag">${cat.name}</div><div class="pc-name">${r.name}</div></div>
       <div class="pc-foot"><button class="be" onclick="event.stopPropagation();window.location.href='contact.html'">📞 Enquire</button><button class="bd" onclick="event.stopPropagation();showProduct('${sl(cat.name)}','${sl(r.name)}');scrollTop()">Details →</button></div>
@@ -608,7 +608,7 @@ function showProduct(catSlug,prodSlug,skipPush){
   </div>`;
   scrollTop();
   initReveal();
-  setMeta(p.name+' | Gurudatta Trading Co. Spring Manufacturer Mumbai',BASE_URL+'?cat='+catSlug+'&p='+prodSlug,p.tagline);
+  setMeta(p.name+' | Gurudatta Trading Co. Spring Manufacturer Mumbai','https://industrialspringmanufacturer.com/products/'+catSlug+'/'+prodSlug+'.html',p.tagline);
   if(!skipPush)updateUrl('product',catSlug,prodSlug);
 }
 
