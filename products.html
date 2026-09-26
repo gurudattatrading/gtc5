@@ -463,20 +463,27 @@ function toggleMobNavClose(){closeMobNav()}
    reset to Home, and individual products/categories had no shareable link.
    updateUrl() pushes a real history entry per view; a popstate listener + the
    init check at the bottom restore the right view on Back/Forward and on load. */
-function updateUrl(view,catSlug,prodSlug){
-  var params=new URLSearchParams();
-  if(view==='cat'){params.set('cat',catSlug);}
-  else if(view==='product'){params.set('cat',catSlug);params.set('p',prodSlug);}
-  var qs=params.toString();
-  history.pushState({view:view,cat:catSlug,p:prodSlug},'',location.pathname+(qs?('?'+qs):''));
+function routeUrl(view,catSlug,prodSlug){
+  if(view==='product')return '/products/'+catSlug+'/'+prodSlug+'.html';
+  if(view==='cat')return '/products/'+catSlug+'/';
+  return '/products.html';
 }
-window.addEventListener('popstate',function(){
+function updateUrl(view,catSlug,prodSlug){
+  history.pushState({view:view,cat:catSlug,p:prodSlug},'',routeUrl(view,catSlug,prodSlug));
+}
+function restoreViewFromUrl(){
+  var path=decodeURIComponent(location.pathname);
   var params=new URLSearchParams(location.search);
   var cat=params.get('cat'),p=params.get('p');
-  if(cat&&p)showProduct(cat,p,true);
-  else if(cat)showCat(cat,true);
-  else showHome(true);
-});
+  if(cat&&p){showProduct(cat,p,true);history.replaceState({view:'product',cat:cat,p:p},'',routeUrl('product',cat,p));return;}
+  if(cat){showCat(cat,true);history.replaceState({view:'cat',cat:cat},'',routeUrl('cat',cat));return;}
+  var productMatch=path.match(/\/products\/([^/]+)\/([^/]+)\.html\/?$/);
+  if(productMatch){showProduct(productMatch[1],productMatch[2],true);return;}
+  var categoryMatch=path.match(/\/products\/([^/]+)\/?$/);
+  if(categoryMatch){showCat(categoryMatch[1],true);return;}
+  showHome(true);
+}
+window.addEventListener('popstate',restoreViewFromUrl);
 
 /* ════ SEO META (title + canonical) ════ */
 /* BUGFIX: this SPA never updated <title> or <link rel="canonical"> when the view
@@ -615,13 +622,7 @@ function showProduct(catSlug,prodSlug,skipPush){
 /* ════ INIT ════ */
 /* BUGFIX: restore whatever view the URL points to (so a shared/bookmarked link or a
    page refresh lands on the right category/product) instead of always forcing Home. */
-(function initFromUrl(){
-  var params=new URLSearchParams(location.search);
-  var cat=params.get('cat'),p=params.get('p');
-  if(cat&&p)showProduct(cat,p,true);
-  else if(cat)showCat(cat,true);
-  else showHome(true);
-})();
+restoreViewFromUrl();
 </script>
 </body>
 </html>
