@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = path.dirname(fileURLToPath(import.meta.url));
 const sourcePath = path.join(root, 'products.html');
 const html = fs.readFileSync(sourcePath, 'utf8');
 const marker = 'const CATS=';
