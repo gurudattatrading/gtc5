@@ -1,0 +1,30 @@
+name: Generate product pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate pages
+        run: node generate-product-pages.mjs
+
+      - name: Save generated pages to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add products sitemap.xml
+          git diff --cached --quiet || (git commit -m "Generate product pages" && git push)
