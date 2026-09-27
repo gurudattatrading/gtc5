@@ -551,7 +551,7 @@ function showCat(catSlug,skipPush){
     card.className='pc reveal';
     card.href='products/'+sl(cat.name)+'/'+sl(p.name)+'.html';
     card.innerHTML=`
-      <div class="pc-imgw"><img class="pc-img" src="${im||FB}" alt="${p.name}" loading="lazy" onerror="this.src='${FB}'"/></div>
+      <div class="pc-imgw"><img class="pc-img" src="${im||FB}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.src='${FB}'"/></div>
       <div class="pc-body"><div class="pc-tag">${cat.name}</div><div class="pc-name">${p.name}</div></div>
       <div class="pc-foot">
         <button class="be" onclick="event.stopPropagation();window.location.href='contact.html'">📞 Enquire</button>
@@ -576,7 +576,7 @@ function showProduct(catSlug,prodSlug,skipPush){
   const relHTML=related.length?`<div class="related reveal">
     <h3>More in ${cat.name}</h3>
     <div class="prod-grid">${related.map(r=>{const ri=iurl(r.img);return `<a class="pc reveal" href="products/${sl(cat.name)}/${sl(r.name)}.html" onclick="event.preventDefault();showProduct('${sl(cat.name)}','${sl(r.name)}');scrollTop()">
-      <div class="pc-imgw"><img class="pc-img" src="${ri||FB}" alt="${r.name}" loading="lazy" onerror="this.src='${FB}'"/></div>
+      <div class="pc-imgw"><img class="pc-img" src="${ri||FB}" alt="${r.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.src='${FB}'"/></div>
       <div class="pc-body"><div class="pc-tag">${cat.name}</div><div class="pc-name">${r.name}</div></div>
       <div class="pc-foot"><button class="be" onclick="event.stopPropagation();window.location.href='contact.html'">📞 Enquire</button><button class="bd" onclick="event.stopPropagation();showProduct('${sl(cat.name)}','${sl(r.name)}');scrollTop()">Details →</button></div>
     </a>`}).join('')}</div></div>`:'';
@@ -591,7 +591,7 @@ function showProduct(catSlug,prodSlug,skipPush){
     </div>
     <div class="pd-grid">
       <div class="pd-img-box reveal">
-        ${im?`<img src="${im}" alt="${p.name}" onerror="this.parentNode.innerHTML='<div class=\\'no-img\\'>🔩</div>'">`:`<div class="no-img">🔩</div>`}
+        ${im?`<img src="${im}" alt="${p.name}" referrerpolicy="no-referrer" onerror="this.parentNode.innerHTML='<div class=\\'no-img\\'>🔩</div>'">`:`<div class="no-img">🔩</div>`}
       </div>
       <div class="reveal">
         <div class="pd-cat">${cat.icon} ${cat.name}</div>

@@ -61,7 +61,7 @@ for (const category of categories) {
     const productSlug = slug(product.name);
     const url = `/products/${categorySlug}/${productSlug}.html`;
     const img = imageUrl(product.img);
-    return `<a class="card" href="${url}">${img ? `<img src="${esc(img)}" alt="${esc(product.name)}" loading="lazy">` : ''}<h2>${esc(product.name)}</h2><p>${esc(product.tagline || product.desc || '')}</p></a>`;
+    return `<a class="card" href="${url}">${img ? `<img src="${esc(img)}" alt="${esc(product.name)}" loading="lazy" referrerpolicy="no-referrer">` : ''}<h2>${esc(product.name)}</h2><p>${esc(product.tagline || product.desc || '')}</p></a>`;
   }).join('');
   const catDesc = `Browse ${category.products.length} ${category.name} products from Gurudatta Trading Co., Mumbai. View specifications and request a custom quote.`;
   const catBody = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › ${esc(category.name)}</nav><section class="hero"><h1>${esc(category.name)} Products</h1><p>${esc(catDesc)}</p></section><section class="grid" aria-label="${esc(category.name)} product catalogue">${cards}</section>`;
@@ -74,7 +74,7 @@ for (const category of categories) {
     const img = imageUrl(product.img);
     const description = (plainText(product.tagline || product.desc) || `${product.name} from Gurudatta Trading Co., Mumbai.`).slice(0, 300);
     const specs = Array.isArray(product.specs) ? product.specs.map(([key,value])=>`<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('') : '';
-    const image = img ? `<img src="${esc(img)}" alt="${esc(product.name)}" loading="eager">` : `<span class="fallback" aria-hidden="true">🔩</span>`;
+    const image = img ? `<img src="${esc(img)}" alt="${esc(product.name)}" loading="eager" referrerpolicy="no-referrer">` : `<span class="fallback" aria-hidden="true">🔩</span>`;
     const descHtml = product.desc ? `<section class="desc">${product.desc}</section>` : '';
     const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › <a href="/products/${categorySlug}/">${esc(category.name)}</a> › ${esc(product.name)}</nav><article><div class="detail"><div class="photo">${image}</div><div><div class="tag">${esc(category.name)}</div><h1>${esc(product.name)}</h1><p class="tagline">${esc(product.tagline || description)}</p>${specs ? `<table class="specs"><tbody>${specs}</tbody></table>` : ''}<a class="btn" href="/contact.html">Request a quote</a></div></div>${descHtml}<section><h2>More ${esc(category.name)} products</h2><a href="/products/${categorySlug}/">Browse the full ${esc(category.name)} catalogue</a></section></article>`;
     const productLd = {'@context':'https://schema.org','@type':'WebPage',name:product.name,description,url:productUrl,about:{'@type':'Thing',name:product.name}};
