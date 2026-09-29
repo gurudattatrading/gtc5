@@ -391,6 +391,14 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
 .ft-copy{font-size:11px;color:rgba(255,255,255,.16);line-height:1.6}
 @media(max-width:480px){footer{padding:18px 14px}.ft-links{gap:10px 16px}.ft-links a{font-size:11.5px}}
 @media(max-width:360px){.ft-links{gap:8px 12px}.ft-links a{font-size:11px}.ft-copy{font-size:10px}}
+
+.ft-cols{display:grid;grid-template-columns:1.7fr 1fr;gap:30px;max-width:1000px;margin:20px auto 16px;text-align:left;padding:0 20px}.ft-col{border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.ft-col summary{list-style:none;cursor:pointer;font:700 13px 'Montserrat',Arial,sans-serif;color:#fff;display:flex;justify-content:space-between;align-items:center;letter-spacing:.03em}.ft-col summary::-webkit-details-marker{display:none}
+.ft-col ul{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:7px 18px}.ft-col.guides ul{grid-template-columns:1fr}
+footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:12.5px;text-decoration:none}footer .ft-col a:hover,.foot .ft-col a:hover{color:#fff}
+.foot .fl,footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px}.foot .fl a,footer .fl a{margin:0;white-space:nowrap}
+@media(min-width:769px){.ft-col summary{pointer-events:none}}
+@media(max-width:768px){.ft-cols{grid-template-columns:1fr;gap:0;padding:0 16px}.ft-col{padding:13px 0}.ft-col summary{font-size:14px}.ft-col summary::after{content:'+';color:var(--P,#ff6b00);font-size:20px}.ft-col[open] summary::after{content:'–'}.ft-col ul{grid-template-columns:1fr 1fr;gap:10px 14px}footer .ft-col a,.foot .ft-col a{font-size:13px}}
 </style>
 </head>
 <body>
@@ -949,6 +957,11 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
       <a href="sitemap.html">Site Map</a>
       <a href="privacypolicy.html">Privacy Policy</a>
     </div>
+        <div class="ft-cols">
+      <details class="ft-col" open><summary>Product categories</summary><ul><li><a href="/products/steel-spring/">Steel Spring</a></li><li><a href="/products/industrial-springs/">Industrial Springs</a></li><li><a href="/products/steel-hook/">Steel Hook</a></li><li><a href="/products/circlips/">Circlips</a></li><li><a href="/products/dowel-pin/">Dowel Pin</a></li><li><a href="/products/wire-form/">Wire Form</a></li><li><a href="/products/coil-spring/">Coil Spring</a></li><li><a href="/products/mechanical-shaft-seals/">Mechanical Shaft Seals</a></li><li><a href="/products/compression-spring/">Compression Spring</a></li><li><a href="/products/torsion-spring/">Torsion Spring</a></li><li><a href="/products/steel-pin/">Steel Pin</a></li><li><a href="/products/r-pin/">R Pin</a></li><li><a href="/products/locking-items/">Locking Items</a></li><li><a href="/products/spring-seal/">Spring Seal</a></li><li><a href="/products/die-spring/">Die Spring</a></li><li><a href="/products/spiral-spring/">Spiral Spring</a></li><li><a href="/products/tension-spring/">Tension Spring</a></li></ul></details>
+      <details class="ft-col guides" open><summary>Spring guides</summary><ul><li><a href="/guides/spring-wire-gauge-swg-chart.html">SWG Chart</a></li><li><a href="/guides/spring-rate-formula-compression-spring.html">Spring Rate Formula</a></li><li><a href="/guides/extension-spring-load-formula.html">Extension Spring Formula</a></li><li><a href="/guides/torsion-spring-torque-formula.html">Torsion Spring Formula</a></li><li><a href="/guides/how-to-measure-a-spring.html">How to Measure a Spring</a></li><li><a href="/guides/spring-end-types-explained.html">Spring End Types</a></li><li><a href="/guides/mild-steel-vs-stainless-steel-vs-music-wire-springs.html">Material Comparison</a></li><li><a href="/guides/spring-finishes-and-coatings.html">Finishes &amp; Coatings</a></li><li><a href="/guides/custom-spring-cost-and-quote-checklist.html">Custom Spring Cost</a></li><li><a href="/guides/is-4454-spring-wire-grades-explained.html">IS 4454 Wire Grades</a></li><li><a href="/guides/die-spring-colour-code-chart.html">Die Spring Colour Codes</a></li><li><a href="/guides/trampoline-spring-buying-guide.html">Trampoline Spring Guide</a></li></ul></details>
+    </div>
+    <script>if(matchMedia("(max-width:768px)").matches)document.querySelectorAll(".ft-col").forEach(function(d){d.removeAttribute("open")})</script>
     <div class="ft-copy">© 2026 Gurudatta Trading Co. All rights reserved.<br>Mild Steel Springs Manufacturer &amp; Supplier, Mumbai, India.</div>
   </div>
 </footer>
