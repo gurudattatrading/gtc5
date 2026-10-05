@@ -278,6 +278,31 @@ const llms = [`# Gurudatta Trading Co. — full catalogue`, `Mumbai-based spring
 for (const c of categories) { llms.push(``, `### ${c.name} (${base}/products/${slug(c.name)}/)`, catIntro[slug(c.name)] || ''); for (const p of c.products) llms.push(`- ${p.name}: ${plainText(p.tagline || p.desc)} ${(Array.isArray(p.specs) ? p.specs.map(([a, b]) => `${a}: ${b}`).join('; ') : '')} — ${base}/products/${slug(c.name)}/${slug(p.name)}.html`); }
 fs.writeFileSync(path.join(root, 'llms-full.txt'), llms.join('\n') + '\n');
 
+// ---------- Heavy Duty Spring landing page (genuine keyword gap, no matching product category) ----------
+{
+  const hdUrl = base + '/heavy-duty-spring-manufacturer.html';
+  const hdDesc = 'Heavy duty spring manufacturer in Mumbai, India. Large wire diameter compression and coil springs for machinery, crushers, presses and vehicles. Get a quote.';
+  const hdFaq = [
+    ['Can you make a heavy duty spring from my broken sample?', 'Yes — send the broken pieces or measurements (wire diameter, outer diameter, free length, coil count) and we will quote a replacement.'],
+    ['Do you supply heavy duty coil springs for machinery?', 'Yes, we manufacture heavy duty compression and coil springs to your load, deflection and space requirement.'],
+    ['How do I choose the right wire diameter for a heavy duty spring?', 'It depends on the working load, deflection and allowable stress — share your load and space limits and we will propose a design.'],
+  ];
+  const hdBody = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <b>Heavy Duty Spring Manufacturer</b></nav>
+<section class="hero"><div class="eyebrow">Industrial springs</div><h1>Heavy Duty Spring Manufacturer in India</h1><p>Heavy duty springs carry high loads and shock in machinery, vibrating screens, crushers, presses and vehicles. Send your load and space limits and we propose the spring. Gurudatta Trading Co. has manufactured springs from Mumbai since 2000, with ISO 9001:2015 quality management and PAN India delivery.</p><div class="btns"><a class="btn" href="/contact.html">📞 Enquire Now</a><a class="btn wa" href="https://wa.me/${WA}?text=${encodeURIComponent('Hi, I am interested in a heavy duty spring')}" target="_blank" rel="noopener">WhatsApp Quote</a></div></section>
+<section class="sec desc"><h2>Where heavy duty springs are used</h2><ul><li>Vibrating screens and feeders</li><li>Crushers and mining equipment</li><li>Press tools and die sets</li><li>Conveyors and material handling</li><li>Railway and automotive suspension</li></ul>
+<h2>What decides the design</h2><div style="overflow-x:auto"><table class="specs"><thead><tr><td><b>Factor</b></td><td><b>Why it matters</b></td></tr></thead><tbody><tr><td>Load and deflection</td><td>Sets the wire diameter and number of coils</td></tr><tr><td>Fatigue life</td><td>Cycles per day set the allowable stress limit</td></tr><tr><td>Space</td><td>Outer diameter and free length limits constrain the design</td></tr><tr><td>Environment</td><td>Heat, corrosion and dust decide material and finish</td></tr></tbody></table></div>
+<h2>What we need to quote</h2><ul><li>Working load and length at that load</li><li>Outer diameter and free length limits</li><li>Cycles per day (duty cycle)</li><li>Operating temperature</li><li>Material and quantity</li></ul>
+<p>Use the <a href="/calculator.html">free Spring Rate Calculator</a> to check your design, or see our <a href="/guides/custom-spring-cost-and-quote-checklist.html">quote checklist</a> for what to send.</p></section>
+<section class="sec faq"><h2>FAQs</h2>${hdFaq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
+<section class="sec"><h2>Explore products</h2>${categoryChips('')}</section>`;
+  const hdLd = { '@context': 'https://schema.org', '@graph': [ orgLd,
+    { '@type': 'WebPage', name: 'Heavy Duty Spring Manufacturer in India', description: hdDesc, url: hdUrl, inLanguage: 'en-IN', isPartOf: { '@type': 'WebSite', name: 'Gurudatta Trading Co.', url: base + '/' } },
+    crumbLd([['Home', base + '/'], ['Heavy Duty Spring Manufacturer', hdUrl]]),
+    { '@type': 'FAQPage', mainEntity: hdFaq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  ] };
+  fs.writeFileSync(path.join(root, 'heavy-duty-spring-manufacturer.html'), shell({ title: 'Heavy Duty Spring Manufacturer in India | Gurudatta Trading', description: hdDesc, canonical: hdUrl, body: hdBody, jsonLd: hdLd }));
+}
+
 // Branded 404 page (GitHub Pages serves /404.html for unknown URLs)
 fs.writeFileSync(path.join(root, '404.html'), shell({ title: 'Page not found | Gurudatta Trading Co.', description: 'This page could not be found. Browse our spring products or contact Gurudatta Trading Co., Mumbai.', canonical: base + '/404.html', robots: 'noindex,follow',
   body: `<section class="hero" style="text-align:center"><div class="eyebrow">Error 404</div><h1>Page not found</h1><p style="margin:0 auto 18px">The page you are looking for may have moved. Try our product catalogue or contact us directly.</p><div class="btns" style="justify-content:center"><a class="btn" href="/products.html">Browse Products</a><a class="btn wa" href="https://wa.me/${WA}" target="_blank" rel="noopener">WhatsApp Us</a></div></section><section class="sec"><h2>Product categories</h2>${categoryChips('')}</section>` }));
