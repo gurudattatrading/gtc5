@@ -298,6 +298,17 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
 .foot .fl,footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px}.foot .fl a,footer .fl a{margin:0;white-space:nowrap}
 @media(min-width:769px){.ft-col summary{pointer-events:none}}
 @media(max-width:768px){.ft-cols{grid-template-columns:1fr;gap:0;padding:0 16px}.ft-col{padding:13px 0}.ft-col summary{font-size:14px}.ft-col summary::after{content:'+';color:var(--P,#ff6b00);font-size:20px}.ft-col[open] summary::after{content:'–'}.ft-col ul{grid-template-columns:1fr 1fr;gap:10px 14px}footer .ft-col a,.foot .ft-col a{font-size:13px}}
+
+/* Mobile sticky Call + WhatsApp bar */
+.mcta{display:none}
+@media(max-width:768px){
+  .wa-float{display:none}
+  .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;gap:1px;background:rgba(255,255,255,.1)}
+  .mcta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;font:700 14px 'Montserrat',Arial,sans-serif;text-decoration:none;color:#fff}
+  .mcta a.call{background:#1b2a3d}
+  .mcta a.wa{background:#22c55e}
+  body{padding-bottom:50px}
+}
 </style>
 </head>
 <body>
@@ -648,5 +659,6 @@ if(!prefersReducedMotion && 'IntersectionObserver' in window){
   revealTargets.forEach(el=>el.classList.add('is-visible'));
 }
 </script>
+<div class="mcta"><a class="call" href="tel:+918454995315">📞 Call Now</a><a class="wa" href="https://wa.me/918454995315" target="_blank" rel="noopener">💬 WhatsApp</a></div>
 </body>
 </html>
