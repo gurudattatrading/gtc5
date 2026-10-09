@@ -315,11 +315,19 @@ fs.writeFileSync(path.join(root, '404.html'), shell({ title: 'Page not found | G
 
 const sitemapPath = path.join(root, 'sitemap.xml');
 if (fs.existsSync(sitemapPath)) {
-  const today = new Date().toISOString().slice(0, 10);
-  const sitemap = fs.readFileSync(sitemapPath, 'utf8').replace(/<url>[\s\S]*?<\/url>/g, block => {
-    if (!/<loc>https:\/\/industrialspringmanufacturer\.com\/products(?:\.html|\/)/.test(block)) return block;
-    if (/<lastmod>/.test(block)) return block.replace(/<lastmod>[^<]*<\/lastmod>/, `<lastmod>${today}</lastmod>`);
-    return block.replace('</url>', `<lastmod>${today}</lastmod></url>`);
+  const sitemapDate = new Date().toISOString().slice(0, 10);
+  // Category pages below deliberately canonicalize to their fuller guide pages,
+  // so omit these duplicate URLs from the XML sitemap.
+  const canonicalizedCategoryUrls = new Set([
+    `${base}/products/compression-spring/`,
+    `${base}/products/industrial-springs/`,
+  ]);
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8').replace(/<url>[\\s\\S]*?<\\/url>/g, block => {
+    const locMatch = block.match(/<loc>([^<]+)<\\/loc>/);
+    if (locMatch && canonicalizedCategoryUrls.has(locMatch[1])) return '';
+    if (!/<loc>https:\\/\\/industrialspringmanufacturer\\.com\\/products(?:\\.html|\\/)/.test(block)) return block;
+    if (/<lastmod>/.test(block)) return block.replace(/<lastmod>[^<]*<\\/lastmod>/, `<lastmod>${sitemapDate}</lastmod>`);
+    return block.replace('</url>', `<lastmod>${sitemapDate}</lastmod></url>`);
   });
   fs.writeFileSync(sitemapPath, sitemap);
 }
