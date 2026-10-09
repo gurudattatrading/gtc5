@@ -429,7 +429,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
       <a href="reviews.html">⭐ Reviews</a>
       <a href="blog.html">📝 Blog</a>
       <a href="contact.html">📞 Contact</a>
-      <a href="https://wa.me/918454995315" class="nav-wa" target="_blank">📱 WhatsApp</a>
+      <a href="https://api.whatsapp.com/send?phone=918454995315" class="nav-wa" target="_blank">📱 WhatsApp</a>
     </div>
     <button class="burger" onclick="toggleNav()" aria-label="Menu">☰</button>
   </div>
@@ -440,7 +440,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
     <a href="reviews.html">⭐ Reviews</a>
       <a href="blog.html">📝 Blog</a>
     <a href="contact.html">📞 Contact</a>
-    <a href="https://wa.me/918454995315" target="_blank" style="color:#25D366;font-weight:700">📱 WhatsApp Quote</a>
+    <a href="https://api.whatsapp.com/send?phone=918454995315" target="_blank" style="color:#25D366;font-weight:700">📱 WhatsApp Quote</a>
   </div>
 </nav>
 
@@ -718,7 +718,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
           <div><strong style="color:#fff">Want these springs made?</strong><div style="color:var(--tm);font-size:13px;margin-top:3px">Send us these values — wire diameter, coil diameter, coils and length — for a quote.</div></div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <a href="/contact.html" style="background:var(--P);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:8px;font-size:14px">📞 Get a Quote</a>
-            <a href="https://wa.me/918454995315?text=Hi%2C%20I%20used%20the%20spring%20rate%20calculator%20and%20want%20a%20quote" target="_blank" rel="noopener" style="background:#22c55e;color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:8px;font-size:14px">💬 WhatsApp</a>
+            <a href="https://api.whatsapp.com/send?phone=918454995315&amp;text=Hi%2C%20I%20used%20the%20spring%20rate%20calculator%20and%20want%20a%20quote" target="_blank" rel="noopener" style="background:#22c55e;color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:8px;font-size:14px">💬 WhatsApp</a>
           </div>
         </div>
       </div>
@@ -949,7 +949,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
       
     <!-- CTA -->
     <div class="si-reveal" style="text-align:center; margin-top:36px;">
-      <a href="https://wa.me/918454995315" style="
+      <a href="https://api.whatsapp.com/send?phone=918454995315" style="
         display:inline-block;
         background:#ff7a1a;
         color:#0d1117;
@@ -1532,7 +1532,7 @@ function buildWA(name,mob){
     msg+='Rate: '+fmt(r.rate,3)+' N/mm | Load: '+fmt(r.maxLoad,1)+' N ('+fmt(r.maxLoad/9.81,2)+' kg)\n';
     msg+='End: '+endName(endType)+' ('+endType+') | Wind: '+windName(windDir)+' ('+windDir+')\n\nPlease share a quote.';
   }
-  document.getElementById('wa-btn').href='https://wa.me/918454995315?text='+encodeURIComponent(msg);
+  document.getElementById('wa-btn').href='https://api.whatsapp.com/send?phone=918454995315&amp;text='+encodeURIComponent(msg);
 }
 
 /* ══ RESET ══ */
@@ -1796,6 +1796,6 @@ function onResize(){
 
 window.addEventListener('resize',function(){setTimeout(onResize,60);});
 </script>
-<div class="mcta"><a class="call" href="tel:+918454995315">📞 Call Now</a><a class="wa" href="https://wa.me/918454995315" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+<div class="mcta"><a class="call" href="tel:+918454995315">📞 Call Now</a><a class="wa" href="https://api.whatsapp.com/send?phone=918454995315" target="_blank" rel="noopener">💬 WhatsApp</a></div>
 </body>
 </html>
