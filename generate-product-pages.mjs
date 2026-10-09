@@ -190,8 +190,8 @@ ${related.length ? `<section class="sec"><h2>More ${esc(category.name)} products
       { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ] };
     const titleSuffix = ' | Gurudatta';
-    const titleBase = clip(product.name, 53).replace(/…$/, '').replace(/\s+\S*$/, '').trim() || product.name.slice(0, 53);
-    const t = `${titleBase}${titleSuffix}`;
+    const titleBase = product.name.length <= 53 ? product.name : clip(product.name, 53).replace(/…$/, '').replace(/\s+\S*$/, '').trim();
+    const t = `${titleBase || product.name.slice(0, 53)}${titleSuffix}`;
     fs.writeFileSync(path.join(categoryDir, `${productSlug}.html`), shell({ title: t, description, canonical: productUrl, body, jsonLd: productLd, image: absImage(product.img) }));
     productsWritten++;
   });
