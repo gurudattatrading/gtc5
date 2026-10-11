@@ -93,7 +93,7 @@ const pages = [
       h2('Frequently asked questions'),
       `<div style="display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px;">${pages[0].faq.map(([q, a]) => card(esc(q), esc(a))).join('')}</div>`,
       h2('Related springs, guides and tools'),
-      links([['/extension-spring-calculator.html', 'Extension Spring Calculator'], ['/calculator.html', 'All-in-one Spring Calculator'], ['/guides/compression-springs-complete-guide.html', 'Compression Springs Guide'], ['/guides/spring-rate-formula-compression-spring.html', 'Spring Rate Formula'], ['/guides/how-to-measure-a-spring.html', 'How to Measure a Spring'], ['/guides/spring-end-types-explained.html', 'Spring End Types'], ['/compression-spring-manufacturer.html', 'Compression Spring Manufacturer'], ['/products/compression-spring/', 'Compression Spring Products']]),
+      links([['/extension-spring-calculator.html', 'Extension Spring Calculator'], ['/torsion-spring-calculator.html', 'Torsion Spring Calculator'], ['/calculator.html', 'All-in-one Spring Calculator'], ['/guides/compression-springs-complete-guide.html', 'Compression Springs Guide'], ['/guides/spring-rate-formula-compression-spring.html', 'Spring Rate Formula'], ['/guides/how-to-measure-a-spring.html', 'How to Measure a Spring'], ['/guides/spring-end-types-explained.html', 'Spring End Types'], ['/compression-spring-manufacturer.html', 'Compression Spring Manufacturer'], ['/products/compression-spring/', 'Compression Spring Products']]),
       `<div class="si-reveal" style="text-align:center; margin-top:36px;"><a href="${wa('Hi, I designed a compression spring on your calculator and need a quote')}" style="display:inline-block; background:#ff7a1a; color:#0d1117; font-weight:800; font-size:15px; padding:14px 32px; border-radius:10px; text-decoration:none;">💬 Get a Free Quote on WhatsApp</a></div>`,
     ],
   },
@@ -164,8 +164,79 @@ const pages = [
       h2('Frequently asked questions'),
       `<div style="display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px;">${pages[1].faq.map(([q, a]) => card(esc(q), esc(a))).join('')}</div>`,
       h2('Related springs, guides and tools'),
-      links([['/compression-spring-calculator.html', 'Compression Spring Calculator'], ['/calculator.html', 'All-in-one Spring Calculator'], ['/extension-spring-manufacturer.html', 'Extension Spring Manufacturer'], ['/guides/extension-spring-load-formula.html', 'Extension Spring Formula'], ['/guides/trampoline-spring-buying-guide.html', 'Trampoline Spring Guide'], ['/guides/how-to-measure-a-spring.html', 'How to Measure a Spring'], ['/guides/spring-finishes-and-coatings.html', 'Finishes and Coatings']]),
+      links([['/compression-spring-calculator.html', 'Compression Spring Calculator'], ['/torsion-spring-calculator.html', 'Torsion Spring Calculator'], ['/calculator.html', 'All-in-one Spring Calculator'], ['/extension-spring-manufacturer.html', 'Extension Spring Manufacturer'], ['/guides/extension-spring-load-formula.html', 'Extension Spring Formula'], ['/guides/trampoline-spring-buying-guide.html', 'Trampoline Spring Guide'], ['/guides/how-to-measure-a-spring.html', 'How to Measure a Spring'], ['/guides/spring-finishes-and-coatings.html', 'Finishes and Coatings']]),
       `<div class="si-reveal" style="text-align:center; margin-top:36px;"><a href="${wa('Hi, I designed an extension spring on your calculator and need a quote')}" style="display:inline-block; background:#ff7a1a; color:#0d1117; font-weight:800; font-size:15px; padding:14px 32px; border-radius:10px; text-decoration:none;">💬 Get a Free Quote on WhatsApp</a></div>`,
+    ],
+  },
+  {
+    file: 'torsion-spring-calculator.html',
+    type: 'T',
+    title: 'Torsion Spring Calculator: Rate, Max Torque & Wind Angle',
+    desc: 'Free torsion spring calculator: spring rate, max safe torque, max wind angle and bending stress from wire, coil and material. Inch or mm, with 3D preview.',
+    kw: 'torsion spring calculator, torsion spring rate calculator, torsion spring torque calculator, torsion spring angle calculator, torsion spring design',
+    h1: 'Torsion Spring <span>Calculator</span>',
+    heroP: 'Free online torsion spring calculator — get the spring rate, maximum safe torque, maximum wind angle and bending stress in seconds, with a live 3D preview.',
+    heroFeats: ['Rate, max torque &amp; wind angle', 'Bending stress &amp; Wahl factor', 'English (inch) &amp; Metric (mm)', 'Live 3D Preview'],
+    crumb: 'Torsion Spring Calculator',
+    appName: 'Torsion Spring Calculator by Gurudatta Trading Co.',
+    appDesc: 'Free online torsion spring calculator. Computes spring rate per revolution, maximum safe torque, maximum wind angle and bending stress, with a live 3D preview, in inch or metric units.',
+    features: ['Spring rate in N·mm per revolution', 'Maximum safe torque and maximum wind angle', 'Bending stress and Wahl bending factor', 'English (inch) and Metric (mm) units', 'Live 3D spring preview', 'Full specification sheet export to WhatsApp'],
+    howName: 'How to Use the Torsion Spring Calculator',
+    howDesc: 'Calculate the rate, maximum safe torque and maximum wind angle of a torsion spring in five steps.',
+    how: [
+      ['Choose units', 'Select English (inch) or Metric (mm). Torsion is already selected as the spring type.'],
+      ['Enter the dimensions', 'Enter the wire diameter, outside diameter and the number of body coils.'],
+      ['Select the material and wind direction', 'Choose the wire material (music wire, hard drawn, stainless steel, mild steel and more) and left or right hand wind.'],
+      ['Calculate', 'Enter your name and 10-digit mobile number, then press Calculate.'],
+      ['Review and request a quote', 'Check the spring rate, maximum torque and wind angle, then send the specification to us on WhatsApp for a quote.'],
+    ],
+    faq: [
+      ['How do I calculate the rate of a torsion spring?', 'Spring rate k = E·d⁴ / (10.8·D·Na), in N·mm per revolution, where E is the modulus of elasticity, d the wire diameter, D the mean coil diameter and Na the number of body coils. Torque = k × wind angle in revolutions; divide k by 360 for the rate per degree.'],
+      ['Why does the formula use 10.8?', 'The theoretical constant is about 10.2. The practical value 10.8 is slightly higher to allow for friction between the coils and the arbor, and it is the constant the calculator uses.'],
+      ['What is the maximum safe torque?', 'It is the torque at which the bending stress in the wire reaches the allowable bending stress for the chosen material, using the Wahl bending factor Kb. The allowable values are mid-range estimates, so treat the figure as a design guide.'],
+      ['Why is a torsion spring stressed in bending and not shear?', 'When the legs rotate, the wire of the coils is bent. In compression and extension springs the wire is twisted, which is why those use shear stress and the shear modulus G instead.'],
+      ['Which direction should a torsion spring be loaded?', 'In the direction that winds the coils tighter. Loading it in the unwinding direction raises the stress, so state the direction of wind (left or right hand) when you order.'],
+      ['Does the calculator include the legs?', 'It treats every body coil as active and does not add the small extra deflection from the legs, so a real spring with long legs deflects slightly more. It also does not check leg stress or arbor clearance — send us your drawing for that.'],
+      ['Can you manufacture the torsion spring I design here?', 'Yes. Send the specification to Gurudatta Trading Co. on WhatsApp from the results page and we will quote and make it to your drawing or sample, with the leg style you need.'],
+    ],
+    info: () => [
+      `<p class="si-reveal" style="text-align:center; color:#ff7a1a; letter-spacing:2px; font-size:13px; font-weight:700; text-transform:uppercase; margin-bottom:10px;">Free Online Tool</p>`,
+      `<h2 class="si-reveal" style="text-align:center; font-size:32px; font-weight:800; margin:0 0 12px; color:#ffffff;">Torsion Spring Calculator — What It Works Out</h2>`,
+      para('This torsion spring calculator turns a few dimensions into a specification report: spring rate, maximum safe torque, maximum wind angle and the bending stress at that torque, with a live 3D preview. Enter the wire diameter, outside diameter and number of body coils, choose the material and press Calculate. It works in inches or millimetres.'),
+      grid(250, [
+        card('Spring rate', 'Torque per revolution (N·mm/rev) from the wire diameter, mean coil diameter, body coils and the material’s modulus of elasticity.'),
+        card('Max torque and wind angle', 'The torque at which bending stress reaches the material’s allowable stress, and the wind angle that torque produces.'),
+        card('Bending stress and index', 'The Wahl bending factor, bending stress at maximum torque and warnings when the spring index is below 4 or above 12.'),
+      ]),
+      h2('The formulas the calculator uses'),
+      formulaBox([
+        'Mean diameter &nbsp;&nbsp;&nbsp;D = OD − d &nbsp;&nbsp;&nbsp;&nbsp;Spring index &nbsp;C = D ÷ d',
+        'Spring rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k = E · d⁴ ÷ (10.8 · D · Na) &nbsp;&nbsp;(N·mm per revolution; Na = body coils)',
+        'Torque &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T = k · θ &nbsp;&nbsp;(θ in revolutions; k ÷ 360 gives N·mm per degree)',
+        'Wahl factor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kb = (4C² − C − 1) ÷ (4C · (C − 1))',
+        'Max torque &nbsp;&nbsp;&nbsp;&nbsp;Tmax = σ(allow) · π · d³ ÷ (32 · Kb)',
+        'Max wind angle &nbsp;θmax = Tmax ÷ k',
+      ]),
+      para('<span style="display:block; margin-top:12px;">d = wire diameter, OD = outside diameter, E = modulus of elasticity of the wire. A torsion spring is stressed in bending, so it uses E and the bending factor Kb rather than G and the shear factor. More in our <a href="/guides/torsion-spring-torque-formula.html" style="color:#ff9a4d;">torsion spring torque formula guide</a>.</span>'),
+      h2('Worked example'),
+      para('Entering these values in the calculator above (metric, mild steel, right-hand wind) gives:'),
+      tbl(['Input', 'Value'], [
+        ['Wire diameter', '2 mm'], ['Outside diameter', '20 mm'], ['Total coils', '8'], ['Material', 'Mild steel IS 4454 (E = 200,000 N/mm²)'], ['Wind direction', 'Right hand'],
+      ]),
+      `<div style="height:16px;"></div>`,
+      tbl(['Result', 'Value'], [
+        ['Mean diameter / spring index', '18 mm / 9'], ['Active coils', '8'], ['Spring rate', '2057.6 N·mm/rev (5.72 N·mm per degree)'], ['Wahl bending factor', '1.0903'], ['Maximum safe torque', '504.3 N·mm (5.14 kgf·cm)'], ['Maximum wind angle', '88.2° (0.245 rev)'], ['Bending stress at maximum torque', '700 N/mm²'], ['Body length', '16 mm'],
+      ]),
+      para('<span style="display:block; margin-top:12px;">Check by hand: k = 200,000 × 2⁴ ÷ (10.8 × 18 × 8) = 2057.6 N·mm/rev. The torque at a 45° wind is then about 5.72 × 45 ≈ 257 N·mm.</span>'),
+      h2('Design notes for torsion springs'),
+      para('Load a torsion spring in the direction that tightens the coils. As the spring winds up its coil diameter shrinks and its body gets longer, so it needs a supporting rod (arbor) with clearance. The calculator treats every body coil as active and does not add the small deflection contributed by the legs, nor check leg stress or arbor clearance; send us your drawing for those checks. The form also shows free-length and end-configuration fields because it is shared with the other spring types; for a torsion spring they do not change the rate or torque shown.'),
+      h2('How to use the torsion spring calculator'),
+      steps(pages[2].how),
+      h2('Frequently asked questions'),
+      `<div style="display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px;">${pages[2].faq.map(([q, a]) => card(esc(q), esc(a))).join('')}</div>`,
+      h2('Related springs, guides and tools'),
+      links([['/compression-spring-calculator.html', 'Compression Spring Calculator'], ['/extension-spring-calculator.html', 'Extension Spring Calculator'], ['/calculator.html', 'All-in-one Spring Calculator'], ['/guides/torsion-spring-torque-formula.html', 'Torsion Spring Formula'], ['/guides/how-to-measure-a-spring.html', 'How to Measure a Spring'], ['/guides/mild-steel-vs-stainless-steel-vs-music-wire-springs.html', 'Spring Materials'], ['/products/torsion-spring/', 'Torsion Spring Products']]),
+      `<div class="si-reveal" style="text-align:center; margin-top:36px;"><a href="${wa('Hi, I designed a torsion spring on your calculator and need a quote')}" style="display:inline-block; background:#ff7a1a; color:#0d1117; font-weight:800; font-size:15px; padding:14px 32px; border-radius:10px; text-decoration:none;">💬 Get a Free Quote on WhatsApp</a></div>`,
     ],
   },
 ];
@@ -217,11 +288,16 @@ function build(p) {
   h = h.replace('@@LD@@', () => `<script type="application/ld+json">\n${JSON.stringify(ld).replace(/<\//g, '<\\/')}\n</script>`);
 
   // explanatory section below the tool
-  const secRe = /(<section class="spring-info-section"[^>]*>\s*<div style="max-width: 960px; margin: 0 auto;">)[\s\S]*?(<\/div>\s*<\/section>\s*<\/div><!-- \/page -->)/;
-  must(secRe.test(h), 'spring-info-section');
-  // Close the two-column .page grid BEFORE the section, so the full-width text sits below the tool
-  // (inside the grid it is squeezed into the 440px left column next to the sticky 3D viewer).
-  h = h.replace(secRe, (m, a) => `</div><!-- /page -->\n${a}\n\n    ${p.info().join('\n    ')}\n\n  </div>\n</section>`);
+  const secReInside = /(<section class="spring-info-section"[^>]*>\s*<div style="max-width: 960px; margin: 0 auto;">)[\s\S]*?(<\/div>\s*<\/section>\s*<\/div><!-- \/page -->)/;
+  const secReOutside = /(<section class="spring-info-section"[^>]*>\s*<div style="max-width: 960px; margin: 0 auto;">)[\s\S]*?(<\/div>\s*<\/section>)/;
+  const infoHtml = `\n\n    ${p.info().join('\n    ')}\n\n  </div>\n</section>`;
+  if (secReInside.test(h)) {
+    // section still inside the two-column .page grid: close the grid before it
+    h = h.replace(secReInside, (m, a) => `</div><!-- /page -->\n${a}${infoHtml}`);
+  } else {
+    must(secReOutside.test(h), 'spring-info-section');
+    h = h.replace(secReOutside, (m, a) => `${a}${infoHtml}`);
+  }
 
   // preselect the spring type once the page has loaded
   const sel = p.type === 'C' ? '' : `<script>window.addEventListener('load',function(){try{setType('${p.type}');}catch(e){}});</script>\n`;
