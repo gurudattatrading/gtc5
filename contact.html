@@ -118,7 +118,7 @@ nav.is-scrolled .nav-icon{width:36px;height:36px}
 
 /* ═══ CONTACT SECTION ═══ */
 .contact-wrap{max-width:1280px;margin:0 auto;padding:56px clamp(.9rem,4vw,2.5rem) 80px;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start}
-@media(max-width:900px){.contact-wrap{grid-template-columns:1fr;gap:32px;padding:40px clamp(.9rem,4vw,2.5rem) 60px}}
+@media(max-width:900px){.contact-wrap{grid-template-columns:minmax(0,1fr);gap:32px;padding:40px clamp(.9rem,4vw,2.5rem) 60px}.contact-wrap>*{min-width:0}.ci-item{overflow-wrap:anywhere}}
 @media(max-width:480px){.contact-wrap{gap:24px;padding:24px 1rem 40px}}
 
 /* Info side */
