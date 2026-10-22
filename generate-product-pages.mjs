@@ -125,7 +125,8 @@ const shell = ({ title, description, canonical, body, jsonLd, image, robots = 'i
 
 const orgLd = { '@type': ['Organization','LocalBusiness'], '@id': base + '/#business', name: 'Gurudatta Trading Co.', url: base + '/', logo: base + '/logo.jpg', telephone: '+91 84549 95315', email: 'connect.gtc5@gmail.com', foundingDate: '2000', sameAs: ["https://www.indiamart.com/gurudattatradingco/", "https://www.exportersindia.com/gurudattatradingco/", "https://www.youtube.com/@GURUDATTATRADINGCOMPANY-n1e", "https://share.google/o4efhslVwgSXRJ4IE", "https://in.linkedin.com/in/gurudatta-trading-company-49b166136", "https://www.tradeindia.com/gurudatta-trading-company-103372649/"], areaServed: 'IN', address: { '@type': 'PostalAddress', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', addressCountry: 'IN' } };
 const crumbLd = items => ({ '@type': 'BreadcrumbList', itemListElement: items.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, item: url })) });
-const categoryChips = current => `<div class="chips">${categories.filter(c => slug(c.name) !== current).map(c => `<a href="/products/${slug(c.name)}/">${esc(c.name)}</a>`).join('')}</div>`;
+const categoryHref = category => pillarPage[slug(category.name)]?.url || `${base}/products/${slug(category.name)}/`;
+const categoryChips = current => `<div class="chips">${categories.filter(c => slug(c.name) !== current).map(c => `<a href="${categoryHref(c)}">${esc(c.name)}</a>`).join('')}</div>`;
 const cardHtml = (categorySlug, product, tag = 'h2') => {
   const img = imageUrl(product.img);
   return `<a class="card" href="/products/${categorySlug}/${slug(product.name)}.html">${img ? `<img src="${esc(img)}" alt="${esc(product.name)}" loading="lazy" width="230" height="190" referrerpolicy="no-referrer">` : '<div class="ph">🔩</div>'}<div class="b"><${tag}>${esc(product.name)}</${tag}><p>${esc(clip(plainText(product.tagline || product.desc || ''), 90))}</p></div></a>`;
@@ -165,6 +166,7 @@ for (const category of categories) {
   category.products.forEach((product, idx) => {
     const productSlug = slug(product.name);
     const productUrl = `${base}/products/${categorySlug}/${productSlug}.html`;
+    const categoryCanonicalUrl = pillarPage[categorySlug]?.url || categoryUrl;
     const img = imageUrl(product.img);
     const tagline = plainText(product.tagline) || plainText(product.desc) || `${product.name} from Gurudatta Trading Co., Mumbai.`;
     const description = clip(`${tagline} Made in Mumbai by Gurudatta Trading Co. — ISO 9001:2015, PAN India delivery. Get a quote on WhatsApp.`, 158);
@@ -177,17 +179,17 @@ for (const category of categories) {
       [`How do I get a quote for ${product.name}?`, `Tap “Enquire Now” or message us on WhatsApp. We typically respond within 24 hours.`],
     ];
     const related = [1, 2, 3, 4].map(k => category.products[(idx + k) % category.products.length]).filter((p, i, a) => p !== product && a.indexOf(p) === i);
-    const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › <a href="/products/${categorySlug}/">${esc(category.name)}</a> › <b>${esc(product.name)}</b></nav>
+    const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › <a href="${categoryCanonicalUrl}">${esc(category.name)}</a> › <b>${esc(product.name)}</b></nav>
 <article><div class="detail"><div class="photo">${image}</div><div class="info"><div class="eyebrow">${esc(category.icon || '')} ${esc(category.name)}</div><h1>${esc(product.name)}</h1><p class="tagline">${esc(tagline)}</p>${specs ? `<table class="specs"><tbody>${specs}</tbody></table>` : ''}<div class="btns"><a class="btn" href="/contact.html">📞 Enquire Now</a><a class="btn wa" href="https://wa.me/${WA}?text=${encodeURIComponent('Hi, I am interested in ' + product.name)}" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
 ${product.desc ? `<section class="sec desc"><h2>About ${esc(product.name)}</h2>${product.desc}</section>` : ''}
 <section class="sec trust"><h2>Why buy from Gurudatta Trading Co.</h2><ul><li>Manufacturer in Mumbai, operating since 2000 (25+ years)</li><li>ISO 9001:2015 quality management · GST, IEC and Udyam registered</li><li>Made to your drawing or sample, or supplied from stock</li><li>PAN India delivery, with export enquiries welcome</li><li>Quote typically within 24 hours on WhatsApp, email or phone</li></ul></section>
 <section class="sec faq"><h2>${esc(product.name)} — FAQs</h2>${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
-${related.length ? `<section class="sec"><h2>More ${esc(category.name)} products</h2><div class="grid">${related.map(p => cardHtml(categorySlug, p, 'h3')).join('')}</div><p style="margin-top:14px"><a href="/products/${categorySlug}/">Browse the full ${esc(category.name)} catalogue →</a></p></section>` : ''}
+${related.length ? `<section class="sec"><h2>More ${esc(category.name)} products</h2><div class="grid">${related.map(p => cardHtml(categorySlug, p, 'h3')).join('')}</div><p style="margin-top:14px"><a href="${categoryCanonicalUrl}">Browse the full ${esc(category.name)} catalogue →</a></p></section>` : ''}
 <section class="sec"><h2>Explore other categories</h2>${categoryChips(categorySlug)}</section></article>`;
     const productLd = { '@context': 'https://schema.org', '@graph': [ orgLd,
       { '@type': 'WebPage', name: product.name, description, url: productUrl, inLanguage: 'en-IN', primaryImageOfPage: { '@type': 'ImageObject', url: absImage(product.img) },
         about: { '@type': 'Thing', name: product.name, description: tagline }, isPartOf: { '@type': 'WebSite', name: 'Gurudatta Trading Co.', url: base + '/' } },
-      crumbLd([['Home', base + '/'], ['Products', base + '/products.html'], [category.name, `${base}/products/${categorySlug}/`], [product.name, productUrl]]),
+      crumbLd([['Home', base + '/'], ['Products', base + '/products.html'], [category.name, categoryCanonicalUrl], [product.name, productUrl]]),
       { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ] };
     const t = `${product.name} Manufacturer in Mumbai | Gurudatta Trading Co.`;
