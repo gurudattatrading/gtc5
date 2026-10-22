@@ -382,5 +382,17 @@ if (fs.existsSync(sitemapPath)) {
   fs.writeFileSync(sitemapPath, sitemap);
 }
 if (fs.existsSync(sitemapPath)) { let sm = fs.readFileSync(sitemapPath, 'utf8'); for (const gd of guideList) { const u = `${base}/guides/${gd.file}.html`; if (!sm.includes(u)) sm = sm.replace('</urlset>', `<url><loc>${u}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n</urlset>`); } fs.writeFileSync(sitemapPath, sm); }
-if (fs.existsSync(sitemapPath)) { let sm2 = fs.readFileSync(sitemapPath, 'utf8'); const xu = base + '/extension-spring-manufacturer.html'; if (!sm2.includes(xu)) { sm2 = sm2.replace('</urlset>', `<url><loc>${xu}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n</urlset>`); fs.writeFileSync(sitemapPath, sm2); } }
+if (fs.existsSync(sitemapPath)) {
+  let sm2 = fs.readFileSync(sitemapPath, 'utf8');
+  const importantLandingPages = [
+    { url: base + '/extension-spring-manufacturer.html', priority: '0.8' },
+    { url: base + '/heavy-duty-spring-manufacturer.html', priority: '0.8' },
+  ];
+  for (const page of importantLandingPages) {
+    if (!sm2.includes(page.url)) {
+      sm2 = sm2.replace('</urlset>', `<url><loc>${page.url}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${page.priority}</priority></url>\n</urlset>`);
+    }
+  }
+  fs.writeFileSync(sitemapPath, sm2);
+}
 console.log(`Generated ${categories.length} category pages and ${productsWritten} product pages + 404.html.`);
