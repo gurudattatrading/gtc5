@@ -153,13 +153,13 @@ for (const category of categories) {
     [`How quickly can I get a quote?`, `Typically within 24 hours by WhatsApp, email (connect.gtc5@gmail.com) or phone.`],
   ];
   const catBody = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › <b>${esc(category.name)}</b></nav><section class="hero"><div class="eyebrow">Product category</div><h1>${esc(category.name)} Manufacturer &amp; Supplier in Mumbai</h1><p>${esc(intro)} Gurudatta Trading Co. has been manufacturing and supplying since 2000, with ISO 9001:2015 quality management and PAN India delivery.</p><div class="btns"><a class="btn" href="/contact.html">📞 Enquire Now</a><a class="btn wa" href="https://wa.me/${WA}?text=${encodeURIComponent('Hi, I am interested in ' + category.name)}" target="_blank" rel="noopener">WhatsApp Quote</a></div>${pillar ? `<p style="margin-top:14px"><a href="${pillar.url}">Read ${pillar.label} →</a></p>` : ''}</section><section class="grid" aria-label="${esc(category.name)} product catalogue">${category.products.map(p => cardHtml(categorySlug, p)).join('')}</section>${catExtra[categorySlug] || ''}<section class="sec faq"><h2>${esc(category.name)} — FAQs</h2>${catFaq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section><section class="sec"><h2>Explore other product categories</h2>${categoryChips(categorySlug)}</section>`;
+  const catCanonical = pillar ? pillar.url : categoryUrl;
   const catLd = { '@context': 'https://schema.org', '@graph': [ orgLd,
-    { '@type': 'CollectionPage', name: `${category.name} Products`, description: catDesc, url: categoryUrl, isPartOf: { '@type': 'WebSite', name: 'Gurudatta Trading Co.', url: base + '/' },
+    { '@type': 'CollectionPage', name: `${category.name} Products`, description: catDesc, url: catCanonical, isPartOf: { '@type': 'WebSite', name: 'Gurudatta Trading Co.', url: base + '/' },
       mainEntity: { '@type': 'ItemList', numberOfItems: category.products.length, itemListElement: category.products.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${categoryUrl}${slug(p.name)}.html`, name: p.name })) } },
-    crumbLd([['Home', base + '/'], ['Products', base + '/products.html'], [category.name, categoryUrl]]),
+    crumbLd([['Home', base + '/'], ['Products', base + '/products.html'], [category.name, catCanonical]]),
     { '@type': 'FAQPage', mainEntity: catFaq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
   ] };
-  const catCanonical = pillar ? pillar.url : categoryUrl;
   const catTitle = pillar ? clip(`${category.name} Products — Browse the Range | Gurudatta Trading`, 65) : clip(`${category.name} Manufacturer & Supplier Mumbai | Gurudatta Trading`, 65);
   fs.writeFileSync(path.join(categoryDir, 'index.html'), shell({ title: catTitle, description: catDesc, canonical: catCanonical, body: catBody, jsonLd: catLd, image: absImage(category.products[0]?.img) }));
 
