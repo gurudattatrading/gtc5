@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ0YP0F8NG"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-XQ0YP0F8NG');
+  /* Load gtag.js after the page has finished loading so it doesn't compete with first paint */
+  (function(){
+    function loadGtag(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-XQ0YP0F8NG';document.head.appendChild(s);}
+    if(document.readyState==='complete'){loadGtag();}else{window.addEventListener('load',loadGtag);}
+  })();
 </script> 
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5"/>
@@ -50,7 +54,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What types of springs does Gurudatta Trading Co. manufacture?","acceptedAnswer":{"@type":"Answer","text":"We manufacture compression springs, extension springs and torsion springs in mild steel, stainless steel and music wire, in both standard catalogue sizes and fully custom dimensions."}},{"@type":"Question","name":"Do you manufacture custom springs to a drawing or sample?","acceptedAnswer":{"@type":"Answer","text":"Yes. Share your drawing, sample spring or working parameters (wire diameter, outer diameter, free length, load) over WhatsApp or email and we will develop the spring to match."}},{"@type":"Question","name":"How do I calculate spring rate before placing an order?","acceptedAnswer":{"@type":"Answer","text":"Use our free online spring rate calculator enter wire diameter, outer diameter, free length and coil count to instantly see spring rate, safe load, deflection and a 3D preview."}},{"@type":"Question","name":"Do you deliver springs outside Mumbai and Maharashtra?","acceptedAnswer":{"@type":"Answer","text":"Yes, we dispatch PAN India from our Mumbai facility, and are also registered for import-export (IEC) for international orders."}},{"@type":"Question","name":"Is there a minimum order quantity for springs?","acceptedAnswer":{"@type":"Answer","text":"We supply everything from single prototype springs to bulk industrial orders contact us with your quantity and we will confirm pricing and lead time."}},{"@type":"Question","name":"How quickly will I get a quotation?","acceptedAnswer":{"@type":"Answer","text":"We respond to spring enquiries within 24 hours over WhatsApp, email or phone with a free custom quote."}},{"@type":"Question","name":"How do I choose the right compression spring manufacturer in India?","acceptedAnswer":{"@type":"Answer","text":"Look for a company that manufactures in-house rather than trading finished springs, works in your required material, and can quote both prototype and bulk quantities with a fast turnaround."}},{"@type":"Question","name":"What is the HSN code and GST rate for compression springs in India?","acceptedAnswer":{"@type":"Answer","text":"Helical steel springs fall under HSN code 7320 (732020 for helical springs), which currently attracts 18% GST in India."}},{"@type":"Question","name":"Can I get a sample before placing a bulk compression spring order?","acceptedAnswer":{"@type":"Answer","text":"Yes. For new or custom designs we typically manufacture a small sample or prototype batch for your approval before bulk production."}},{"@type":"Question","name":"What surface finishes are available for compression springs?","acceptedAnswer":{"@type":"Answer","text":"We offer plain as-coiled finish, zinc plating, powder coating and passivation for stainless steel, depending on the operating environment."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@700;800&display=swap" media="print" onload="this.onload=null;this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/></noscript>
 <style>
 /* ============================================================
@@ -430,6 +434,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
   .mcta a.call{background:#1b2a3d}
   .mcta a.wa{background:#15803d}
   .bnav{display:none}
+  .hero-glow2{bottom:auto;top:430px}
   body{padding-bottom:50px}
 }
 .rng-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:28px}
@@ -443,6 +448,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
 </style>
 </head>
 <body>
+<div id="nav-sentinel" aria-hidden="true" style="position:absolute;top:12px;left:0;width:1px;height:1px;pointer-events:none"></div>
 
 <!-- ===== WHATSAPP FLOATING BUTTON (FIX 13) ===== -->
 <a href="https://wa.me/918454995315?text=Hello%20Gurudatta%20Trading%20Co.%2C%20I%20need%20spring%20enquiry."
@@ -902,12 +908,18 @@ const gnav = document.getElementById('gnav');
 const burgerBtn = document.getElementById('burgerBtn');
 const mobNav = document.getElementById('mob-nav');
 
-function setNavScrolled(){
-  if (!gnav) return;
-  gnav.classList.toggle('is-scrolled', window.scrollY > 12);
-}
-requestAnimationFrame(setNavScrolled);
-window.addEventListener('scroll', setNavScrolled, { passive: true });
+/* Nav 'scrolled' state: IntersectionObserver on a sentinel just below the top, so no layout is forced by reading scrollY */
+(function(){
+  const sentinel = document.getElementById('nav-sentinel');
+  if (!gnav || !sentinel) return;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      gnav.classList.toggle('is-scrolled', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  } else {
+    window.addEventListener('scroll', function(){ gnav.classList.toggle('is-scrolled', window.scrollY > 12); }, { passive: true });
+  }
+})();
 
 function closeMobNav(){
   if (!mobNav || !burgerBtn) return;
