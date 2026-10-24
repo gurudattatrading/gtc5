@@ -13,7 +13,7 @@
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.onload=null;this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -22,7 +22,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f2c;color:#fff;min-height:100
   --P:#ff6b00;--Pd:#e55a00;
   --navy:#0a0f2c;--navy2:#0d1535;--navy3:#111a3e;
   --card:#0f1940;--cb:rgba(255,255,255,0.07);
-  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.32);
+  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.6);
   --bdr:rgba(255,255,255,0.1);--bdr2:rgba(255,255,255,0.16);
   --r:12px;--rs:8px;
 }
@@ -82,7 +82,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
 .ft-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px;padding:0 10px}
 .ft-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;transition:.13s}
 .ft-links a:hover{color:#ff6b00}
-.ft-copy{font-size:11px;color:rgba(255,255,255,.16);line-height:1.6}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6}
 @media(max-width:480px){footer{padding:18px 14px}.ft-links{gap:10px 16px}.ft-links a{font-size:11.5px}}
 @media(max-width:360px){.ft-links{gap:8px 12px}.ft-links a{font-size:11px}.ft-copy{font-size:10px}}
 
@@ -108,18 +108,20 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
   .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;gap:1px;background:rgba(255,255,255,.1)}
   .mcta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;font:700 14px 'Montserrat',Arial,sans-serif;text-decoration:none;color:#fff}
   .mcta a.call{background:#1b2a3d}
-  .mcta a.wa{background:#22c55e}
+  .mcta a.wa{background:#15803d}
   body{padding-bottom:50px}
 }
 
+.ft-links a{display:inline-block;padding:7px 4px}
 </style>
 </head>
 <body>
+<div id="nav-sentinel" aria-hidden="true" style="position:absolute;top:12px;left:0;width:1px;height:1px;pointer-events:none"></div>
 
 <nav id="gnav">
   <div class="nav-in">
     <a class="nav-logo" href="/">
-      <div class="nav-icon"><img src="logo.jpg" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
+      <div class="nav-icon"><img width="36" height="36" src="logo-96.webp" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
       <div class="nav-txt">GURUDATTA TRADING CO.<span class="nav-sub">No.1 Compression · Mumbai, India</span></div>
     </a>
     <div class="nav-links">
@@ -133,7 +135,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
     </div>
     <button class="burger" id="burgerBtn" onclick="toggleNav()" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
-  <div class="mob-nav" id="mob-nav" aria-hidden="true">
+  <div class="mob-nav" id="mob-nav" inert>
     <a href="/">🏠 Home</a>
     <a href="calculator.html">⚙️ Calculator</a>
     <a href="products.html">🔩 Products</a>
@@ -144,6 +146,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
   </div>
 </nav>
 
+<main id="main">
 <div class="hero">
   <div class="hero-badge">🔒 Your Trust Matters</div>
   <h1>Privacy <span>Policy</span></h1>
@@ -236,6 +239,8 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="ft-inner">
     <div class="ft-logo">GURUDATTA <span>TRADING CO.</span></div>
@@ -267,17 +272,23 @@ const gnav = document.getElementById('gnav');
 const burgerBtn = document.getElementById('burgerBtn');
 const mobNav = document.getElementById('mob-nav');
 
-function setNavScrolled(){
-  if (!gnav) return;
-  gnav.classList.toggle('is-scrolled', window.scrollY > 12);
-}
-setNavScrolled();
-window.addEventListener('scroll', setNavScrolled, { passive: true });
+/* Nav 'scrolled' state: IntersectionObserver on a sentinel just below the top, so no layout is forced by reading scrollY */
+(function(){
+  const sentinel = document.getElementById('nav-sentinel');
+  if (!gnav || !sentinel) return;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      gnav.classList.toggle('is-scrolled', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  } else {
+    window.addEventListener('scroll', function(){ gnav.classList.toggle('is-scrolled', window.scrollY > 12); }, { passive: true });
+  }
+})();
 
 function closeMobNav(){
   if (!mobNav || !burgerBtn) return;
   mobNav.classList.remove('open');
-  mobNav.setAttribute('aria-hidden', 'true');
+  mobNav.inert = true;
   burgerBtn.classList.remove('open');
   burgerBtn.setAttribute('aria-expanded', 'false');
   burgerBtn.textContent = '☰';
@@ -286,7 +297,7 @@ function closeMobNav(){
 function toggleNav(){
   if (!mobNav || !burgerBtn) return;
   const nowOpen = mobNav.classList.toggle('open');
-  mobNav.setAttribute('aria-hidden', String(!nowOpen));
+  mobNav.inert = !nowOpen;
   burgerBtn.classList.toggle('open', nowOpen);
   burgerBtn.setAttribute('aria-expanded', String(nowOpen));
   burgerBtn.textContent = nowOpen ? '✕' : '☰';

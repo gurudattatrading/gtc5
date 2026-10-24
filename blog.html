@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.onload=null;this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
 <meta name="description" content="Spring engineering guides from Gurudatta Trading Co. spring types, spring rate, compression spring design, materials, extension and torsion springs, measurement and manufacturing guides for Mumbai and India.">
 <meta name="keywords" content="spring manufacturer blog, spring engineering guides, spring rate guide, compression spring design, extension spring guide, torsion spring guide, spring material selection, how to measure a spring, spring manufacturer Mumbai, spring manufacturer Maharashtra">
 <meta name="author" content="Gurudatta Trading Co.">
@@ -70,7 +70,7 @@
   --bg:#0a0a0f;--surface:#111118;--card:#16161f;--card2:#1c1c28;
   --border:#252535;--dim:#2e2e44;
   --accent:#f97316;--aglow:rgba(249,115,22,.12);--aglow2:rgba(249,115,22,.06);
-  --text:#e8e8f0;--muted:#7a7a90;--faint:#3a3a52;
+  --text:#e8e8f0;--muted:#8a8aa3;--faint:#3a3a52;
   --blue:#3b8bff;--green:#22c55e;--red:#ef4444;
 }
 :root{
@@ -265,7 +265,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
 .ft-col a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12.5px}.ft-col a:hover{color:#fff}
 @media(min-width:769px){.ft-col summary{pointer-events:none}}
 @media(max-width:768px){.ft-cols{grid-template-columns:1fr;gap:0;padding:0 16px}.ft-col{padding:13px 0}.ft-col summary{font-size:14px}.ft-col summary::after{content:'+';color:var(--P,#ff6b00);font-size:20px}.ft-col[open] summary::after{content:'\2013'}.ft-col ul{grid-template-columns:1fr 1fr;gap:10px 14px}.ft-col a{font-size:13px}}
-.ft-copy{font-size:11px;color:rgba(255,255,255,.16);line-height:1.6}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6}
 @media(max-width:480px){footer{padding:18px 14px}.ft-links{gap:10px 16px}.ft-links a{font-size:11.5px}}
 @media(max-width:360px){.ft-links{gap:8px 12px}.ft-links a{font-size:11px}.ft-copy{font-size:10px}}
 
@@ -393,12 +393,15 @@ details.toc[open] summary::after{content:'\2212'}
   .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;gap:1px;background:rgba(255,255,255,.1)}
   .mcta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;font:700 14px 'Montserrat',Arial,sans-serif;text-decoration:none;color:#fff}
   .mcta a.call{background:#1b2a3d}
-  .mcta a.wa{background:#22c55e}
+  .mcta a.wa{background:#15803d}
+  .bnav{display:none}
   body{padding-bottom:50px}
 }
+.ft-links a{display:inline-block;padding:7px 4px}
 </style>
 </head>
 <body>
+<div id="nav-sentinel" aria-hidden="true" style="position:absolute;top:12px;left:0;width:1px;height:1px;pointer-events:none"></div>
 
 <a href="https://wa.me/918454995315?text=Hello%20Gurudatta%20Trading%20Co.%2C%20I%20need%20a%20spring%20quote%20in%20Maharashtra."
    class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
@@ -410,7 +413,7 @@ details.toc[open] summary::after{content:'\2212'}
 <nav class="gnav" id="gnav">
   <div class="nav-in">
     <a class="nav-logo" href="/">
-      <div class="nav-icon"><img src="logo.jpg" alt="GCT Logo" onerror="var p=this.parentNode;p.style.background='var(--P)';p.style.fontSize='18px';p.textContent='⚙️';this.remove()"></div>
+      <div class="nav-icon"><img width="36" height="36" src="logo-96.webp" alt="GCT Logo" onerror="var p=this.parentNode;p.style.background='var(--P)';p.style.fontSize='18px';p.textContent='⚙️';this.remove()"></div>
       <div class="nav-txt">GURUDATTA TRADING CO.<span class="nav-sub">No.1 Compression · Mumbai, India</span></div>
     </a>
     <div class="nav-links">
@@ -424,7 +427,7 @@ details.toc[open] summary::after{content:'\2212'}
     </div>
     <button class="burger" id="burgerBtn" onclick="toggleNav()" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
-  <div class="mob-nav" id="mob-nav" aria-hidden="true">
+  <div class="mob-nav" id="mob-nav" inert>
     <a href="/">🏠 Home</a>
     <a href="calculator.html">⚙️ Calculator</a>
     <a href="products.html">🔩 Products</a>
@@ -478,7 +481,7 @@ details.toc[open] summary::after{content:'\2212'}
       </div>
       <div class="fp-body">
         <div class="fp-eyebrow">⭐ Featured Guide</div>
-        <h3>Types of Springs: Compression, Extension, Torsion &amp; Material Selection Guide</h3>
+        <h3 aria-level="2">Types of Springs: Compression, Extension, Torsion &amp; Material Selection Guide</h3>
         <p>The complete evergreen guide every spring type explained, a material selection guide, common mistakes, and a full glossary of spring terms.</p>
         <div class="fp-meta"><span>📘 Guide</span><span>⏱ 10 min read</span><span>Updated 25 Aug 2026</span></div>
       </div>
@@ -520,7 +523,7 @@ details.toc[open] summary::after{content:'\2212'}
         </div>
         <div class="bc-body">
           <span class="bc-tag">Guide</span>
-          <h4>Free Spring Calculator Guide</h4>
+          <h4 aria-level="3">Free Spring Calculator Guide</h4>
           <p>Is the spring calculator free? Yes compression, extension &amp; torsion spring calculators explained, no signup required.</p>
           <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div>
         </div>
@@ -533,7 +536,7 @@ details.toc[open] summary::after{content:'\2212'}
         </div>
         <div class="bc-body">
           <span class="bc-tag">Guide</span>
-          <h4>Types of Springs Guide</h4>
+          <h4 aria-level="3">Types of Springs Guide</h4>
           <p>Compression, extension, torsion, die &amp; disc springs explained how to choose the right type and material.</p>
           <div class="bc-meta"><span>10 min read</span><span class="bc-read">Read Guide →</span></div>
         </div>
@@ -546,19 +549,19 @@ details.toc[open] summary::after{content:'\2212'}
         </div>
         <div class="bc-body">
           <span class="bc-tag">Guide</span>
-          <h4>Compression Spring Manufacturer Guide</h4>
+          <h4 aria-level="3">Compression Spring Manufacturer Guide</h4>
           <p>Manufacturer vs trader, a checklist before you choose, materials and what decides compression spring price in India.</p>
           <div class="bc-meta"><span>9 min read</span><span class="bc-read">Read Guide →</span></div>
         </div>
       </a>
-      <a class="blog-card cat-guide" href="#spring-rate-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 72H82M30 72V48M70 72V32M30 48L70 32" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="48" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/><circle cx="70" cy="32" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Rate Guide</h4><p>Understand spring rate, load and deflection, and how wire size, coil diameter and active coils affect performance.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide" href="#compression-spring-design"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="25,25 75,25 25,38 75,38 25,51 75,51 25,64 75,64 25,77 75,77" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Compression Spring Design Guide</h4><p>A practical checklist covering wire diameter, coil diameter, free length, active coils, load and solid height.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide" href="#spring-material-selection"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="24" width="56" height="52" rx="7" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 40H65M35 52H65M35 64H55" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Spring Material Selection Guide</h4><p>How to choose spring wire based on corrosion exposure, temperature, cycle life, strength and application conditions.</p><div class="bc-meta"><span>9 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide" href="#extension-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25v20q0 15 25 15t25-15V25M25 18v10M75 18v10M18 18h14M68 18h14" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Extension Spring Guide</h4><p>Learn about hooks, initial tension, extended length, working load and the key measurements needed for replacement.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide" href="#torsion-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="24" fill="none" stroke="#f97316" stroke-width="4"/><path d="M50 26V12M50 74V88M74 50h14M26 50H12" stroke="#3b8bff" stroke-width="4" stroke-linecap="round"/><path d="M62 32l9-5-2 10" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4>Torsion Spring Guide</h4><p>Torque, leg position, winding direction and the common design considerations for hinges, clamps and levers.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide cat-engineering" href="#spring-manufacturing-process"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M50 20v12M80 50H68M50 80V68M20 50h12" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Engineering</span><h4>Spring Manufacturing Process</h4><p>From wire selection and coiling to stress relieving, finishing, inspection and final testing.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Article →</span></div></div></a>
-      <a class="blog-card cat-guide" href="#how-to-measure-a-spring"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 30h60M20 70h60M20 30v40M80 30v40" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 30v40M50 30v40M65 30v40" stroke="#f97316" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Practical</span><h4>How to Measure a Spring Before Ordering</h4><p>A replacement-spring checklist for wire diameter, coil diameter, free length, hooks, legs and working dimensions.</p><div class="bc-meta"><span>6 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
-      <a class="blog-card cat-guide cat-engineering" href="#spring-failure-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25l18 18-12 12 18 20M75 25L57 43l12 12-18 20" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="20" r="4" fill="#3b8bff"/></svg></div><div class="bc-body"><span class="bc-tag">Industrial</span><h4>Spring Failure Guide</h4><p>Common signs of fatigue, overload, corrosion, incorrect geometry and installation issues plus a replacement checklist.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Article →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#spring-rate-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 72H82M30 72V48M70 72V32M30 48L70 32" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="30" cy="48" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/><circle cx="70" cy="32" r="5" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4 aria-level="3">Spring Rate Guide</h4><p>Understand spring rate, load and deflection, and how wire size, coil diameter and active coils affect performance.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#compression-spring-design"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polyline points="25,25 75,25 25,38 75,38 25,51 75,51 25,64 75,64 25,77 75,77" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4 aria-level="3">Compression Spring Design Guide</h4><p>A practical checklist covering wire diameter, coil diameter, free length, active coils, load and solid height.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#spring-material-selection"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="24" width="56" height="52" rx="7" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 40H65M35 52H65M35 64H55" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4 aria-level="3">Spring Material Selection Guide</h4><p>How to choose spring wire based on corrosion exposure, temperature, cycle life, strength and application conditions.</p><div class="bc-meta"><span>9 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#extension-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25v20q0 15 25 15t25-15V25M25 18v10M75 18v10M18 18h14M68 18h14" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4 aria-level="3">Extension Spring Guide</h4><p>Learn about hooks, initial tension, extended length, working load and the key measurements needed for replacement.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#torsion-spring-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="24" fill="none" stroke="#f97316" stroke-width="4"/><path d="M50 26V12M50 74V88M74 50h14M26 50H12" stroke="#3b8bff" stroke-width="4" stroke-linecap="round"/><path d="M62 32l9-5-2 10" fill="none" stroke="#e8e8f0" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Guide</span><h4 aria-level="3">Torsion Spring Guide</h4><p>Torque, leg position, winding direction and the common design considerations for hinges, clamps and levers.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide cat-engineering" href="#spring-manufacturing-process"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M50 20v12M80 50H68M50 80V68M20 50h12" stroke="#f97316" stroke-width="4" stroke-linecap="round"/></svg></div><div class="bc-body"><span class="bc-tag">Engineering</span><h4 aria-level="3">Spring Manufacturing Process</h4><p>From wire selection and coiling to stress relieving, finishing, inspection and final testing.</p><div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Article →</span></div></div></a>
+      <a class="blog-card cat-guide" href="#how-to-measure-a-spring"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 30h60M20 70h60M20 30v40M80 30v40" fill="none" stroke="#3b8bff" stroke-width="4"/><path d="M35 30v40M50 30v40M65 30v40" stroke="#f97316" stroke-width="3"/></svg></div><div class="bc-body"><span class="bc-tag">Practical</span><h4 aria-level="3">How to Measure a Spring Before Ordering</h4><p>A replacement-spring checklist for wire diameter, coil diameter, free length, hooks, legs and working dimensions.</p><div class="bc-meta"><span>6 min read</span><span class="bc-read">Read Guide →</span></div></div></a>
+      <a class="blog-card cat-guide cat-engineering" href="#spring-failure-guide"><div class="bc-visual"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M25 25l18 18-12 12 18 20M75 25L57 43l12 12-18 20" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="20" r="4" fill="#3b8bff"/></svg></div><div class="bc-body"><span class="bc-tag">Industrial</span><h4 aria-level="3">Spring Failure Guide</h4><p>Common signs of fatigue, overload, corrosion, incorrect geometry and installation issues plus a replacement checklist.</p><div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Article →</span></div></div></a>
 
       <a class="blog-card cat-guide" href="industrial-spring-manufacturer-mumbai.html">
         <span class="bc-new">New</span>
@@ -567,7 +570,7 @@ details.toc[open] summary::after{content:'\2212'}
         </div>
         <div class="bc-body">
           <span class="bc-tag">Guide</span>
-          <h4>Industrial Spring Manufacturer in Mumbai</h4>
+          <h4 aria-level="3">Industrial Spring Manufacturer in Mumbai</h4>
           <p>A 7-point checklist, certifications, materials and pricing for choosing an industrial spring manufacturer in Mumbai.</p>
           <div class="bc-meta"><span>10 min read</span><span class="bc-read">Read Guide →</span></div>
         </div>
@@ -618,7 +621,7 @@ details.toc[open] summary::after{content:'\2212'}
           </div>
           <div class="bc-body">
             <span class="bc-tag">City Guide</span>
-            <h4>Spring Manufacturer in Mumbai</h4>
+            <h4 aria-level="3">Spring Manufacturer in Mumbai</h4>
             <p>Goregaon, Malad, Borivali and every Mumbai suburb plus our free spring rate calculator with a 3D preview.</p>
             <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
@@ -634,7 +637,7 @@ details.toc[open] summary::after{content:'\2212'}
           </div>
           <div class="bc-body">
             <span class="bc-tag">City Guide</span>
-            <h4>Spring Manufacturer in Pune</h4>
+            <h4 aria-level="3">Spring Manufacturer in Pune</h4>
             <p>Chakan, Bhosari, Pimpri-Chinchwad and Hadapsar — springs for Pune's auto-ancillary &amp; engineering industry.</p>
             <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
@@ -651,7 +654,7 @@ details.toc[open] summary::after{content:'\2212'}
           </div>
           <div class="bc-body">
             <span class="bc-tag">Regional Guide</span>
-            <h4>Spring Manufacturer in Maharashtra</h4>
+            <h4 aria-level="3">Spring Manufacturer in Maharashtra</h4>
             <p>Manufacturing capability and delivery coverage across Pune, Nashik, Kolhapur, Nagpur and the rest of the state.</p>
             <div class="bc-meta"><span>8 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
@@ -669,7 +672,7 @@ details.toc[open] summary::after{content:'\2212'}
           </div>
           <div class="bc-body">
             <span class="bc-tag">Industrial Belt Guide</span>
-            <h4>Spring Manufacturer for Bhiwandi, Taloja &amp; Thane MIDC</h4>
+            <h4 aria-level="3">Spring Manufacturer for Bhiwandi, Taloja &amp; Thane MIDC</h4>
             <p>Bulk &amp; OEM springs for factories across Mumbai's industrial belt — Bhiwandi, Taloja, Wagle Estate &amp; Navi Mumbai.</p>
             <div class="bc-meta"><span>7 min read</span><span class="bc-read">Read Post →</span></div>
           </div>
@@ -740,20 +743,29 @@ const gnav=document.getElementById('gnav');
 const burgerBtn=document.getElementById('burgerBtn');
 const mobNav=document.getElementById('mob-nav');
 
-function setNavScrolled(){ if(!gnav)return; gnav.classList.toggle('is-scrolled', window.scrollY>12); }
-setNavScrolled();
-window.addEventListener('scroll', setNavScrolled, {passive:true});
+/* Nav 'scrolled' state: IntersectionObserver on a sentinel just below the top, so no layout is forced by reading scrollY */
+(function(){
+  const sentinel = document.getElementById('nav-sentinel');
+  if (!gnav || !sentinel) return;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      gnav.classList.toggle('is-scrolled', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  } else {
+    window.addEventListener('scroll', function(){ gnav.classList.toggle('is-scrolled', window.scrollY > 12); }, { passive: true });
+  }
+})();
 
 function closeMobNav(){
   if(!mobNav||!burgerBtn)return;
-  mobNav.classList.remove('open'); mobNav.setAttribute('aria-hidden','true');
+  mobNav.classList.remove('open'); mobNav.inert = true;
   burgerBtn.classList.remove('open'); burgerBtn.setAttribute('aria-expanded','false');
   burgerBtn.textContent='☰';
 }
 function toggleNav(){
   if(!mobNav||!burgerBtn)return;
   const nowOpen=mobNav.classList.toggle('open');
-  mobNav.setAttribute('aria-hidden', String(!nowOpen));
+  mobNav.inert = !nowOpen;
   burgerBtn.classList.toggle('open', nowOpen);
   burgerBtn.setAttribute('aria-expanded', String(nowOpen));
   burgerBtn.textContent = nowOpen ? '✕' : '☰';

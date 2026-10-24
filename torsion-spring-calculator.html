@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ0YP0F8NG"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-XQ0YP0F8NG');
+  /* Load gtag.js after the page has finished loading so it doesn't compete with first paint */
+  (function(){
+    function loadGtag(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-XQ0YP0F8NG';document.head.appendChild(s);}
+    if(document.readyState==='complete'){loadGtag();}else{window.addEventListener('load',loadGtag);}
+  })();
 </script>
     
 <meta charset="UTF-8">
@@ -43,7 +47,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.onload=null;this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
 <style>
 /* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -55,7 +59,7 @@ body{font-family:'Inter',sans-serif;background:#0a0f2c;color:#fff;min-height:100
   --P:#ff6b00;--Pd:#e55a00;
   --navy:#0a0f2c;--navy2:#0d1535;--navy3:#111a3e;
   --card:#0f1940;--cb:rgba(255,255,255,0.07);
-  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.32);
+  --tm:rgba(255,255,255,0.6);--tl:rgba(255,255,255,0.6);
   --bdr:rgba(255,255,255,0.1);--bdr2:rgba(255,255,255,0.16);
   --ibg:rgba(255,255,255,0.06);
   --ok:#22c55e;--okbg:rgba(34,197,94,0.12);--okb:rgba(34,197,94,0.3);
@@ -133,7 +137,7 @@ nav{background:var(--navy2);border-bottom:1px solid var(--bdr);position:sticky;t
 .pills{display:flex;background:var(--ibg);border:1px solid var(--bdr);border-radius:20px;overflow:hidden}
 .pill{padding:6px 16px;font-size:12px;font-weight:600;cursor:pointer;color:var(--tm);border-right:1px solid var(--bdr);transition:.13s;user-select:none}
 .pill:last-child{border-right:none}
-.pill.on{background:var(--P);color:#fff}
+.pill.on{background:var(--P);color:#111}
 
 /* field label */
 .flbl{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:5px}
@@ -144,7 +148,7 @@ nav{background:var(--navy2);border-bottom:1px solid var(--bdr);position:sticky;t
 .mode-pills{display:flex;background:var(--ibg);border:1px solid var(--bdr);border-radius:14px;overflow:hidden}
 .mpill{padding:3px 12px;font-size:11px;font-weight:600;cursor:pointer;color:var(--tm);border-right:1px solid var(--bdr);transition:.12s;user-select:none}
 .mpill:last-child{border-right:none}
-.mpill.on{background:var(--P);color:#fff}
+.mpill.on{background:var(--P);color:#111}
 
 /* inputs */
 /* BUGFIX: Mobile Number field was switched to type="tel" (so maxlength/keypad work
@@ -222,7 +226,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 
 /* calc & reset btns */
 .btn-row{display:flex;gap:10px}
-.calc-btn{flex:1;padding:13px;background:var(--P);color:#fff;border:none;border-radius:var(--rs);font-size:15px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.03em;transition:.14s;display:flex;align-items:center;justify-content:center;gap:8px}
+.calc-btn{flex:1;padding:13px;background:var(--P);color:#111;border:none;border-radius:var(--rs);font-size:15px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.03em;transition:.14s;display:flex;align-items:center;justify-content:center;gap:8px}
 .calc-btn:hover{background:var(--Pd);transform:translateY(-1px);box-shadow:0 4px 18px rgba(255,107,0,.35)}
 .calc-btn:active{transform:translateY(0)}
 .reset-btn{padding:13px 18px;background:transparent;color:var(--tm);border:1.5px solid var(--bdr2);border-radius:var(--rs);font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:.14s;white-space:nowrap}
@@ -320,7 +324,7 @@ footer{background:#0d1535;border-top:1px solid rgba(255,255,255,.1);padding:24px
 .ft-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:10px;padding:0 10px}
 .ft-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;transition:.13s}
 .ft-links a:hover{color:#ff6b00}
-.ft-copy{font-size:11px;color:rgba(255,255,255,.16);line-height:1.6}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6}
 @media(max-width:480px){footer{padding:18px 14px}.ft-links{gap:10px 16px}.ft-links a{font-size:11.5px}}
 @media(max-width:360px){.ft-links{gap:8px 12px}.ft-links a{font-size:11px}.ft-copy{font-size:10px}}
 
@@ -339,10 +343,11 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
   .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;gap:1px;background:rgba(255,255,255,.1)}
   .mcta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;font:700 14px 'Montserrat',Arial,sans-serif;text-decoration:none;color:#fff}
   .mcta a.call{background:#1b2a3d}
-  .mcta a.wa{background:#22c55e}
+  .mcta a.wa{background:#15803d}
   body{padding-bottom:50px}
 }
 
+.ft-links a{display:inline-block;padding:7px 4px}
 </style>
 </head>
 <body>
@@ -351,7 +356,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
 <nav>
   <div class="nav-in">
     <a class="nav-logo" href="/">
-      <div class="nav-icon"><img src="logo.jpg" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
+      <div class="nav-icon"><img width="36" height="36" src="logo-96.webp" alt="GCT Logo" onerror="this.parentNode.innerHTML='⚙️';this.parentNode.style.background='var(--P)';this.parentNode.style.fontSize='18px'"></div>
       <div class="nav-txt">GURUDATTA TRADING CO.<span class="nav-sub">No.1 Compression · Mumbai, India</span></div>
     </a>
     <div class="nav-links">
@@ -377,6 +382,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
 </nav>
 
 <!-- HERO -->
+<main id="main">
 <div class="hero">
   <div class="hero-badge">⚙ Smart Tool</div>
   <h1>Torsion Spring <span>Calculator</span></h1>
@@ -509,7 +515,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
         <!-- Material -->
         <div class="form-section">
           <label class="flbl">Material Type</label>
-          <select id="mat">
+          <select id="mat" aria-label="Wire material">
             <option value="81500|203000">Music Wire ASTM A228 — G=81,500 N/mm²</option>
             <option value="79300|196500">Hard Drawn Wire ASTM A227 — G=79,300 N/mm²</option>
             <option value="80700|203000">Chrome Vanadium ASTM A232 — G=80,700 N/mm²</option>
@@ -742,6 +748,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
 
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
