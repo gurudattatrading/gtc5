@@ -424,8 +424,17 @@ function restoreViewFromUrl(){
   var path=decodeURIComponent(location.pathname);
   var params=new URLSearchParams(location.search);
   var cat=params.get('cat'),p=params.get('p');
-  if(cat&&p){showProduct(cat,p,true);history.replaceState({view:'product',cat:cat,p:p},'',routeUrl('product',cat,p));return;}
-  if(cat){showCat(cat,true);history.replaceState({view:'cat',cat:cat},'',routeUrl('cat',cat));return;}
+  // Legacy query-string URLs are no longer canonical. Send them to the
+  // dedicated, crawlable static product/category page instead of rewriting
+  // the address bar while keeping the SPA document loaded.
+  if(cat&&p){
+    window.location.replace(routeUrl('product',cat,p));
+    return;
+  }
+  if(cat){
+    window.location.replace(categoryCanonicalUrl(cat));
+    return;
+  }
   var productMatch=path.match(/\/products\/([^/]+)\/([^/]+)\.html\/?$/);
   if(productMatch){showProduct(productMatch[1],productMatch[2],true);return;}
   var categoryMatch=path.match(/\/products\/([^/]+)\/?$/);
