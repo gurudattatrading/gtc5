@@ -349,7 +349,7 @@ footer .ft-col a,.foot .ft-col a{color:rgba(255,255,255,.6);margin:0;font-size:1
 
 .ft-links a{display:inline-block;padding:7px 4px}
 </style>
-</head>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href],[onclick*="wa.me"],[onclick*="tel:"]');if(!a)return;var h=a.getAttribute('href')||a.getAttribute('onclick')||'',n=/wa\.me|whatsapp/i.test(h)?'whatsapp_click':h.indexOf('tel:')>-1?'phone_click':h.indexOf('mailto:')===0?'email_click':'';if(n)gtag('event',n,{link_url:h.slice(0,120),page_path:location.pathname});},{passive:true});</script></head>
 <body>
 
 <!-- NAV -->
