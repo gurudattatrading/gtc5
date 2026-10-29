@@ -1,8 +1,9 @@
 # Prerender.io integration (not active until configured)
 
-The website already serves many product pages as static HTML. This optional
-Cloudflare Worker sends supported search/AI crawler requests to Prerender.io
-for a rendered snapshot; regular visitors and static assets go to GitHub Pages.
+The website already serves most product pages as static HTML. This optional
+Cloudflare Worker sends supported search/AI crawler requests for the JavaScript-rendered
+`/products.html` catalogue shell to Prerender.io. Static product URLs and legacy
+query-string URLs pass through to GitHub Pages unchanged.
 
 ## Before deploying
 
