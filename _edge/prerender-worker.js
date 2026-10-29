@@ -13,11 +13,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Only render public HTML page requests. Never send assets to Prerender.
+    // The repo's product pages are already static HTML. Only the products
+    // catalogue shell is rendered client-side, so prerender that page alone.
+    // Legacy query URLs must pass through to the origin's canonical redirect.
     if (request.method !== "GET") return fetch(request);
-    if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") {
-      return fetch(request);
-    }
+    if (url.pathname !== "/products.html") return fetch(request);
+    if (url.searchParams.has("cat") || url.searchParams.has("p")) return fetch(request);
     if (STATIC_FILE.test(url.pathname)) return fetch(request);
 
     // Avoid loops if a request is explicitly marked by Prerender.
