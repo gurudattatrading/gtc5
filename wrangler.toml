@@ -1,0 +1,9 @@
+name = "gtc5-prerender"
+main = "_edge/prerender-worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+
+routes = [
+  { pattern = "industrialspringmanufacturer.com/*", zone_name = "industrialspringmanufacturer.com" },
+  { pattern = "www.industrialspringmanufacturer.com/*", zone_name = "industrialspringmanufacturer.com" }
+]
