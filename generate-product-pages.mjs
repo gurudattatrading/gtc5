@@ -304,14 +304,23 @@ const guideDir = path.join(root, 'guides');
 fs.mkdirSync(guideDir, { recursive: true });
 for (const gd of guideList) {
   const url = `${base}/guides/${gd.file}.html`;
+  const outFile = path.join(guideDir, `${gd.file}.html`);
+  const prevHtml = fs.existsSync(outFile) ? fs.readFileSync(outFile, 'utf8') : '';
+  const prevPub = (prevHtml.match(/"datePublished":"(\d{4}-\d{2}-\d{2})"/) || [])[1];
+  const prevMod = (prevHtml.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/) || [])[1];
   const stepsHtml = gd.steps ? `<div class="sec desc"><h2>Steps</h2><ol style="margin:8px 0 0 22px">${gd.steps.map(([n, t]) => `<li><b>${esc(n)}.</b> ${esc(t)}</li>`).join('')}</ol><p style="margin-top:12px">Then check the numbers in our <a href="/calculator.html">spring rate calculator</a>.</p></div>${cta}` : '';
-  const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog.html">Guides</a> › <b>${esc(gd.h1)}</b></nav><section class="hero"><div class="eyebrow">Spring guide</div><h1>${esc(gd.h1)}</h1><p><b>Quick answer:</b> ${esc(gd.answer)}</p><p style="margin-top:10px;font-size:13px">By Gurudatta Trading Co., Mumbai · Updated ${today}</p></section>${gd.body}${stepsHtml}<section class="sec faq"><h2>FAQs</h2>${gd.faq.map(([q, a]) => `<details open><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section><section class="sec"><h2>More spring guides</h2><div class="chips">${guideList.filter(o => o !== gd).map(o => `<a href="/guides/${o.file}.html">${esc(o.h1.split(' (')[0].split(' — ')[0])}</a>`).join('')}</div></section><section class="sec"><h2>Explore products</h2>${categoryChips('')}</section>`;
+  const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog.html">Guides</a> › <b>${esc(gd.h1)}</b></nav><section class="hero"><div class="eyebrow">Spring guide</div><h1>${esc(gd.h1)}</h1><p><b>Quick answer:</b> ${esc(gd.answer)}</p><p style="margin-top:10px;font-size:13px">By Gurudatta Trading Co., Mumbai · Updated __MOD__</p></section>${gd.body}${stepsHtml}<section class="sec faq"><h2>FAQs</h2>${gd.faq.map(([q, a]) => `<details open><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section><section class="sec"><h2>More spring guides</h2><div class="chips">${guideList.filter(o => o !== gd).map(o => `<a href="/guides/${o.file}.html">${esc(o.h1.split(' (')[0].split(' — ')[0])}</a>`).join('')}</div></section><section class="sec"><h2>Explore products</h2>${categoryChips('')}</section>`;
   const ld = { '@context': 'https://schema.org', '@graph': [ orgLd,
-    { '@type': 'Article', headline: gd.h1, description: gd.desc, url, mainEntityOfPage: url, datePublished: today, dateModified: today, inLanguage: 'en-IN', author: { '@id': base + '/#business' }, publisher: { '@id': base + '/#business' } },
+    { '@type': 'Article', headline: gd.h1, description: gd.desc, url, mainEntityOfPage: url, datePublished: prevPub || today, dateModified: '__MOD__', inLanguage: 'en-IN', author: { '@id': base + '/#business' }, publisher: { '@id': base + '/#business' } },
     crumbLd([['Home', base + '/'], ['Guides', base + '/blog.html'], [gd.h1, url]]),
     ...(gd.steps ? [{ '@type': 'HowTo', name: gd.h1, step: gd.steps.map(([n, t], i) => ({ '@type': 'HowToStep', position: i + 1, name: n, text: t })) }] : []),
     { '@type': 'FAQPage', mainEntity: gd.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) } ] };
-  fs.writeFileSync(path.join(guideDir, `${gd.file}.html`), shell({ title: withBrand(gd.title, ' | Gurudatta Trading', 66), description: gd.desc, canonical: url, body, jsonLd: ld }));
+  const guideHtml = shell({ title: withBrand(gd.title, ' | Gurudatta Trading', 66), description: gd.desc, canonical: url, body, jsonLd: ld });
+  // Keep dates honest: only bump the modified date when the page content really changed.
+  const prevMasked = prevMod ? prevHtml.split(prevMod).join('__MOD__') : prevHtml;
+  const modDate = prevMod && prevMasked === guideHtml ? prevMod : today;
+  const finalHtml = guideHtml.split('__MOD__').join(modDate);
+  if (finalHtml !== prevHtml) fs.writeFileSync(outFile, finalHtml);
 }
 // llms-full.txt: complete catalogue in plain text for AI/answer engines
 const llms = [`# Gurudatta Trading Co. — full catalogue`, `Mumbai-based spring manufacturer and supplier since 1995. ISO 9001:2015. PAN India delivery. WhatsApp +91 84549 95315, connect.gtc5@gmail.com. Site: ${base}/`, ``, `## Guides`, ...guideList.map(gd => `- ${gd.h1}: ${base}/guides/${gd.file}.html — ${gd.answer}`), ``, `## Calculators and key pages`, `- Compression spring calculator: ${base}/compression-spring-calculator.html`, `- Extension spring calculator: ${base}/extension-spring-calculator.html`, `- Torsion spring calculator: ${base}/torsion-spring-calculator.html`, `- Extension spring manufacturer: ${base}/extension-spring-manufacturer.html`, `- Heavy duty spring manufacturer: ${base}/heavy-duty-spring-manufacturer.html`, ``, `## Products by category`];
@@ -385,6 +394,22 @@ fs.writeFileSync(path.join(root, '404.html'), shell({ title: 'Page not found | G
 const sitemapPath = path.join(root, 'sitemap.xml');
 if (fs.existsSync(sitemapPath)) {
   const sitemapDate = new Date().toISOString().slice(0, 10);
+  // Honest <lastmod>: the date a page file really last changed (git history), or today if it has uncommitted changes.
+  // A sitemap that stamps every URL with today's date teaches Google to ignore lastmod.
+  const { execFileSync } = await import('node:child_process');
+  const git = args => execFileSync('git', args, { cwd: root, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+  let gitOk = true;
+  try { if (git(['rev-parse', '--is-shallow-repository']) === 'true') git(['fetch', '--unshallow', '--quiet']); } catch { gitOk = false; }
+  const urlToFile = u => { const p = u.replace(base, ''); if (p === '/' ) return 'index.html'; return p.endsWith('/') ? p.slice(1) + 'index.html' : p.slice(1); };
+  const realLastmod = u => {
+    if (!gitOk) return null;
+    const f = urlToFile(u);
+    try {
+      if (!fs.existsSync(path.join(root, f))) return null;
+      if (git(['status', '--porcelain', '--', f])) return sitemapDate;
+      return git(['log', '-1', '--format=%cs', '--', f]) || null;
+    } catch { return null; }
+  };
   // The thin Tension Spring category canonicalizes to the Extension Spring guide,
   // so omit that duplicate URL from the XML sitemap.
   const canonicalizedCategoryUrls = new Set([
@@ -393,9 +418,11 @@ if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, 'utf8').replace(/<url>[\s\S]*?<\/url>/g, block => {
     const locMatch = block.match(/<loc>([^<]+)<\/loc>/);
     if (locMatch && canonicalizedCategoryUrls.has(locMatch[1])) return '';
-    if (!/<loc>https:\/\/industrialspringmanufacturer\.com\/products(?:\.html|\/)/.test(block)) return block;
-    if (/<lastmod>/.test(block)) return block.replace(/<lastmod>[^<]*<\/lastmod>/, '<lastmod>' + sitemapDate + '</lastmod>');
-    return block.replace('</url>', '<lastmod>' + sitemapDate + '</lastmod></url>');
+    if (!locMatch) return block;
+    const lm = realLastmod(locMatch[1]) || (/<lastmod>/.test(block) ? null : sitemapDate);
+    if (!lm) return block;
+    if (/<lastmod>/.test(block)) return block.replace(/<lastmod>[^<]*<\/lastmod>/, '<lastmod>' + lm + '</lastmod>');
+    return block.replace('</url>', '<lastmod>' + lm + '</lastmod></url>');
   });
   fs.writeFileSync(sitemapPath, sitemap);
 }
