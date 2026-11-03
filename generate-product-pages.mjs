@@ -41,6 +41,32 @@ const base = 'https://industrialspringmanufacturer.com';
 const imageBase = 'https://gurudattatradingcompany.co.in/admin/uploads/product/cat_pd_image/';
 const WA = '918454995315';
 const slug = value => value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+// ---------- optional real product details (product-details.csv, filled in by the business) ----------
+// Columns used: page_url, size_range, wire_diameter_mm, material_grade, finish, standards, applications,
+// min_order_qty, lead_time, price_from_inr. Empty cells are ignored, so nothing is invented.
+const productDetails = new Map();
+{
+  const csvPath = path.join(root, 'product-details.csv');
+  if (fs.existsSync(csvPath)) {
+    const text = fs.readFileSync(csvPath, 'utf8').replace(/^\uFEFF/, '');
+    const rows = []; let row = [], cell = '', inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQ) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else inQ = false; } else cell += ch; }
+      else if (ch === '"') inQ = true;
+      else if (ch === ',') { row.push(cell); cell = ''; }
+      else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cell); cell = ''; if (row.some(c => c.trim())) rows.push(row); row = []; }
+      else cell += ch;
+    }
+    if (cell || row.length) { row.push(cell); if (row.some(c => c.trim())) rows.push(row); }
+    const head = (rows.shift() || []).map(h => h.trim());
+    for (const r of rows) {
+      const o = {}; head.forEach((h, i) => { o[h] = (r[i] || '').trim(); });
+      const key = (o.page_url || '').replace(/^https?:\/\/[^/]+\//, '').replace(/^\//, '').replace(/\.html$/, '');
+      if (key) productDetails.set(key, o);
+    }
+  }
+}
 const esc = value => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 const imageUrl = value => !value ? '' : (/^(data:|https?:\/\/)/i.test(value) || value.includes('/') ? value : imageBase + encodeURI(value));
 const absImage = value => { const u = imageUrl(value); return u.startsWith('/') ? base + u : (u.includes('gurudattatradingcompany.co.in') || !u ? base + '/logo.jpg' : u); };
@@ -175,7 +201,9 @@ for (const category of categories) {
     const tagline = plainText(product.tagline) || plainText(product.desc) || `${product.name} from Gurudatta Trading Co., Mumbai.`;
     const description = clip(`${tagline} Made in Mumbai by Gurudatta Trading Co. — ISO 9001:2015, PAN India delivery. Get a quote on WhatsApp.`, 158);
     const specsArr = Array.isArray(product.specs) ? product.specs : [];
-    const specs = specsArr.map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('');
+    const det = productDetails.get(`products/${categorySlug}/${productSlug}`) || {};
+    const extraSpecs = [['Size range', det.size_range], ['Wire diameter', det.wire_diameter_mm && `${det.wire_diameter_mm} mm`], ['Material grade', det.material_grade], ['Finish', det.finish], ['Standard', det.standards], ['Minimum order', det.min_order_qty], ['Lead time', det.lead_time]].filter(([, v]) => v);
+    const specs = [...specsArr, ...extraSpecs].map(([key, value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('');
     const image = img ? `<img src="${esc(img)}" alt="${esc(product.name)}" width="460" height="460" loading="eager" referrerpolicy="no-referrer">` : `<span class="fallback" aria-hidden="true">🔩</span>`;
     const faq = [
       [`Can you make ${product.name} to my specification?`, `Yes. We manufacture to your drawing, sample or working parameters, and can also supply standard sizes from stock. Send details on WhatsApp (+91 84549 95315) or through the contact page.`],
@@ -185,7 +213,7 @@ for (const category of categories) {
     const related = [1, 2, 3, 4].map(k => category.products[(idx + k) % category.products.length]).filter((p, i, a) => p !== product && a.indexOf(p) === i);
     const body = `<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/products.html">Products</a> › <a href="${categoryCanonicalUrl}">${esc(category.name)}</a> › <b>${esc(product.name)}</b></nav>
 <article><div class="detail"><div class="photo">${image}</div><div class="info"><div class="eyebrow">${esc(category.icon || '')} ${esc(category.name)}</div><h1>${esc(product.name)}</h1><p class="tagline">${esc(tagline)}</p>${specs ? `<table class="specs"><tbody>${specs}</tbody></table>` : ''}<div class="btns"><a class="btn" href="/contact.html">📞 Enquire Now</a><a class="btn wa" href="https://wa.me/${WA}?text=${encodeURIComponent('Hi, I am interested in ' + product.name)}" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
-${product.desc ? `<section class="sec desc"><h2>About ${esc(product.name)}</h2>${product.desc}</section>` : ''}
+${product.desc ? `<section class="sec desc"><h2>About ${esc(product.name)}</h2>${product.desc}</section>` : ''}${det.applications ? `<section class="sec"><h2>Where ${esc(product.name)} is used</h2><p>${esc(det.applications)}</p></section>` : ''}
 <section class="sec trust"><h2>Why buy from Gurudatta Trading Co.</h2><ul><li>Manufacturer in Mumbai, operating since 1995 (30+ years)</li><li>ISO 9001:2015 quality management · GST, IEC and Udyam registered</li><li>Made to your drawing or sample, or supplied from stock</li><li>PAN India delivery, with export enquiries welcome</li><li>Quote typically within 24 hours on WhatsApp, email or phone</li></ul></section>
 <section class="sec faq"><h2>${esc(product.name)} — FAQs</h2>${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>
 ${related.length ? `<section class="sec"><h2>More ${esc(category.name)} products</h2><div class="grid">${related.map(p => cardHtml(categorySlug, p, 'h3')).join('')}</div><p style="margin-top:14px"><a href="${categoryCanonicalUrl}">Browse the full ${esc(category.name)} catalogue →</a></p></section>` : ''}
@@ -194,6 +222,7 @@ ${related.length ? `<section class="sec"><h2>More ${esc(category.name)} products
       { '@type': 'WebPage', name: product.name, description, url: productUrl, inLanguage: 'en-IN', primaryImageOfPage: { '@type': 'ImageObject', url: absImage(product.img) },
         about: { '@type': 'Thing', name: product.name, description: tagline }, isPartOf: { '@type': 'WebSite', name: 'Gurudatta Trading Co.', url: base + '/' } },
       crumbLd([['Home', base + '/'], ['Products', base + '/products.html'], [category.name, categoryCanonicalUrl], [product.name, productUrl]]),
+      ...(Number(det.price_from_inr) > 0 ? [{ '@type': 'Product', name: product.name, description: tagline, image: absImage(product.img), url: productUrl, brand: { '@type': 'Brand', name: 'Gurudatta Trading Co.' }, offers: { '@type': 'Offer', url: productUrl, priceCurrency: 'INR', price: String(Number(det.price_from_inr)), seller: { '@type': 'Organization', name: 'Gurudatta Trading Co.' } } }] : []),
       { '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ] };
     const bestTitle = [`${product.name} Manufacturer in Mumbai | Gurudatta Trading Co.`, `${product.name} Manufacturer in Mumbai`, `${product.name} | Gurudatta Trading Co., Mumbai`, `${product.name} | Gurudatta Trading`].find(x => x.length <= 62) || product.name;
