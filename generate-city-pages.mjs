@@ -306,6 +306,8 @@ const swapPune = (h, c) => h.replace(/Pune/g, c.name === 'Chhatrapati Sambhajina
 
 function build(c) {
   const url = `${BASE}/${c.slug}.html`;
+  const prevHtmlForDates = fs.existsSync(`${c.slug}.html`) ? fs.readFileSync(`${c.slug}.html`, 'utf8') : '';
+  const prevPub = (prevHtmlForDates.match(/"datePublished":"(\d{4}-\d{2}-\d{2})"/) || [])[1];
   const wa = `https://wa.me/918454995315?text=${enc(`Hello, I need a spring quote in ${c.short}.`)}`;
   // hero
   let hero = heroHtml
@@ -355,7 +357,7 @@ function build(c) {
       } else if (n['@type'] === 'LocalBusiness') {
         n.areaServed = [{ '@type': 'City', name: c.name }, ...c.regions.flatMap(([, tags]) => tags).slice(0, 8).map((t) => ({ '@type': 'Place', name: t.replace(/&amp;/g, '&') }))];
       } else if (n['@type'] === 'BlogPosting' || n['@type'] === 'Article') {
-        n.headline = c.h1.replace(/&amp;/g, '&').slice(0, 110); n.description = c.desc; n.datePublished = TODAY; n.dateModified = TODAY;
+        n.headline = c.h1.replace(/&amp;/g, '&').slice(0, 110); n.description = c.desc; n.datePublished = prevPub || TODAY; n.dateModified = TODAY;
         n.mainEntityOfPage = url; if (n.url) n.url = url;
       } else if (n['@type'] === 'FAQPage') {
         n.mainEntity = c.faqs.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } }));
@@ -364,7 +366,11 @@ function build(c) {
     if (j['@graph']) j['@graph'].forEach(fix); else fix(j);
     return a + JSON.stringify(j).replace(/<\//g, '<\\/') + z;
   });
-  fs.writeFileSync(`${c.slug}.html`, out);
+  // Keep dates honest: rewrite the file only when something other than a date changed.
+  const file = `${c.slug}.html`;
+  const prev = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+  const strip = (t) => t.replace(/\d{4}-\d{2}-\d{2}/g, 'D');
+  if (!prev || strip(prev) !== strip(out)) fs.writeFileSync(file, out);
   return url;
 }
 
