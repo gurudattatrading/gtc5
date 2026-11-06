@@ -351,10 +351,106 @@ for (const gd of guideList) {
   const finalHtml = guideHtml.split('__MOD__').join(modDate);
   if (finalHtml !== prevHtml) fs.writeFileSync(outFile, finalHtml);
 }
-// llms-full.txt: complete catalogue in plain text for AI/answer engines
-const llms = [`# Gurudatta Trading Co. — full catalogue`, `Mumbai-based spring manufacturer and supplier since 1995. ISO 9001:2015. PAN India delivery. WhatsApp +91 84549 95315, connect.gtc5@gmail.com. Site: ${base}/`, ``, `## Guides`, ...guideList.map(gd => `- ${gd.h1}: ${base}/guides/${gd.file}.html — ${gd.answer}`), ``, `## Calculators and key pages`, `- Compression spring calculator: ${base}/compression-spring-calculator.html`, `- Extension spring calculator: ${base}/extension-spring-calculator.html`, `- Torsion spring calculator: ${base}/torsion-spring-calculator.html`, `- Extension spring manufacturer: ${base}/extension-spring-manufacturer.html`, `- Heavy duty spring manufacturer: ${base}/heavy-duty-spring-manufacturer.html`, ``, `## Products by category`];
-for (const c of categories) { llms.push(``, `### ${c.name} (${base}/products/${slug(c.name)}/)`, catIntro[slug(c.name)] || ''); for (const p of c.products) llms.push(`- ${p.name}: ${plainText(p.tagline || p.desc)} ${(Array.isArray(p.specs) ? p.specs.map(([a, b]) => `${a}: ${b}`).join('; ') : '')} — ${base}/products/${slug(c.name)}/${slug(p.name)}.html`); }
-fs.writeFileSync(path.join(root, 'llms-full.txt'), llms.join('\n') + '\n');
+// ---------- llms.txt (short, curated) and llms-full.txt (complete), generated so links and counts never drift ----------
+{
+  const decode = t => String(t || '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+  const metaDesc = file => { try { return decode((fs.readFileSync(path.join(root, file), 'utf8').match(/<meta name="description" content="([^"]*)"/) || [])[1]); } catch { return ''; } };
+  const totalProducts = categories.reduce((n, c) => n + c.products.length, 0);
+  const CITY_PAGES = [
+    ['Mumbai', 'spring-manufacturer-mumbai'], ['Bhiwandi, Taloja and Thane', 'spring-manufacturer-bhiwandi-taloja-thane'],
+    ['Vasai-Virar and Palghar', 'spring-manufacturer-vasai-virar-palghar'], ['Raigad (Panvel, Khopoli, Roha)', 'spring-manufacturer-raigad-panvel-khopoli'],
+    ['Pune', 'spring-manufacturer-pune'], ['Nashik', 'spring-manufacturer-nashik'], ['Solapur', 'spring-manufacturer-solapur'],
+    ['Satara, Sangli and Karad', 'spring-manufacturer-satara-sangli-karad'], ['Kolhapur', 'spring-manufacturer-kolhapur'],
+    ['Chhatrapati Sambhajinagar (Aurangabad)', 'spring-manufacturer-chhatrapati-sambhajinagar'], ['Nagpur', 'spring-manufacturer-nagpur'],
+  ].filter(([, f]) => fs.existsSync(path.join(root, f + '.html')));
+  const SUMMARY = `Spring manufacturer in Goregaon East, Mumbai, India, operating since 1995. Makes compression, extension and torsion springs, die springs, spiral springs and wire forms to a customer's drawing or sample, and supplies circlips, pins, hooks and mechanical seals. Dispatch across India and export.`;
+  const FACTS = [
+    'Business name: Gurudatta Trading Co.',
+    'Founded: 1995 (30+ years in operation)',
+    'Address: Amin Compound, Sonawala Cross Rd No. 2, Opp. Pride House, Sonawala Industry Estate, Goregaon East, Mumbai, Maharashtra 400063, India',
+    'Hours: open 24 hours (Monday to Saturday)',
+    'Phone and WhatsApp: +91 84549 95315',
+    'Email: connect.gtc5@gmail.com',
+    'Business type: direct manufacturer (not a trading middleman)',
+    'Products: compression, extension and torsion springs, die springs, spiral springs, wire forms, circlips, dowel and steel pins, steel hooks, mechanical shaft seals',
+    'Materials: mild steel, stainless steel, music wire, other alloys on request',
+    `Catalogue: ${categories.length} categories, ${totalProducts} products`,
+    'Order size: single prototype springs up to bulk industrial orders; no fixed minimum order quantity',
+    'Quote response: within 24 hours by WhatsApp, email or phone',
+    'Delivery: PAN India and export (IEC registered)',
+    'Certifications and registrations: ISO 9001:2015, GST registered (GSTIN 27CBBPG9951J1ZB), IEC, Udyam (MSME), IndiaMART TrustSeal verified, TradeIndia Certificate of Trust',
+    'Customer reviews: listed on the Reviews page',
+  ];
+  const FAQS = [
+    ['Where is Gurudatta Trading Co. located?', 'At Amin Compound, Sonawala Cross Rd No. 2, Sonawala Industry Estate, Goregaon East, Mumbai 400063. Springs are made at this Mumbai factory and dispatched across India.'],
+    ['What does Gurudatta Trading Co. make?', 'Compression, extension and torsion springs, die springs, spiral springs and wire forms, plus circlips, dowel and steel pins, steel hooks and mechanical shaft seals, in mild steel, stainless steel and music wire.'],
+    ['Can springs be made to my drawing or sample?', 'Yes. Send a drawing, a sample spring or the working parameters (wire diameter, outer diameter, free length, number of coils, load) on WhatsApp or email.'],
+    ['Is there a minimum order quantity?', 'No fixed minimum. Orders range from a single prototype spring to bulk industrial quantities.'],
+    ['How quickly is a quotation provided?', 'Within 24 hours by WhatsApp, email or phone.'],
+    ['Which areas of Maharashtra do you supply?', 'Mumbai, Bhiwandi, Taloja and Thane, Vasai-Virar and Palghar, Raigad, Pune, Nashik, Solapur, Satara, Sangli and Karad, Kolhapur, Chhatrapati Sambhajinagar and Nagpur, all dispatched from the Mumbai factory. Each area has its own page listed below.'],
+    ['Do you deliver outside Maharashtra or export?', 'Yes. Dispatch is PAN India, and the company holds an Import Export Code (IEC) for export orders.'],
+    ['How can I calculate spring rate before ordering?', 'Use the free Spring Calculator, which returns spring rate, safe load, deflection, solid height and stress for compression, extension and torsion springs. No signup is needed to read the guides.'],
+  ];
+  const catLine = c => `[${c.name}](${base}/products/${slug(c.name)}/): ${c.products.length} product${c.products.length === 1 ? '' : 's'}. ${catIntro[slug(c.name)] || ''}`.trim();
+  const toolLines = [
+    `- [Spring Calculator](${base}/calculator.html): free online calculator for compression, extension and torsion springs (spring rate, safe load, deflection, solid height, stress; mm or inch)`,
+    `- [Compression spring calculator](${base}/compression-spring-calculator.html)`,
+    `- [Extension spring calculator](${base}/extension-spring-calculator.html)`,
+    `- [Torsion spring calculator](${base}/torsion-spring-calculator.html)`,
+  ];
+  const keyPages = [
+    `- [Home](${base}/): overview of Gurudatta Trading Co.`,
+    `- [Product catalogue](${base}/products/): all ${categories.length} categories and ${totalProducts} products`,
+    `- [Industrial spring manufacturer in Mumbai](${base}/industrial-spring-manufacturer-mumbai.html)`,
+    `- [Compression spring manufacturer guide](${base}/compression-spring-manufacturer.html)`,
+    `- [Extension spring manufacturer](${base}/extension-spring-manufacturer.html)`,
+    `- [Heavy duty spring manufacturer](${base}/heavy-duty-spring-manufacturer.html)`,
+    `- [Types of springs guide](${base}/types-of-springs-guide.html)`,
+    `- [Reviews](${base}/reviews.html): customer reviews`,
+    `- [Contact](${base}/contact.html): phone, WhatsApp, email and location for quote requests`,
+  ];
+  const cityLine = ([label, f]) => `- [Spring manufacturer for ${label}](${base}/${f}.html): ${metaDesc(f + '.html')}`;
+
+  // ---- llms.txt
+  const short = [
+    `# Gurudatta Trading Co.`, ``, `> ${SUMMARY}`, ``,
+    `This file summarises ${base}/ for AI assistants. Links point to the canonical page for each topic. A longer plain-text version with every product is at [llms-full.txt](${base}/llms-full.txt).`, ``,
+    `## Business facts`, ...FACTS.map(f => `- ${f}`), ``,
+    `## Key pages`, ...keyPages, ``,
+    `## What we make`, ...categories.map(c => `- ${catLine(c)}`), ``,
+    `## Maharashtra service areas`, ...CITY_PAGES.map(cityLine), `- [Spring manufacturer in Maharashtra](${base}/spring-manufacturer-maharashtra.html): overview of all areas supplied`, ``,
+    `## Calculators`, ...toolLines, ``,
+    `## Guides`, ...guideList.map(gd => `- [${gd.title}](${base}/guides/${gd.file}.html): ${gd.desc}`), ``,
+    `## Frequently asked questions`, ...FAQS.map(([q, a]) => `- **${q}** ${a}`), ``,
+    `## Optional`, `- [Full catalogue and guides in plain text](${base}/llms-full.txt)`, `- [Sitemap](${base}/sitemap.xml)`, `- [Privacy policy](${base}/privacypolicy.html)`,
+  ];
+  fs.writeFileSync(path.join(root, 'llms.txt'), short.join('\n') + '\n');
+
+  // ---- llms-full.txt
+  const PROMO = /\b(buy|order online|order now|enquire|enquiry|request a quote|get a quote|bulk pricing|bulk & oem|fast delivery|call us|whatsapp|today)\b/i;
+  const summaryOf = p => {
+    const raw = plainText(p.tagline || p.desc);
+    const lead = new RegExp('^' + p.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*[\\u2013\\u2014:\\-–—]?\\s*', 'i');
+    const kept = raw.replace(lead, '').split(/(?<=[.!?])\s+|\s+[\u2013\u2014]\s+/).filter(x => x && !PROMO.test(x)).join(' ').trim();
+    return kept.length >= 12 ? kept : raw;
+  };
+  const specsOf = p => (Array.isArray(p.specs) ? p.specs.map(([k, v]) => `${k}: ${v}`).join('; ') : '');
+  const full = [
+    `# Gurudatta Trading Co. (full site content)`, ``, `> ${SUMMARY}`, ``,
+    `Plain-text version of ${base}/ for AI assistants and answer engines: business facts, FAQs, area pages, calculators, guides and the full product catalogue, each with its canonical URL. The short version is [llms.txt](${base}/llms.txt).`, ``,
+    `## Business facts`, ...FACTS.map(f => `- ${f}`), ``,
+    `## Frequently asked questions`, ...FAQS.flatMap(([q, a]) => [`**${q}**`, a, '']),
+    `## Maharashtra service areas`, ...CITY_PAGES.map(cityLine), `- [Spring manufacturer in Maharashtra](${base}/spring-manufacturer-maharashtra.html): overview of all areas supplied`, ``,
+    `## Calculators and key pages`, ...toolLines, ...keyPages, ``,
+    `## Guides`, ...guideList.flatMap(gd => [`### [${gd.title}](${base}/guides/${gd.file}.html)`, gd.answer, '']),
+    `## Product catalogue (${categories.length} categories, ${totalProducts} products)`,
+  ];
+  for (const c of categories) {
+    full.push(``, `### [${c.name}](${base}/products/${slug(c.name)}/) (${c.products.length})`, catIntro[slug(c.name)] || '');
+    for (const p of c.products) full.push(`- [${p.name}](${base}/products/${slug(c.name)}/${slug(p.name)}.html): ${summaryOf(p)}${specsOf(p) ? ` Specs: ${specsOf(p)}.` : ''}`);
+  }
+  fs.writeFileSync(path.join(root, 'llms-full.txt'), full.join('\n') + '\n');
+}
 
 // ---------- Heavy Duty Spring landing page (genuine keyword gap, no matching product category) ----------
 {

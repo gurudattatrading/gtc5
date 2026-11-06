@@ -1,75 +1,102 @@
 # Gurudatta Trading Co.
 
-> Mumbai-based manufacturer and supplier of Compression, Extension and Torsion springs (Mild Steel, Stainless Steel, Music Wire, and other alloys), operating since 1995. Also publishes a free online Spring Rate Calculator with a live 3D preview.
+> Spring manufacturer in Goregaon East, Mumbai, India, operating since 1995. Makes compression, extension and torsion springs, die springs, spiral springs and wire forms to a customer's drawing or sample, and supplies circlips, pins, hooks and mechanical seals. Dispatch across India and export.
 
-Gurudatta Trading Co. designs and manufactures custom coil springs to customer specification and also supplies from stock. Headquartered in Mumbai, Maharashtra, India. Phone/WhatsApp: +91 84549 95315. Email: connect.gtc5@gmail.com.
+This file summarises https://industrialspringmanufacturer.com/ for AI assistants. Links point to the canonical page for each topic. A longer plain-text version with every product is at [llms-full.txt](https://industrialspringmanufacturer.com/llms-full.txt).
 
-## Key Facts
-
+## Business facts
+- Business name: Gurudatta Trading Co.
 - Founded: 1995 (30+ years in operation)
-- Headquarters: Mumbai, Maharashtra, India
-- Business type: Direct manufacturer (not a trading middleman)
-- Spring types manufactured: Compression springs, Extension springs, Torsion springs
-- Materials: Mild Steel, Stainless Steel, Music Wire, other alloys on request
-- Order sizes: Single prototype springs up to bulk industrial orders; custom sizes made to drawing or sample
-- Delivery area: PAN India, plus export (IEC — Import Export Code registered)
-- Maharashtra service areas (city guides): Mumbai, Bhiwandi–Taloja–Thane, Vasai-Virar–Palghar, Raigad, Pune, Nashik, Solapur, Satara–Sangli–Karad, Kolhapur, Chhatrapati Sambhajinagar, Nagpur — see /spring-manufacturer-maharashtra.html
-- Certifications: ISO 9001:2015 (Quality Management), GST registered (GSTIN 27CBBPG9951J1ZB), IEC registered, Udyam/MSME registered, IndiaMART TrustSeal verified, TradeIndia Certificate of Trust
-- Typical quote response time: within 24 hours (WhatsApp, email or phone)
-- Customer rating: 4.8/5 (aggregate, as displayed on-site)
+- Address: Amin Compound, Sonawala Cross Rd No. 2, Opp. Pride House, Sonawala Industry Estate, Goregaon East, Mumbai, Maharashtra 400063, India
+- Hours: open 24 hours (Monday to Saturday)
+- Phone and WhatsApp: +91 84549 95315
+- Email: connect.gtc5@gmail.com
+- Business type: direct manufacturer (not a trading middleman)
+- Products: compression, extension and torsion springs, die springs, spiral springs, wire forms, circlips, dowel and steel pins, steel hooks, mechanical shaft seals
+- Materials: mild steel, stainless steel, music wire, other alloys on request
+- Catalogue: 17 categories, 93 products
+- Order size: single prototype springs up to bulk industrial orders; no fixed minimum order quantity
+- Quote response: within 24 hours by WhatsApp, email or phone
+- Delivery: PAN India and export (IEC registered)
+- Certifications and registrations: ISO 9001:2015, GST registered (GSTIN 27CBBPG9951J1ZB), IEC, Udyam (MSME), IndiaMART TrustSeal verified, TradeIndia Certificate of Trust
+- Customer reviews: listed on the Reviews page
 
-## Spring Types
+## Key pages
+- [Home](https://industrialspringmanufacturer.com/): overview of Gurudatta Trading Co.
+- [Product catalogue](https://industrialspringmanufacturer.com/products/): all 17 categories and 93 products
+- [Industrial spring manufacturer in Mumbai](https://industrialspringmanufacturer.com/industrial-spring-manufacturer-mumbai.html)
+- [Compression spring manufacturer guide](https://industrialspringmanufacturer.com/compression-spring-manufacturer.html)
+- [Extension spring manufacturer](https://industrialspringmanufacturer.com/extension-spring-manufacturer.html)
+- [Heavy duty spring manufacturer](https://industrialspringmanufacturer.com/heavy-duty-spring-manufacturer.html)
+- [Types of springs guide](https://industrialspringmanufacturer.com/types-of-springs-guide.html)
+- [Reviews](https://industrialspringmanufacturer.com/reviews.html): customer reviews
+- [Contact](https://industrialspringmanufacturer.com/contact.html): phone, WhatsApp, email and location for quote requests
 
-- **Compression Spring**: An open-coil spring that resists a pushing/squeezing (compressive) force and pushes back to its original length when released. Common uses: mattresses, valves, machinery, cushioning.
-- **Extension Spring**: A tightly-coiled spring that resists a pulling/stretching force and pulls back to its original length when released. Common uses: trampolines, garage doors, trigger mechanisms.
-- **Torsion Spring**: A spring that stores and releases rotational/twisting force, exerting torque when twisted. Common uses: clothespins, hinges, clips, lever mechanisms.
+## What we make
+- [Steel Spring](https://industrialspringmanufacturer.com/products/steel-spring/): 14 products. Steel springs for industrial and engineering use — compression, extension and torsion designs in mild steel and stainless steel, supplied from stock or made to your drawing.
+- [Industrial Springs](https://industrialspringmanufacturer.com/products/industrial-springs/): 16 products. Industrial springs for machinery, automotive, fabrication and OEM applications, in compression, extension, torsion and specialty forms.
+- [Steel Hook](https://industrialspringmanufacturer.com/products/steel-hook/): 7 products. Steel hooks and S-hooks in mild steel and stainless steel for hanging, fastening, tensioning and general fabrication use.
+- [Circlips](https://industrialspringmanufacturer.com/products/circlips/): 5 products. Circlips and snap rings that retain components on shafts and inside bores, in standard and stainless steel variants.
+- [Dowel Pin](https://industrialspringmanufacturer.com/products/dowel-pin/): 5 products. Dowel pins for accurate alignment and location of machine parts, tooling and assemblies.
+- [Wire Form](https://industrialspringmanufacturer.com/products/wire-form/): 6 products. Wire forms and custom-bent wire components made to your sample or drawing.
+- [Coil Spring](https://industrialspringmanufacturer.com/products/coil-spring/): 3 products. Coil springs for cushioning, suspension and load-bearing uses, made in a range of wire sizes and materials.
+- [Mechanical Shaft Seals](https://industrialspringmanufacturer.com/products/mechanical-shaft-seals/): 3 products. Mechanical shaft seals and sealing components that help prevent leakage along rotating shafts in pumps and machinery.
+- [Compression Spring](https://industrialspringmanufacturer.com/products/compression-spring/): 9 products. Compression springs resist a pushing force and return to their original length — used in valves, machinery, mattresses and cushioning.
+- [Torsion Spring](https://industrialspringmanufacturer.com/products/torsion-spring/): 6 products. Torsion springs store and release rotational force — used in hinges, clips and lever mechanisms.
+- [Steel Pin](https://industrialspringmanufacturer.com/products/steel-pin/): 2 products. Steel pins for fastening, locating and pivot uses in assemblies.
+- [R Pin](https://industrialspringmanufacturer.com/products/r-pin/): 5 products. R-pins (R-clips) are quick-fit retaining pins used to secure shafts, pins and fittings.
+- [Locking Items](https://industrialspringmanufacturer.com/products/locking-items/): 3 products. Locking items and retaining hardware that keep assemblies secure.
+- [Spring Seal](https://industrialspringmanufacturer.com/products/spring-seal/): 1 product. Spring-energised seals that maintain sealing contact under pressure.
+- [Die Spring](https://industrialspringmanufacturer.com/products/die-spring/): 3 products. Die springs are heavy-duty rectangular-wire compression springs used in tooling, dies, moulds and press applications.
+- [Spiral Spring](https://industrialspringmanufacturer.com/products/spiral-spring/): 4 products. Spiral (clock-type) flat springs that release stored energy gradually — used in timers, clocks and retractable mechanisms.
+- [Tension Spring](https://industrialspringmanufacturer.com/products/tension-spring/): 1 product. Tension (extension) springs resist a pulling force and pull back to their original length — used in trampolines, garage doors and trigger mechanisms.
 
-All three types are manufactured in Mild Steel, Stainless Steel and Music Wire, in standard sizes or fully custom to a customer's drawing, sample, or working parameters (wire diameter, outer diameter, free length, load).
+## Maharashtra service areas
+- [Spring manufacturer for Mumbai](https://industrialspringmanufacturer.com/spring-manufacturer-mumbai.html): Precision compression, extension & torsion springs made in Mumbai: Goregaon to Borivali, Andheri, Bhandup and every suburb. Free calculator, WhatsApp quotes.
+- [Spring manufacturer for Bhiwandi, Taloja and Thane](https://industrialspringmanufacturer.com/spring-manufacturer-bhiwandi-taloja-thane.html): Custom compression, extension & torsion springs for Bhiwandi, Taloja MIDC, Wagle Estate & Navi Mumbai. Bulk & OEM orders, GST invoice, quote in 24 hrs.
+- [Spring manufacturer for Vasai-Virar and Palghar](https://industrialspringmanufacturer.com/spring-manufacturer-vasai-virar-palghar.html): Spring manufacturer for Vasai-Virar & Palghar: compression, extension & torsion springs for Waliv, Sativali & Boisar–Tarapur. Made in Mumbai, 24-hr quote.
+- [Spring manufacturer for Raigad (Panvel, Khopoli, Roha)](https://industrialspringmanufacturer.com/spring-manufacturer-raigad-panvel-khopoli.html): Spring manufacturer supplying Raigad: compression, extension & torsion springs for Patalganga, Khopoli, Roha & Mahad MIDC. Made in Mumbai, 24-hr quote.
+- [Spring manufacturer for Pune](https://industrialspringmanufacturer.com/spring-manufacturer-pune.html): Precision compression, extension & torsion springs for Pune Chakan, Bhosari, Pimpri-Chinchwad & Hadapsar. GST-invoiced dispatch, free calculator, 24-hr quotes.
+- [Spring manufacturer for Nashik](https://industrialspringmanufacturer.com/spring-manufacturer-nashik.html): Industrial spring manufacturer supplying Nashik: compression, extension & torsion springs for Ambad, Satpur & Sinnar MIDC. Made in Mumbai, 24-hr quote.
+- [Spring manufacturer for Solapur](https://industrialspringmanufacturer.com/spring-manufacturer-solapur.html): Industrial spring manufacturer supplying Solapur: compression, extension & torsion springs for loom, sugar and engineering units. Made in Mumbai, GST invoice.
+- [Spring manufacturer for Satara, Sangli and Karad](https://industrialspringmanufacturer.com/spring-manufacturer-satara-sangli-karad.html): Spring manufacturer supplying Satara, Sangli & Karad: compression, extension & torsion springs for Satara and Kupwad MIDC. Made in Mumbai, 24-hr quote.
+- [Spring manufacturer for Kolhapur](https://industrialspringmanufacturer.com/spring-manufacturer-kolhapur.html): Industrial spring manufacturer for Kolhapur: springs for foundry, machine-shop and textile units at Shiroli, Gokul Shirgaon & Ichalkaranji. Made in Mumbai.
+- [Spring manufacturer for Chhatrapati Sambhajinagar (Aurangabad)](https://industrialspringmanufacturer.com/spring-manufacturer-chhatrapati-sambhajinagar.html): Industrial spring manufacturer for Chhatrapati Sambhajinagar (Aurangabad): springs for Waluj, Chikalthana & Shendra MIDC units. Made in Mumbai, GST invoice.
+- [Spring manufacturer for Nagpur](https://industrialspringmanufacturer.com/spring-manufacturer-nagpur.html): Industrial spring manufacturer supplying Nagpur: heavy-duty compression, extension & torsion springs for Hingna, Butibori & MIHAN. Made in Mumbai, GST invoice.
+- [Spring manufacturer in Maharashtra](https://industrialspringmanufacturer.com/spring-manufacturer-maharashtra.html): overview of all areas supplied
 
-## Tools
-
-- [Spring Rate Calculator](https://industrialspringmanufacturer.com/calculator.html): Free browser-based calculator for Compression, Extension and Torsion springs. Enter wire diameter, outer diameter, free length and total coils (exact value or Min–Max range) to get spring rate, safe load, deflection, solid height, stress and a live rotatable 3D preview, in English (inch) or Metric (mm) units. No signup required. Results can be sent as a spec sheet via WhatsApp to request a manufacturing quote.
-
-## Company
-
-- [Home](https://industrialspringmanufacturer.com/index.html): Overview of Gurudatta Trading Co. — compression spring manufacturer based in Mumbai, India, including an About section, spring-type comparison table, quick facts, and FAQ.
-- [Products](https://industrialspringmanufacturer.com/products.html): Spring types and materials supplied (Mild Steel, Stainless Steel, Music Wire, and others).
-- [Spring Manufacturer in Mumbai](https://industrialspringmanufacturer.com/spring-manufacturer-mumbai.html): Manufacturing capability and suburb-by-suburb delivery coverage within Mumbai city.
-- [Spring Manufacturer for Mumbai's Industrial Belt](https://industrialspringmanufacturer.com/spring-manufacturer-bhiwandi-taloja-thane.html): Bulk and OEM spring supply to factories and MIDC units across Bhiwandi, Taloja, Wagle Estate (Thane) and Navi Mumbai.
-- [Spring Manufacturer in Maharashtra](https://industrialspringmanufacturer.com/spring-manufacturer-maharashtra.html): Background on the company's manufacturing capability and service area within Maharashtra.
-- [Reviews](https://industrialspringmanufacturer.com/reviews.html): Customer reviews and ratings.
-- [Contact](https://industrialspringmanufacturer.com/contact.html): Phone, WhatsApp, email and location details for quote requests.
-
-## Frequently Asked Questions
-
-- **What types of springs does Gurudatta Trading Co. manufacture?** Compression springs, extension springs and torsion springs, in mild steel, stainless steel and music wire, in standard catalogue sizes and fully custom dimensions.
-- **Do you manufacture custom springs to a drawing or sample?** Yes — share a drawing, sample spring, or working parameters (wire diameter, outer diameter, free length, load) over WhatsApp or email.
-- **How do I calculate spring rate before ordering?** Use the free Spring Rate Calculator linked above — it returns spring rate, safe load, deflection, solid height and stress instantly.
-- **Do you deliver outside Mumbai/Maharashtra?** Yes, dispatch is PAN India, and the company is IEC-registered for international/export orders.
-- **Is there a minimum order quantity?** No fixed MOQ — orders range from single prototype springs to bulk industrial quantities.
-- **How fast is a quotation provided?** Within 24 hours via WhatsApp, email or phone.
-
-## Optional
-
-- [Privacy Policy](https://industrialspringmanufacturer.com/privacypolicy.html): Data-handling policy for the website and calculator.
-
-## Full catalogue and guides
-
-- [Full catalogue (plain text)](https://industrialspringmanufacturer.com/llms-full.txt)
-- [Spring Wire Gauge (SWG) chart](https://industrialspringmanufacturer.com/guides/spring-wire-gauge-swg-chart.html)
-- [Compression spring rate formula](https://industrialspringmanufacturer.com/guides/spring-rate-formula-compression-spring.html)
-- [How to measure a spring](https://industrialspringmanufacturer.com/guides/how-to-measure-a-spring.html)
-- [Mild steel vs stainless steel vs music wire springs](https://industrialspringmanufacturer.com/guides/mild-steel-vs-stainless-steel-vs-music-wire-springs.html)
-- [Custom spring cost and quote checklist](https://industrialspringmanufacturer.com/guides/custom-spring-cost-and-quote-checklist.html)
-- [Extension spring load formula](https://industrialspringmanufacturer.com/guides/extension-spring-load-formula.html)
-- [Torsion spring torque formula](https://industrialspringmanufacturer.com/guides/torsion-spring-torque-formula.html)
-- [Spring end types explained](https://industrialspringmanufacturer.com/guides/spring-end-types-explained.html)
-- [Spring finishes and coatings](https://industrialspringmanufacturer.com/guides/spring-finishes-and-coatings.html)
-- [IS 4454 spring wire standard explained](https://industrialspringmanufacturer.com/guides/is-4454-spring-wire-grades-explained.html)
-- [Die spring colour code chart](https://industrialspringmanufacturer.com/guides/die-spring-colour-code-chart.html)
-- [Trampoline spring buying guide](https://industrialspringmanufacturer.com/guides/trampoline-spring-buying-guide.html)
-- [Compression springs: types, terms and formulas (guide)](https://industrialspringmanufacturer.com/guides/compression-springs-complete-guide.html)
+## Calculators
+- [Spring Calculator](https://industrialspringmanufacturer.com/calculator.html): free online calculator for compression, extension and torsion springs (spring rate, safe load, deflection, solid height, stress; mm or inch)
 - [Compression spring calculator](https://industrialspringmanufacturer.com/compression-spring-calculator.html)
 - [Extension spring calculator](https://industrialspringmanufacturer.com/extension-spring-calculator.html)
-- [Extension spring manufacturer](https://industrialspringmanufacturer.com/extension-spring-manufacturer.html)
 - [Torsion spring calculator](https://industrialspringmanufacturer.com/torsion-spring-calculator.html)
+
+## Guides
+- [Spring Wire Gauge (SWG) Chart: SWG to mm and inch](https://industrialspringmanufacturer.com/guides/spring-wire-gauge-swg-chart.html): Standard Wire Gauge (SWG) chart for spring wire: SWG 8 to 30 converted to millimetres and inches, with how to pick a wire diameter for springs.
+- [Compression Spring Rate Formula with Worked Example](https://industrialspringmanufacturer.com/guides/spring-rate-formula-compression-spring.html): How to calculate compression spring rate: k = G·d⁴ / (8·D³·N). Worked example, spring index and solid height, plus a free online calculator.
+- [How to Measure a Spring (Wire Diameter, OD, Free Length, Coils)](https://industrialspringmanufacturer.com/guides/how-to-measure-a-spring.html): Step-by-step guide to measure a compression, extension or torsion spring: wire diameter, outer diameter, free length, coil count, ends and winding direction.
+- [Mild Steel vs Stainless Steel vs Music Wire Springs](https://industrialspringmanufacturer.com/guides/mild-steel-vs-stainless-steel-vs-music-wire-springs.html): Compare mild steel, stainless steel and music wire springs: corrosion resistance, cost, strength and typical uses, with tips to choose the right material.
+- [Custom Spring Cost in India: Price Factors and Quote Checklist](https://industrialspringmanufacturer.com/guides/custom-spring-cost-and-quote-checklist.html): What drives the price of custom springs in India: material, wire size, quantity, tolerances, finishing, plus a checklist of details to send for a fast quote.
+- [Extension Spring Formula: Load, Rate & Extension (Example)](https://industrialspringmanufacturer.com/guides/extension-spring-load-formula.html): Extension spring formula: load F = F0 + k·x, so extension x = (F − F0) / k. Worked example, initial tension explained, plus a free spring calculator.
+- [Torsion Spring Torque Formula & Rate (Worked Example)](https://industrialspringmanufacturer.com/guides/torsion-spring-torque-formula.html): Torsion spring torque formula and rate: k = E·d⁴ / (64·D·N) per radian. Worked example, leg and winding notes, and a free calculator.
+- [Spring End Types Explained: Closed, Ground, Open](https://industrialspringmanufacturer.com/guides/spring-end-types-explained.html): Compare compression spring end types (open, closed, closed and ground) and extension/torsion spring ends, and how ends change active coils and solid height.
+- [Spring Finishes and Coatings: Zinc, Black Oxide, Powder Coat](https://industrialspringmanufacturer.com/guides/spring-finishes-and-coatings.html): Guide to spring finishes: zinc plating, black oxide, powder coating, oiling and stainless passivation — what each protects against and when to choose it.
+- [IS 4454 Spring Wire Standard: Part 1, 2 & 4 Explained](https://industrialspringmanufacturer.com/guides/is-4454-spring-wire-grades-explained.html): IS 4454 explained: Part 1 grades SL, SM, SH, DM, DH with wire-diameter ranges, Part 2 (oil hardened & tempered), Part 3 history and Part 4 (stainless).
+- [Die Spring Colour Code Chart: Light to Extra-Heavy Duty](https://industrialspringmanufacturer.com/guides/die-spring-colour-code-chart.html): How die spring colour coding works (ISO 10243 style): four duty levels, light to extra-heavy, and why the colour-to-duty mapping can vary by manufacturer.
+- [Trampoline Spring Buying Guide: Size, Count & Replacement](https://industrialspringmanufacturer.com/guides/trampoline-spring-buying-guide.html): How to choose replacement trampoline springs: measuring length and hook type, matching spring count to your trampoline, and signs it is time to replace them.
+- [Compression Spring: Types, Terms, Formulas & Design Guide](https://industrialspringmanufacturer.com/guides/compression-springs-complete-guide.html): What a compression spring is and how it works: types, key terms, the rate formula with an example, materials, design rules and common failures.
+
+## Frequently asked questions
+- **Where is Gurudatta Trading Co. located?** At Amin Compound, Sonawala Cross Rd No. 2, Sonawala Industry Estate, Goregaon East, Mumbai 400063. Springs are made at this Mumbai factory and dispatched across India.
+- **What does Gurudatta Trading Co. make?** Compression, extension and torsion springs, die springs, spiral springs and wire forms, plus circlips, dowel and steel pins, steel hooks and mechanical shaft seals, in mild steel, stainless steel and music wire.
+- **Can springs be made to my drawing or sample?** Yes. Send a drawing, a sample spring or the working parameters (wire diameter, outer diameter, free length, number of coils, load) on WhatsApp or email.
+- **Is there a minimum order quantity?** No fixed minimum. Orders range from a single prototype spring to bulk industrial quantities.
+- **How quickly is a quotation provided?** Within 24 hours by WhatsApp, email or phone.
+- **Which areas of Maharashtra do you supply?** Mumbai, Bhiwandi, Taloja and Thane, Vasai-Virar and Palghar, Raigad, Pune, Nashik, Solapur, Satara, Sangli and Karad, Kolhapur, Chhatrapati Sambhajinagar and Nagpur, all dispatched from the Mumbai factory. Each area has its own page listed below.
+- **Do you deliver outside Maharashtra or export?** Yes. Dispatch is PAN India, and the company holds an Import Export Code (IEC) for export orders.
+- **How can I calculate spring rate before ordering?** Use the free Spring Calculator, which returns spring rate, safe load, deflection, solid height and stress for compression, extension and torsion springs. No signup is needed to read the guides.
+
+## Optional
+- [Full catalogue and guides in plain text](https://industrialspringmanufacturer.com/llms-full.txt)
+- [Sitemap](https://industrialspringmanufacturer.com/sitemap.xml)
+- [Privacy policy](https://industrialspringmanufacturer.com/privacypolicy.html)
