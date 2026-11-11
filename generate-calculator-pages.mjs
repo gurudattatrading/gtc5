@@ -259,7 +259,7 @@ function build(p) {
   if (/<meta name="twitter:description" content="[^"]*"\s*\/?>/.test(h)) h = h.replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, () => `<meta name="twitter:description" content="${esc(p.desc)}">`);
 
   // hero
-  rep(/<h1>Spring Rate <span>Calculator<\/span><\/h1>/, `<h1>${p.h1}</h1>`, 'h1');
+  rep(/<h1>Spring(?: Rate)? <span>Calculator<\/span><\/h1>/, `<h1>${p.h1}</h1>`, 'h1');
   must(/(<h1>[\s\S]*?<\/h1>\s*)<p>[\s\S]*?<\/p>/.test(h), 'hero p');
   h = h.replace(/(<h1>[\s\S]*?<\/h1>\s*)<p>[\s\S]*?<\/p>/, (m, a) => `${a}<p>${p.heroP}</p>`);
   rep(/<div class="hero-feats">[\s\S]*?<\/div>/, `<div class="hero-feats">\n    ${p.heroFeats.map(f => `<span class="hf">${f}</span>`).join('\n    ')}\n  </div>`, 'hero feats');
