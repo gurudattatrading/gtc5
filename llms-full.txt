@@ -39,6 +39,11 @@ Plain-text version of https://industrialspringmanufacturer.com/ for AI assistant
 - [How do trampoline springs work](https://industrialspringmanufacturer.com/how-do-trampoline-springs-work.html): extension springs, Hooke's law, springs in parallel, what changes the bounce
 - [Spring potential energy formula and calculator](https://industrialspringmanufacturer.com/spring-potential-energy-formula.html): U = 1/2 k x^2, worked examples, torsion version, free calculator
 - [Extension spring hook types](https://industrialspringmanufacturer.com/extension-spring-hook-types.html): machine hook, side hook, extended hook, full loop, double loop, threaded plug, how to choose
+- [IS 4454 vs EN 10270-1 vs ASTM A228 spring wire](https://industrialspringmanufacturer.com/is-4454-vs-en-10270-astm-spring-wire.html): grade letters SL, SM, DM, SH, DH, comparison table, how to choose static or dynamic wire
+- [Spring index and buckling calculator](https://industrialspringmanufacturer.com/spring-index-and-buckling-calculator.html): spring index, solid height, maximum travel, buckling limit for compression springs
+- [Torsion spring design example](https://industrialspringmanufacturer.com/torsion-spring-design-example.html): worked calculation of rate, torque, stress and rod size, with calculator
+- [Trampoline spring size chart](https://industrialspringmanufacturer.com/trampoline-spring-size-chart.html): typical spring length and count by trampoline size, how to measure
+- [Hooke's law problems with solutions](https://industrialspringmanufacturer.com/hookes-law-problems-with-solutions.html): 10 solved numericals on spring constant, series, parallel, energy, work, time period
 
 ## Frequently asked questions
 **Where is Gurudatta Trading Co. located?**
